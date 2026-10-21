@@ -1,0 +1,6 @@
+name: Minebridge
+version: '${version}'
+main: dev.minebridge.BridgePlugin
+api-version: '26.2'
+load: POSTWORLD
+description: 'Python bridge for Paper: bounded TCP transport, handshake pending.'

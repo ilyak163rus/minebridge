@@ -1,0 +1,6 @@
+name: MinebridgeWorldMetadataProbe
+version: 0.1.0-dev
+main: dev.minebridge.integration.WorldMetadataProbe
+api-version: '26.2'
+load: POSTWORLD
+description: Read-only world metadata fixture for local T05 tests

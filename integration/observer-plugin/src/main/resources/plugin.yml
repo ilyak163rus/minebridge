@@ -1,0 +1,11 @@
+name: MinebridgeObserver
+version: '${version}'
+main: dev.minebridge.observer.ObserverPlugin
+api-version: '26.2'
+load: POSTWORLD
+depend: [Minebridge]
+description: Console-only independent oracle for disposable local integration tests
+commands:
+  mbobserve:
+    description: Local integration harness control; console only
+    usage: /mbobserve <caseId> <requestId> <action> [arguments]

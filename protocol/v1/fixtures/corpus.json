@@ -1,0 +1,2874 @@
+{
+  "formatVersion": 1,
+  "contract": "1.0-r1+t03",
+  "cases": [
+    {
+      "name": "hello-basic",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "hello-world-name",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":\"world\",\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "hello-empty-token-is-shape-valid",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "hello-empty-world-is-shape-valid",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":\"\",\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "hello-other-major-negotiation-is-later",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":2,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "hello-future-minor",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":17},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "hello-arbitrary-integer-major",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1234567890123456789012345678901234567890,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "hello-negative-zero-protocol",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":-0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "hello-unicode-and-escaped-newline",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\\nline\",\"world\":\"Мир 🧱\",\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "hello-envelope-extension",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"},\"future\":{\"enabled\":true}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "blocks-basic",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "blocks-minimum-coordinates",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[-2147483648,-2147483648,-2147483648],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "blocks-maximum-coordinates",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[2147483647,2147483647,2147483647],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "blocks-negative-zero-coordinate",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[-0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "blocks-custom-namespace-shape-valid",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"example:folder/block_2\",\"states\":{}}}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "blocks-unknown-material-registry-is-later",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:not_a_real_block\",\"states\":{}}}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "blocks-empty-world-is-shape-valid",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "unknown-method",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"future.method\",\"params\":{}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "empty-method-is-string",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"\",\"params\":{}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "request-whitespace-field-order",
+      "mode": "request",
+      "text": " { \"params\" : {}, \"method\":\"future.method\", \"id\":1, \"jsonrpc\":\"2.0\" } ",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "request-id-minimum",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"future.method\",\"params\":{}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "request-id-maximum",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":9007199254740991,\"method\":\"future.method\",\"params\":{}}",
+      "expect": {
+        "kind": "request",
+        "id": 9007199254740991
+      }
+    },
+    {
+      "name": "request-id-zero",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":0,\"method\":\"future.method\",\"params\":{}}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-id-negative",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":-1,\"method\":\"future.method\",\"params\":{}}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-id-too-large",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":9007199254740992,\"method\":\"future.method\",\"params\":{}}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-id-huge",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":12345678901234567890123456789012345678901234567890,\"method\":\"future.method\",\"params\":{}}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-id-fraction",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1.0,\"method\":\"future.method\",\"params\":{}}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-id-exponent",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1e0,\"method\":\"future.method\",\"params\":{}}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-id-string",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":\"1\",\"method\":\"future.method\",\"params\":{}}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-id-null",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":null,\"method\":\"future.method\",\"params\":{}}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-id-boolean",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":true,\"method\":\"future.method\",\"params\":{}}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-envelope-jsonrpc-missing",
+      "mode": "request",
+      "text": "{\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-envelope-jsonrpc-wrong",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"1.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-envelope-jsonrpc-numeric",
+      "mode": "request",
+      "text": "{\"jsonrpc\":2,\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-envelope-method-missing",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-envelope-method-null",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":null,\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-envelope-method-number",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":7,\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-envelope-params-missing",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\"}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-envelope-params-array",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":[]}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-envelope-params-null",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":null}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-envelope-params-string",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":\"{}\"}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-scalar-number",
+      "mode": "request",
+      "text": "4",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-scalar-null",
+      "mode": "request",
+      "text": "null",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-scalar-string",
+      "mode": "request",
+      "text": "\"hello\"",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-batch-empty",
+      "mode": "request",
+      "text": "[]",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "request-batch-single",
+      "mode": "request",
+      "text": "[{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}]",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "notification-hello",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "notification"
+      }
+    },
+    {
+      "name": "notification-blocks",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "notification"
+      }
+    },
+    {
+      "name": "notification-domain-params-not-validated",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"method\":\"blocks.set\",\"params\":{\"typo\":true}}",
+      "expect": {
+        "kind": "notification"
+      }
+    },
+    {
+      "name": "notification-unknown-method",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"method\":\"future.method\",\"params\":{}}",
+      "expect": {
+        "kind": "notification"
+      }
+    },
+    {
+      "name": "notification-malformed-envelope",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"method\":9,\"params\":{}}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "notification-missing-required-params",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"method\":\"blocks.set\"}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_REQUEST",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-missing-protocol",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "hello-missing-token",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "hello-missing-world",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "hello-missing-coordinates",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "hello-extra-param",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\",\"typo\":1}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "hello-protocol-array",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":[],\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "hello-protocol-extra-key",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0,\"patch\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "hello-protocol-missing-minor",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "hello-major-negative",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":-1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "hello-major-fraction",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1.0,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "hello-major-exponent",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1e0,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "hello-major-boolean",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":true,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "hello-major-null",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":null,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "hello-major-string",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":\"1\",\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "hello-token-not-string",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":7,\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "hello-world-not-string-null",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":7,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "hello-coordinates-not-string",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":null}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "hello-coordinates-unsupported",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"relative\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "UNSUPPORTED_FEATURE",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-missing-world",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-missing-position",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-missing-block",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0]}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-extra-param",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}},\"typo\":true}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-world-not-string",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":null,\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-position-object",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":{},\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-position-two-values",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-position-four-values",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-coordinate-fraction",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[1.0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-coordinate-exponent",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[1e0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-coordinate-boolean",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[true,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-coordinate-null",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[null,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-coordinate-string",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[\"0\",80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-coordinate-underflow",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[-2147483649,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-coordinate-overflow",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[2147483648,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-block-not-object",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":\"minecraft:stone\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-block-extra-key",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{},\"typo\":1}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-key-missing",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-key-nonstring",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":1,\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-states-missing",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\"}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-states-array",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":[]}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_PARAMS",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-states-unsupported",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{\"facing\":\"north\"}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "UNSUPPORTED_FEATURE",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-key-empty",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_BLOCK",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-key-missing-namespace",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"stone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_BLOCK",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-key-uppercase",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:Stone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_BLOCK",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-key-extra-colon",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:block:stone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_BLOCK",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-key-space",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:stone \",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_BLOCK",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "blocks-key-inline-states",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:oak_stairs[facing=north]\",\"states\":{}}}}",
+      "expect": {
+        "kind": "failure",
+        "id": 1,
+        "code": "INVALID_BLOCK",
+        "reply": true,
+        "close": false
+      }
+    },
+    {
+      "name": "json-empty",
+      "mode": "request",
+      "text": "",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "PARSE_ERROR",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "json-whitespace",
+      "mode": "request",
+      "text": "  \t\r",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "PARSE_ERROR",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "json-trailing-garbage",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}x",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "PARSE_ERROR",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "json-trailing-comma",
+      "mode": "request",
+      "text": "{\"a\":1,}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "PARSE_ERROR",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "json-single-quotes",
+      "mode": "request",
+      "text": "{'jsonrpc':'2.0'}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "PARSE_ERROR",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "json-leading-zero",
+      "mode": "request",
+      "text": "{\"n\":01}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "PARSE_ERROR",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "json-leading-plus",
+      "mode": "request",
+      "text": "{\"n\":+1}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "PARSE_ERROR",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "json-nan",
+      "mode": "request",
+      "text": "{\"n\":NaN}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "PARSE_ERROR",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "json-infinity",
+      "mode": "request",
+      "text": "{\"n\":Infinity}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "PARSE_ERROR",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "json-negative-infinity",
+      "mode": "request",
+      "text": "{\"n\":-Infinity}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "PARSE_ERROR",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "json-duplicate-root",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"id\":2,\"method\":\"future.method\",\"params\":{}}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "PARSE_ERROR",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "json-duplicate-nested",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"future.method\",\"params\":{\"x\":1,\"x\":2}}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "PARSE_ERROR",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "json-duplicate-escaped-key",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"future.method\",\"params\":{\"token\":\"EXAMPLE-NOT-A-SECRET\",\"\\u0074oken\":\"EXAMPLE-NOT-A-SECRET\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "PARSE_ERROR",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "json-unescaped-control",
+      "mode": "request",
+      "text": "{\"x\":\"\u0001\"}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "PARSE_ERROR",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "json-unpaired-high-surrogate",
+      "mode": "request",
+      "text": "{\"x\":\"\\ud800\"}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "PARSE_ERROR",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "json-unpaired-low-surrogate",
+      "mode": "request",
+      "text": "{\"x\":\"\\udc00\"}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "PARSE_ERROR",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "json-bom",
+      "mode": "request",
+      "text": "﻿{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "PARSE_ERROR",
+        "reply": true,
+        "close": true
+      }
+    },
+    {
+      "name": "json-valid-surrogate-pair",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"future.method\",\"params\":{\"emoji\":\"\\ud83e\\uddf1\"}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "utf8-invalid-leading-byte",
+      "mode": "request",
+      "hex": "ff",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_UTF8",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "utf8-truncated-sequence",
+      "mode": "request",
+      "hex": "e282",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_UTF8",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "utf8-overlong",
+      "mode": "request",
+      "hex": "c080",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_UTF8",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "utf8-encoded-surrogate",
+      "mode": "request",
+      "hex": "eda080",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "INVALID_UTF8",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "json-depth-16",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"future.method\",\"params\":{\"x\":[[[[[[[[[[[[[[0]]]]]]]]]]]]]]}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "json-depth-17",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"future.method\",\"params\":{\"x\":[[[[[[[[[[[[[[[0]]]]]]]]]]]]]]]}}",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "JSON_TOO_DEEP",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "json-braces-in-string-do-not-increase-depth",
+      "mode": "request",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"future.method\",\"params\":{\"x\":\"[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{\"}}",
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "request-exact-frame-limit",
+      "mode": "request",
+      "construction": {
+        "prefix": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"future.method\",\"params\":{\"padding\":\"",
+        "repeat": "x",
+        "count": 65463,
+        "suffix": "\"}}"
+      },
+      "expect": {
+        "kind": "request",
+        "id": 1
+      }
+    },
+    {
+      "name": "request-over-frame-limit",
+      "mode": "request",
+      "construction": {
+        "prefix": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"future.method\",\"params\":{\"padding\":\"",
+        "repeat": "x",
+        "count": 65464,
+        "suffix": "\"}}"
+      },
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "FRAME_TOO_LARGE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-basic",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "result",
+        "id": 1
+      }
+    },
+    {
+      "name": "hello-response-nested-result-extensions",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0,\"future\":true},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320,\"future\":true},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2,\"future\":3},\"future\":{\"nested\":{\"value\":1}}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "result",
+        "id": 1
+      }
+    },
+    {
+      "name": "hello-response-positive-fractional-duration",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":0.5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":0.25}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "result",
+        "id": 1
+      }
+    },
+    {
+      "name": "hello-response-large-integer-limit-and-exponent-duration",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":1234567890123456789012345678901234567890,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5e0,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "result",
+        "id": 1
+      }
+    },
+    {
+      "name": "blocks-response-basic",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"applied\":true}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "result",
+        "id": 2
+      }
+    },
+    {
+      "name": "blocks-response-result-and-envelope-extensions",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"applied\":true,\"future\":{\"okay\":true}},\"extra\":\"extension\"}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "result",
+        "id": 2
+      }
+    },
+    {
+      "name": "blocks-response-wrong-jsonrpc",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"1.0\",\"id\":2,\"result\":{\"applied\":true}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "blocks-response-missing-jsonrpc",
+      "mode": "blocks-response",
+      "text": "{\"id\":2,\"result\":{\"applied\":true}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "blocks-response-both-result-error",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"applied\":true},\"error\":{\"code\":-32603,\"message\":\"Safe example\",\"data\":{\"code\":\"INTERNAL_ERROR\",\"outcome\":\"unknown\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "blocks-response-neither-result-error",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "blocks-response-wrong-id",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{\"applied\":true}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "blocks-response-null-result-id",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":null,\"result\":{\"applied\":true}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "blocks-response-boolean-id",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":true,\"result\":{\"applied\":true}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "blocks-response-string-id",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":\"2\",\"result\":{\"applied\":true}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "blocks-response-missing-id",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"result\":{\"applied\":true}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "blocks-response-applied-false",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"applied\":false}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "blocks-response-applied-string",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"applied\":\"true\"}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "blocks-response-applied-missing",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "blocks-response-result-null",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":null}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "blocks-response-result-array",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":[]}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "blocks-response-fraction-id",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2.0,\"result\":{\"applied\":true}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "blocks-response-exponent-id",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2e0,\"result\":{\"applied\":true}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-missing-protocol",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-missing-sessionId",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-missing-pluginVersion",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-missing-serverVersion",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-missing-world",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-missing-coordinates",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-missing-chunkPolicy",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-missing-applyPhysics",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-missing-capabilities",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-missing-limits",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"]}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-protocol-major-incompatible",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":2,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-protocol-minor-incompatible",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":1},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-session-id-invalid",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"not-a-uuid\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-session-id-short",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"1-1-1-1-1\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-plugin-version-not-string",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":1,\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-server-version-not-string",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":1,\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-world-name-not-string",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":null,\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-world-uuid-invalid",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"not-a-uuid\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-height-equal",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":-64},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-height-reversed",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":-65},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-height-overflow",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":2147483648},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-height-boolean",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":false,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-coordinates-unsupported",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"relative\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-chunk-policy-unsupported",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"generate\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-physics-false",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":false,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-physics-string",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":\"true\",\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-capability-absent",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-capability-type",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":\"blocks.set\",\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-capability-item-type",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\",1],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-limits-null",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":null}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-limit-missing",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-limit-zero",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":0,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-limit-negative",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":-1,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-limit-boolean",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":true,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-duration-zero",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":0,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-duration-negative",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":-0.5}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-duration-string",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":\"5\",\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-fraction-major",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1.0,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-exponent-minor",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0e0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-fraction-height",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64.0,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-fraction-count-limit",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8.0,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "hello-response-exponent-count-limit",
+      "mode": "hello-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"0.1.0-dev\",\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\",\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\",\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,\"maxSessions\":8e0,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,\"frameAssemblyTimeoutSeconds\":5,\"writeTimeoutSeconds\":5,\"maxOperationsPerTick\":32,\"maxOperationsPerSessionPerTick\":4,\"executorBudgetMillis\":2}}}",
+      "expectedId": 1,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "error-mapping-parse_error",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32700,\"message\":\"Safe example error\",\"data\":{\"code\":\"PARSE_ERROR\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "PARSE_ERROR"
+      }
+    },
+    {
+      "name": "error-mapping-invalid_request",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32600,\"message\":\"Safe example error\",\"data\":{\"code\":\"INVALID_REQUEST\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "INVALID_REQUEST"
+      }
+    },
+    {
+      "name": "error-mapping-method_not_found",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32601,\"message\":\"Safe example error\",\"data\":{\"code\":\"METHOD_NOT_FOUND\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "METHOD_NOT_FOUND"
+      }
+    },
+    {
+      "name": "error-mapping-invalid_params",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32602,\"message\":\"Safe example error\",\"data\":{\"code\":\"INVALID_PARAMS\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "INVALID_PARAMS"
+      }
+    },
+    {
+      "name": "error-mapping-internal_error",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32603,\"message\":\"Safe example error\",\"data\":{\"code\":\"INTERNAL_ERROR\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "INTERNAL_ERROR"
+      }
+    },
+    {
+      "name": "error-mapping-auth_failed",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32001,\"message\":\"Safe example error\",\"data\":{\"code\":\"AUTH_FAILED\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "AUTH_FAILED"
+      }
+    },
+    {
+      "name": "error-mapping-protocol_version",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32002,\"message\":\"Safe example error\",\"data\":{\"code\":\"PROTOCOL_VERSION\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "PROTOCOL_VERSION"
+      }
+    },
+    {
+      "name": "error-mapping-not_ready",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32003,\"message\":\"Safe example error\",\"data\":{\"code\":\"NOT_READY\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "NOT_READY"
+      }
+    },
+    {
+      "name": "error-mapping-invalid_state",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32004,\"message\":\"Safe example error\",\"data\":{\"code\":\"INVALID_STATE\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "INVALID_STATE"
+      }
+    },
+    {
+      "name": "error-mapping-limit_exceeded",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32010,\"message\":\"Safe example error\",\"data\":{\"code\":\"LIMIT_EXCEEDED\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "LIMIT_EXCEEDED"
+      }
+    },
+    {
+      "name": "error-mapping-world_not_found",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32020,\"message\":\"Safe example error\",\"data\":{\"code\":\"WORLD_NOT_FOUND\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "WORLD_NOT_FOUND"
+      }
+    },
+    {
+      "name": "error-mapping-permission_denied",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32021,\"message\":\"Safe example error\",\"data\":{\"code\":\"PERMISSION_DENIED\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "PERMISSION_DENIED"
+      }
+    },
+    {
+      "name": "error-mapping-coordinate_out_of_bounds",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32022,\"message\":\"Safe example error\",\"data\":{\"code\":\"COORDINATE_OUT_OF_BOUNDS\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "COORDINATE_OUT_OF_BOUNDS"
+      }
+    },
+    {
+      "name": "error-mapping-chunk_not_loaded",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32023,\"message\":\"Safe example error\",\"data\":{\"code\":\"CHUNK_NOT_LOADED\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "CHUNK_NOT_LOADED"
+      }
+    },
+    {
+      "name": "error-mapping-invalid_block",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32024,\"message\":\"Safe example error\",\"data\":{\"code\":\"INVALID_BLOCK\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "INVALID_BLOCK"
+      }
+    },
+    {
+      "name": "error-mapping-unsupported_feature",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32025,\"message\":\"Safe example error\",\"data\":{\"code\":\"UNSUPPORTED_FEATURE\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "UNSUPPORTED_FEATURE"
+      }
+    },
+    {
+      "name": "error-unknown-code-preserved",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32999,\"message\":\"Safe example error\",\"data\":{\"code\":\"FUTURE_ERROR\",\"outcome\":\"unknown\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "FUTURE_ERROR"
+      }
+    },
+    {
+      "name": "error-arbitrary-size-integer-code",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-1234567890123456789012345678901234567890,\"message\":\"Safe example error\",\"data\":{\"code\":\"FUTURE_ERROR\",\"outcome\":\"unknown\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "error",
+        "id": 2,
+        "code": "FUTURE_ERROR"
+      }
+    },
+    {
+      "name": "error-null-id-with-null-expectation",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":null,\"error\":{\"code\":-32700,\"message\":\"Safe example error\",\"data\":{\"code\":\"PARSE_ERROR\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": null,
+      "expect": {
+        "kind": "error",
+        "id": null,
+        "code": "PARSE_ERROR"
+      }
+    },
+    {
+      "name": "error-numeric-machine-mismatch",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32023,\"message\":\"Safe example error\",\"data\":{\"code\":\"WORLD_NOT_FOUND\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "error-missing-numeric-code",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"message\":\"Safe example error\",\"data\":{\"code\":\"CHUNK_NOT_LOADED\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "error-numeric-code-boolean",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":true,\"message\":\"Safe example error\",\"data\":{\"code\":\"CHUNK_NOT_LOADED\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "error-numeric-code-string",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":\"-32023\",\"message\":\"Safe example error\",\"data\":{\"code\":\"CHUNK_NOT_LOADED\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "error-missing-message",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32023,\"data\":{\"code\":\"CHUNK_NOT_LOADED\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "error-message-not-string",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32023,\"message\":4,\"data\":{\"code\":\"CHUNK_NOT_LOADED\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "error-missing-data",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32023,\"message\":\"Safe example error\"}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "error-data-not-object",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32023,\"message\":\"Safe example error\",\"data\":[]}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "error-missing-machine-code",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32023,\"message\":\"Safe example error\",\"data\":{\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "error-machine-code-empty",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32023,\"message\":\"Safe example error\",\"data\":{\"code\":\"\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "error-machine-code-not-string",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32023,\"message\":\"Safe example error\",\"data\":{\"code\":1,\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "error-missing-outcome",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32023,\"message\":\"Safe example error\",\"data\":{\"code\":\"CHUNK_NOT_LOADED\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "error-outcome-invalid",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32023,\"message\":\"Safe example error\",\"data\":{\"code\":\"CHUNK_NOT_LOADED\",\"outcome\":\"applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "error-outcome-not-string",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32023,\"message\":\"Safe example error\",\"data\":{\"code\":\"CHUNK_NOT_LOADED\",\"outcome\":null}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "error-unexpected-null-id",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":null,\"error\":{\"code\":-32023,\"message\":\"Safe example error\",\"data\":{\"code\":\"CHUNK_NOT_LOADED\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "error-numeric-code-fraction",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32023.0,\"message\":\"Safe example error\",\"data\":{\"code\":\"CHUNK_NOT_LOADED\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "error-numeric-code-exponent",
+      "mode": "blocks-response",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":2,\"error\":{\"code\":-32023e0,\"message\":\"Safe example error\",\"data\":{\"code\":\"CHUNK_NOT_LOADED\",\"outcome\":\"not-applied\"}}}",
+      "expectedId": 2,
+      "expect": {
+        "kind": "failure",
+        "code": "INVALID_RESPONSE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "stream-empty-feed",
+      "mode": "stream",
+      "text": "",
+      "expect": {
+        "kind": "frames",
+        "frameCount": 0
+      }
+    },
+    {
+      "name": "stream-one-frame",
+      "mode": "stream",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}\n",
+      "expect": {
+        "kind": "frames",
+        "frameCount": 1
+      }
+    },
+    {
+      "name": "stream-two-frames-one-chunk",
+      "mode": "stream",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"system.hello\",\"params\":{\"protocol\":{\"major\":1,\"minor\":0},\"token\":\"EXAMPLE-NOT-A-SECRET\",\"world\":null,\"coordinates\":\"absolute\"}}\n{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}\n",
+      "expect": {
+        "kind": "frames",
+        "frameCount": 2
+      }
+    },
+    {
+      "name": "stream-split-every-first-byte",
+      "mode": "stream",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}\n",
+      "chunkSizes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "expect": {
+        "kind": "frames",
+        "frameCount": 1
+      }
+    },
+    {
+      "name": "stream-crlf-split",
+      "mode": "stream",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}\r\n",
+      "chunkSizes": [
+        146,
+        1
+      ],
+      "expect": {
+        "kind": "frames",
+        "frameCount": 1
+      }
+    },
+    {
+      "name": "stream-empty-frame-is-framing-valid",
+      "mode": "stream",
+      "text": "\n",
+      "expect": {
+        "kind": "frames",
+        "frameCount": 1
+      }
+    },
+    {
+      "name": "stream-crlf-empty-frame-is-framing-valid",
+      "mode": "stream",
+      "text": "\r\n",
+      "expect": {
+        "kind": "frames",
+        "frameCount": 1
+      }
+    },
+    {
+      "name": "stream-physical-lf-produces-frames",
+      "mode": "stream",
+      "text": "{\"x\":\"line\nbreak\"}\n",
+      "expect": {
+        "kind": "frames",
+        "frameCount": 2
+      }
+    },
+    {
+      "name": "stream-escaped-lf-one-frame",
+      "mode": "stream",
+      "text": "{\"x\":\"line\\nbreak\"}\n",
+      "expect": {
+        "kind": "frames",
+        "frameCount": 1
+      }
+    },
+    {
+      "name": "stream-unicode-byte-splits",
+      "mode": "stream",
+      "text": "{\"x\":\"Мир 🧱\"}\n",
+      "chunkSizes": [
+        7,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "expect": {
+        "kind": "frames",
+        "frameCount": 1
+      }
+    },
+    {
+      "name": "stream-complete-frame-clean-eof",
+      "mode": "stream",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}\n",
+      "eof": true,
+      "expect": {
+        "kind": "frames",
+        "frameCount": 1
+      }
+    },
+    {
+      "name": "stream-empty-clean-eof",
+      "mode": "stream",
+      "text": "",
+      "eof": true,
+      "expect": {
+        "kind": "frames",
+        "frameCount": 0
+      }
+    },
+    {
+      "name": "stream-partial-buffer-without-eof",
+      "mode": "stream",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "expect": {
+        "kind": "frames",
+        "frameCount": 0
+      }
+    },
+    {
+      "name": "stream-partial-eof",
+      "mode": "stream",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}",
+      "eof": true,
+      "expect": {
+        "kind": "failure",
+        "code": "EOF_PARTIAL",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "stream-trailing-partial-eof",
+      "mode": "stream",
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"blocks.set\",\"params\":{\"world\":\"world\",\"position\":[0,80,0],\"block\":{\"key\":\"minecraft:cobblestone\",\"states\":{}}}}\n{\"jsonrpc\":",
+      "eof": true,
+      "expect": {
+        "kind": "failure",
+        "code": "EOF_PARTIAL",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "stream-exact-frame-limit",
+      "mode": "stream",
+      "construction": {
+        "prefix": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"future.method\",\"params\":{\"padding\":\"",
+        "repeat": "x",
+        "count": 65463,
+        "suffix": "\"}}\n"
+      },
+      "expect": {
+        "kind": "frames",
+        "frameCount": 1
+      }
+    },
+    {
+      "name": "stream-exact-frame-limit-with-crlf",
+      "mode": "stream",
+      "construction": {
+        "prefix": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"future.method\",\"params\":{\"padding\":\"",
+        "repeat": "x",
+        "count": 65462,
+        "suffix": "\"}}\r\n"
+      },
+      "expect": {
+        "kind": "frames",
+        "frameCount": 1
+      }
+    },
+    {
+      "name": "stream-over-frame-limit",
+      "mode": "stream",
+      "construction": {
+        "prefix": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"future.method\",\"params\":{\"padding\":\"",
+        "repeat": "x",
+        "count": 65464,
+        "suffix": "\"}}\n"
+      },
+      "expect": {
+        "kind": "failure",
+        "code": "FRAME_TOO_LARGE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "stream-over-frame-limit-due-to-cr",
+      "mode": "stream",
+      "construction": {
+        "prefix": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"future.method\",\"params\":{\"padding\":\"",
+        "repeat": "x",
+        "count": 65463,
+        "suffix": "\"}}\r\n"
+      },
+      "expect": {
+        "kind": "failure",
+        "code": "FRAME_TOO_LARGE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "stream-over-limit-without-lf",
+      "mode": "stream",
+      "construction": {
+        "prefix": "",
+        "repeat": "x",
+        "count": 65537,
+        "suffix": ""
+      },
+      "expect": {
+        "kind": "failure",
+        "code": "FRAME_TOO_LARGE",
+        "reply": false,
+        "close": true
+      }
+    },
+    {
+      "name": "stream-framing-does-not-decode-utf8",
+      "mode": "stream",
+      "hex": "ff0a",
+      "expect": {
+        "kind": "frames",
+        "frameCount": 1
+      }
+    },
+    {
+      "name": "json-depth-precedes-malformed-prefix",
+      "mode": "request",
+      "text": "x[[[[[[[[[[[[[[[[[",
+      "expect": {
+        "kind": "failure",
+        "id": null,
+        "code": "JSON_TOO_DEEP",
+        "reply": false,
+        "close": true
+      }
+    }
+  ]
+}

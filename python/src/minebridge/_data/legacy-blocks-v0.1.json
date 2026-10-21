@@ -1,0 +1,16 @@
+{
+  "formatVersion": 1,
+  "profile": "mcpi-legacy-v0.1",
+  "source": {
+    "title": "RaspberryJuice bundled mcpi/block.py",
+    "url": "https://github.com/zhuowei/RaspberryJuice/blob/master/src/main/resources/mcpi/api/python/modded/mcpi/block.py",
+    "checkedOn": "2026-10-20",
+    "note": "AIR=Block(0), STONE=Block(1), COBBLESTONE=Block(4); default data=0. Only these three pairs are included. Modern keys are canonical vanilla names; actual server registry validation belongs to T06."
+  },
+  "blocks": [
+    {"id": 0, "data": 0, "key": "minecraft:air"},
+    {"id": 1, "data": 0, "key": "minecraft:stone"},
+    {"id": 4, "data": 0, "key": "minecraft:cobblestone"}
+  ]
+}
+

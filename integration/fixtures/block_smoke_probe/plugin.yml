@@ -1,0 +1,10 @@
+name: MinebridgeBlockSmokeProbe
+version: 0.1.0-dev
+main: dev.minebridge.integration.BlockSmokeProbe
+api-version: '26.2'
+load: POSTWORLD
+description: Console-only independent block fixture for local T06 smoke tests
+commands:
+  mbblockprobe:
+    description: Local test harness control; console only
+    usage: /mbblockprobe <correlation> <operation> [arguments]
