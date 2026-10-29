@@ -1,11 +1,11 @@
-"""I03: chat commands, a block reward and lava-contact notifications."""
+"""Chat commands, block rewards and lava-contact notifications."""
 
 from minebridge import Minecraft, block, events, items
 from minebridge.models import BlockBreakEvent, ChatEvent, LavaEnterEvent, Region
 
 
 def main() -> None:
-    with Minecraft.create("192.168.0.200", 4712) as mc:
+    with Minecraft.create("localhost", 4711) as mc:
         world = mc.server.getInfo().world
         arena = Region(world.uuid, (0, -64, 0), (100, 319, 100))
 

@@ -1,7 +1,7 @@
-"""Построить ряд блоков и измерить время до подтверждённого завершения.
+"""Build a row of blocks and measure completion time including acknowledgement.
 
-Нужные чанки Minebridge 0.2 загружает автоматически; выберите свободную площадку.
-Пример: python buffered_blocks.py --host 192.168.0.200 --port 4712 --y 80
+Choose a clear area; Minebridge loads needed chunks automatically.
+Example: python examples/buffered_blocks.py --host localhost --port 4711 --y 80
 """
 
 import argparse

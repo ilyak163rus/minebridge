@@ -1,28 +1,28 @@
-# Изменения
+# Changelog
 
 ## 0.3.1 — 2026-10-29
 
-- `PeacefulSpawnError` с кодом `PEACEFUL_SPAWN_BLOCKED`: создание запрещённого
-  мирной сложностью типа отклоняется до спавна с понятным сообщением.
-- `setBlocks` до 32 768 блоков при готовых чанках выполняется одним проходом;
-  убрано искусственное ограничение 256 блоков на тик для обычного заполнения.
-  Большие области продолжают обрабатываться порциями.
-- `selector.playerByName("YourNick")` для выбора текущего онлайн-игрока
-  по точному нику в командах игроков, эффектов, телепортации и инвентарей.
-- MIT-лицензия, сведения о пакете, документация, проверка архивов и ручной
-  workflow публикации в TestPyPI/PyPI. Сохранены импорты и прежние вызовы.
+- Faster region building: fills of up to 32,768 blocks run in one bounded server pass once chunks are ready. Larger regions remain incremental.
+- `selector.playerByName("YourNick")` targets a current online player by exact name.
+- `PeacefulSpawnError` clearly explains when the world's Peaceful difficulty prevents an entity from spawning.
+- Public English and Russian guides, API reference, runnable examples, MIT license and downloadable plugin/library release.
 
-Подробнее: [дополнение API и границы](docs/releases/0.3.1.ru.md).
+See [release details in Russian](docs/releases/0.3.1.ru.md).
 
 ## 0.3.0 — 2026-10-29
 
-События с Python-обработчиками, отдельной RAM-историей и фильтрами; точные слоты
-сундуков и игроков; игровые режимы, здоровье, сытость; время, погода, gamerules;
-позиционные duration/level у эффектов, setPos и управление жизненным циклом.
-[Отчёт общей приёмки](docs/reports/V0_3_I05.ru.md).
+- Fourteen event types with Python callbacks, filters and independent in-memory history.
+- Exact player and chest inventory slots.
+- Player game modes, health and food; world time, weather and game rules.
+- Selector-based `setPos` and positional effect duration/level arguments.
 
 ## 0.2.1 — 2026-10-26
 
-Обычный выход короткого Python-скрипта дожидается buffered-команд.
-`Minecraft.create(..., logging=True)` включает серверный журнал сессии.
-[Отчёт](docs/reports/V0_2_1.ru.md).
+- Normal Python shutdown waits for buffered commands.
+- `Minecraft.create(..., logging=True)` enables action logs for the connection.
+
+## 0.2.0
+
+- Buffered block writes, block states, region reads and automatic chunk loading.
+- Players, selectors, teleportation, chat, items, effects and entity spawning.
+- Typed catalogs and optional connection token; automatic primary Overworld selection.

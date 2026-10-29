@@ -1,4 +1,4 @@
-"""Игроки и чат Minebridge 0.2; укажите текущий ник онлайн-игрока."""
+"""List players, bind SELF and use chat with a current online player."""
 
 import argparse
 
@@ -7,7 +7,7 @@ from minebridge.minecraft import Minecraft
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Игроки, SELF и чат Minebridge 0.2")
+    parser = argparse.ArgumentParser(description="Minebridge players, SELF and chat")
     parser.add_argument("player", help="Текущий ник онлайн-игрока")
     parser.add_argument("--host", default="localhost")
     parser.add_argument("--port", type=int, default=4711)

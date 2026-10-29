@@ -1,29 +1,33 @@
-# Разработка Minebridge
+# Contributing to Minebridge
 
-Нужны Python 3.11+ и JDK 25. Gradle 9.1.0 запускается через wrapper в `plugin`;
-Paper API и зависимости закреплены lock-файлами и SHA. Для первого запуска
-потребуется сеть. Python-пакет не имеет зависимостей времени выполнения.
+Bug reports, examples and focused pull requests are welcome. For usage, start with
+the [documentation](docs/README.md). Before a large change, open an issue describing
+the behavior you want to add or fix.
 
-## Проверка Python-пакета
+## Development setup
 
-Из корня репозитория:
+You need **Python 3.11+** and **JDK 25**. The Gradle wrapper downloads the pinned
+Gradle distribution and Java dependencies on its first run. The Python library has
+no runtime dependencies.
+
+From the repository root:
 
 ```console
 python -m venv .venv-dev
 ```
 
-Активируйте окружение (`.venv-dev\Scripts\Activate.ps1` в PowerShell или
-`source .venv-dev/bin/activate` в bash), затем:
+Activate the environment with `.venv-dev\Scripts\Activate.ps1` in PowerShell or
+`source .venv-dev/bin/activate` in bash. Then build the Python distributions:
 
 ```console
 python -m pip install --upgrade build twine
 python -m build --outdir dist/python python
 ```
 
-Проверьте метаданные и установите созданный `.whl`. Проверки должны импортировать
-установленную библиотеку, поэтому не задавайте `PYTHONPATH=python/src`.
-Следующий переносимый скрипт запускается из корня репозитория выбранным Python
-(в интерактивном режиме или из временного `.py`-файла):
+Use a fresh output directory so that it contains only the current wheel and
+source distribution. The following Python snippet checks and installs that wheel,
+then runs the tests outside the source tree. Save it as a temporary script in the
+repository root, or run it in an interactive Python session from that directory:
 
 ```python
 from pathlib import Path
@@ -43,9 +47,12 @@ with tempfile.TemporaryDirectory() as work:
                     "-s", str(root / "python/tests"), "-q"], cwd=work, check=True)
 ```
 
-## Проверка плагина
+Do not set `PYTHONPATH=python/src` for this check: it should test the installed
+package, including its data files and type information.
 
-Linux/macOS, из корня:
+## Build and test the plugin
+
+Linux/macOS:
 
 ```console
 bash plugin/gradlew -p plugin test shadowJar --no-daemon --console=plain
@@ -57,47 +64,39 @@ PowerShell:
 .\plugin\gradlew.bat -p plugin test shadowJar --no-daemon --console=plain
 ```
 
-Итоговый серверный JAR: `plugin/build/libs/minebridge-paper-<version>.jar`.
-JAR с суффиксом `-plain` не предназначен для установки на Paper.
+The installable plugin is `plugin/build/libs/minebridge-paper-<version>.jar`.
+The `-plain.jar` is not a server installation artifact. The separate `:observer`
+subproject is a test plugin; do not install it on a normal server.
 
-## Изменения и серверная приёмка
+## Change guidelines
 
-Сохраняйте совместимость публичного API и точный порядок аргументов.
-Изменения wire-формата сопровождайте контрактом, corpus и проверками обеих
-сторон. Для исправлений добавляйте проверку наблюдаемого поведения, а не
-проверку значения новой константы. Не добавляйте тестовые плагины в основной JAR.
+- Keep public method names and argument order compatible, including the familiar
+  `Minecraft.create`, `setBlock` and `setBlocks` calls.
+- For a wire-format change, update the protocol schemas, shared corpus, Python
+  client and Java plugin together. Technical contracts live in
+  [docs/contracts](docs/contracts).
+- Test observable behavior. A regression test should fail for the original bug.
+- Use Paper APIs on the appropriate server thread. Report success after the
+  operation completes. Never automatically retry a mutation with an unknown
+  outcome.
+- Keep block states, physics and acknowledgement ordering intact when optimizing
+  construction. Keep fixture code out of the production plugin.
+- Update user documentation and examples when behavior changes.
 
-Серверные операции выполняются в разрешённом потоке Paper. Ответ об успехе
-должен следовать за фактическим выполнением; повторять мутацию автоматически
-при неизвестном результате нельзя. Оптимизация заполнения не должна менять
-состояния блоков, физику или порядок подтверждения команд.
+Changes to gameplay behavior should also be checked on a disposable Paper server,
+including two simultaneous Python connections. See the
+[integration guide](integration/README.md). Native server testing requires the
+operator to accept the Minecraft EULA; unit tests and package builds do not.
 
-Реальный Paper-стенд запускается вручную на отдельном тестовом сервере:
-[описание стенда](integration/README.md), [команды](docs/DEVELOPMENT.ru.md),
-[зафиксированная среда](docs/ENVIRONMENT_LOCK.ru.md). Для загрузки Minecraft
-и первого запуска требуется принятие его EULA владельцем стенда. Облачный CI
-не заменяет проверку игровых событий, загрузки чанков и двух одновременных сессий.
+## CI and releases
 
-## CI и публикация
+GitHub Actions checks installed Python packages on Windows and Ubuntu with
+Python 3.11/3.14, and builds/tests the plugin with Java 25. These checks do not
+replace native Paper gameplay testing.
 
-`ci.yml` собирает wheel/sdist, проверяет метаданные и установленный wheel на
-Python 3.11/3.14 в Ubuntu/Windows; отдельно выполняет Java-тесты и собирает JAR
-с JDK 25. Файлы сохраняются как артефакты запуска. Результат GitHub Actions
-можно считать подтверждённым только после реального успешного запуска workflow.
+Release artifacts are attached to GitHub Releases. The PyPI publishing workflow
+is manual and requires the repository owner to configure Trusted Publishing.
+Pushing a commit or tag does not upload a package to PyPI. See the
+[maintainer release guide](docs/PUBLISHING.ru.md).
 
-`publish.yml` запускается **только вручную**, с выбором TestPyPI или PyPI и
-ссылкой на тег `v<version>`. Версия тега, pyproject, Python runtime и плагина
-должна совпадать. Сначала выполняются сборка, `twine check --strict` и тесты
-установленного wheel; отдельная задача затем публикует проверенные файлы через
-Trusted Publishing. Push коммита или тега сам по себе ничего не публикует.
-
-Перед первым запуском владелец настраивает Trusted Publisher для репозитория
-`ilyak163rus/minebridge`, файла `publish.yml` и окружений `testpypi`/`pypi`.
-Сам workflow не создаёт аккаунты, окружения или права на имя проекта.
-В настройках GitHub environment можно включить ручное одобрение публикации.
-Настройка проекта и выпуск описаны в [инструкции публикации](docs/PUBLISHING.ru.md).
-
-Использованные механизмы: [синтаксис GitHub Actions](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax),
-[руководство PyPA по Trusted Publishing](https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/).
-Версии внешних actions закреплены SHA; обновляйте их вместе с проверкой
-официальных release notes и повторным прогоном CI.
+Contributions are distributed under the project's [MIT license](LICENSE).

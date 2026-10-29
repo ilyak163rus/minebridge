@@ -1,11 +1,11 @@
-"""I02 source example. Run against the matching 0.3 development plugin."""
+"""Give a diamond for !diamond; stop with !stop."""
 
 from minebridge import Minecraft, events, items
 from minebridge.models import ChatEvent
 
 
 def main() -> None:
-    with Minecraft.create("192.168.0.200", 4712) as mc:
+    with Minecraft.create("localhost", 4711) as mc:
         def on_chat(event: ChatEvent) -> None:
             print(event.player.name, event.message)
             if event.message == "!diamond":

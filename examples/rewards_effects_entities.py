@@ -1,4 +1,4 @@
-"""Предметы, эффекты и сущности Minebridge 0.2; нужен плагин той же версии."""
+"""Give rewards, apply effects and spawn entities near an online player."""
 
 import argparse
 
@@ -7,7 +7,7 @@ from minebridge.models import ItemStack
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Предметы, эффекты и сущности Minebridge 0.2")
+    parser = argparse.ArgumentParser(description="Minebridge rewards, effects and entities")
     parser.add_argument("player", help="Текущий ник онлайн-игрока")
     parser.add_argument("--host", default="localhost")
     parser.add_argument("--port", type=int, default=4711)

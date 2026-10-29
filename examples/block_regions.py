@@ -1,8 +1,4 @@
-"""Чтение областей и состояния блоков Minebridge 0.2.
-
-Новая область загружается/генерируется сервером без подхода игрока.
-Перед запуском установите wheel 0.2.0 и соответствующий серверный плагин.
-"""
+"""Build and read regions with modern block states."""
 
 from minebridge import Minecraft, block
 

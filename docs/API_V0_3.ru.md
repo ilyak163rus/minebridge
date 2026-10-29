@@ -1,20 +1,11 @@
 Minebridge 0.3.1 — справочник API
 ===================================
 
-Документ от 29 октября 2026 года описывает API 0.3 с совместимым дополнением
-[0.3.1](releases/0.3.1.ru.md). Локальный комплект — `dist/v0.3.1/`,
-после публикации — [GitHub Releases](https://github.com/ilyak163rus/minebridge/releases).
-I01 добавляет управление игрой,
-I02 — чат и его историю, I03 — остальные игровые события и фильтры,
-I04 — точные слоты сундуков и игроков. I05 объединяет приёмку и поставку
-по [плану](IMPLEMENTATION_PLAN_V0_3.ru.md).
-[Контракт I01](contracts/V0_3_CONTRACT.ru.md),
-[отчёт I02](reports/V0_3_I02.ru.md),
-[отчёт I03](reports/V0_3_I03.ru.md),
-[отчёт I04](reports/V0_3_I04.ru.md),
-[приёмка поставки I05](reports/V0_3_I05.ru.md),
-[существующий API 0.2](API_V0_2.ru.md),
-[пример управления](../examples/v03_controls.py).
+События, история, точные слоты инвентарей и настройки игры в текущей версии
+Minebridge 0.3.1. [Установка](QUICKSTART.ru.md),
+[файлы выпуска](https://github.com/ilyak163rus/minebridge/releases/tag/v0.3.1),
+[блоки, игроки и сущности](API_V0_2.ru.md),
+[единый справочник на английском](API.md).
 
 В 0.3.1 добавлены `selector.playerByName(name: str) -> Selector`,
 `errors.PeacefulSpawnError` и быстрый проход setBlocks до 32 768 блоков.
@@ -198,7 +189,7 @@ WorldChangeRejectedError. При неудаче сервер не выдаёт �
 -----------------
 
 [Контракт доставки и истории](contracts/V0_3_I02_CONTRACT.ru.md),
-[полный пример](../examples/v03_chat_events.py).
+[полный пример](../examples/chat_bot.py).
 Каталог I02 содержит `events.CHAT_MESSAGE`. Его обработчик получает
 неизменяемый `ChatEvent`: eventId, serverEpoch, sequence, serverTick, eventType,
 world, player, message, cancelled, truncated. В живом событии дополнительно
@@ -328,7 +319,7 @@ event capabilities даёт UnsupportedFeatureError до отправки зап
 ------------------------------
 
 [Контракт I03](contracts/V0_3_I03_CONTRACT.ru.md),
-[пример трёх обработчиков](../examples/v03_game_events.py).
+[пример трёх обработчиков](../examples/game_events.py).
 Правила run/poll/stop, поток обработчика, очереди и история остаются теми же.
 В I03 live `poll()` возвращает `Event | None`; конкретная модель определяется
 типом подписки. Типизированный handler по-прежнему выводится из EventType.
@@ -442,7 +433,7 @@ DEATH/END_PORTAL/PLUGIN и наблюдаемую respawnLocation; это не �
 ----------------------------
 
 [Контракт](contracts/V0_3_I04_CONTRACT.ru.md),
-[пример](../examples/v03_inventory_slots.py).
+[пример](../examples/inventories.py).
 
 ```python
 from minebridge import items, selector, slots

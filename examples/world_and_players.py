@@ -1,8 +1,4 @@
-"""Minebridge 0.3/I01 source example for a current online player.
-
-python examples/v03_controls.py CurrentNick --host 192.168.0.200 --port 4712
-Use --configure-world to apply the optional shared world settings below.
-"""
+"""Configure players, time, weather and game rules."""
 
 import argparse
 
@@ -10,7 +6,7 @@ from minebridge import Minecraft, effects, gamemode, gamerule, selector, weather
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Minebridge 0.3/I01: player and world controls")
+    parser = argparse.ArgumentParser(description="Minebridge: player and world controls")
     parser.add_argument("player", help="Current online, alive Minecraft player nickname")
     parser.add_argument("--host", default="localhost")
     parser.add_argument("--port", type=int, default=4711)

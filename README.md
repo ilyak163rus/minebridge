@@ -1,76 +1,82 @@
-Minebridge 0.3.1 — Python ↔ Minecraft Paper
-==========================================
+<p align="center">
+  <img src="docs/assets/minebridge.svg" alt="Minebridge — build Minecraft worlds with Python" width="860">
+</p>
 
-Библиотека и плагин для управления Minecraft из Python. Сохраняются знакомые
-`Minecraft.create(ip, port)`, `setBlock`, `setBlocks`, числовые ID и `block.COBBLESTONE`.
-Доступны чтение блоков и состояний, загрузка чанков, игроки и селекторы,
-телепортация, чат, предметы, эффекты и создание сущностей.
+<p align="center">
+  <a href="https://github.com/ilyak163rus/minebridge/actions/workflows/ci.yml"><img src="https://github.com/ilyak163rus/minebridge/actions/workflows/ci.yml/badge.svg" alt="Build and test"></a>
+  <img src="https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white" alt="Python 3.11+">
+  <img src="https://img.shields.io/badge/Paper-26.2-59A869" alt="Paper 26.2">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT license"></a>
+</p>
 
-В 0.3 добавлены 14 типов событий с обработчиками, независимым чтением истории
-и фильтрами; точные слоты сундуков и игроков; режим игры, здоровье и сытость;
-время, погода и gamerules. `setPos` принимает селектор, а
-`effects.add(selector.SELF, effects.SPEED, 100, 200)` означает 100 секунд, уровень 200.
+<p align="center">
+  <strong>Build worlds. React to players. Make your own Minecraft games — in Python.</strong><br>
+  <a href="https://github.com/ilyak163rus/minebridge/releases/tag/v0.3.1">Download</a> ·
+  <a href="docs/en/GETTING_STARTED.md">Get started</a> ·
+  <a href="docs/API.md">API</a> ·
+  <a href="examples/README.md">Examples</a> ·
+  <a href="README.ru.md">Русский</a>
+</p>
 
-В 0.3.1 ускорен `setBlocks` до 32 768 блоков при готовых чанках, добавлены
-`selector.playerByName("YourNick")` и понятный `PeacefulSpawnError` при попытке
-создать запрещённого мирной сложностью моба. [Изменения](docs/releases/0.3.1.ru.md).
-В локальной приёмке куб 27 000 блоков с flush: 0.0665 с вместо 5.286 с;
-[условия и проверки](docs/reports/V0_3_1.ru.md).
-
-Готовые локальные файлы находятся в `dist/v0.3.1/`. После публикации комплект
-доступен в [GitHub Releases](https://github.com/ilyak163rus/minebridge/releases):
-
-- `minebridge-paper-0.3.1.jar` — в `plugins` сервера.
-- `minebridge-0.3.1-py3-none-any.whl` — установить в Python учеников.
-- [Быстрый запуск](docs/QUICKSTART.ru.md) — конфигурация, установка и первые программы.
-- [API 0.3](docs/API_V0_3.ru.md) и [базовый API 0.2](docs/API_V0_2.ru.md).
-- [Общий пример занятия](examples/v03_lesson.py), [игровые события](examples/v03_game_events.py), [слоты](examples/v03_inventory_slots.py).
-- [Документация](docs/README.md), [публикация GitHub/PyPI](docs/PUBLISHING.ru.md), [изменения](CHANGELOG.md).
-
-Нужны Python 3.11+ и Paper 26.2 с Java 25. Закреплённая среда проверок — Paper
-26.2 build 133; совместимость других сборок отдельно не подтверждена. В PyPI
-пакет не публиковался. Плагин и Python-пакет обновляйте вместе.
-
-```powershell
-python -m pip install --upgrade --force-reinstall --no-deps .\dist\v0.3.1\minebridge-0.3.1-py3-none-any.whl
-```
+Minebridge connects ordinary Python programs to a **Minecraft Java Edition server running Paper**. It pairs a typed Python library with a server plugin: no Minecraft client mod is required. Use it for coding lessons, procedural builds, chat bots and small multiplayer games.
 
 ```python
 from minebridge import Minecraft, block
 
-with Minecraft.create("192.168.0.200", 4712) as mc:
-    mc.setBlocks(0, 80, 0, 9, 80, 9, block.COBBLESTONE)
-    for x in range(10):
-        mc.setBlock(x, 81, 0, block.OAK_LOG.withStates(axis="x"))
-    mc.flush()
-    print(mc.getBlock(0, 80, 0))        # 4
-    print(mc.blocks.getBlock(0, 81, 0))  # BlockSpec со всеми состояниями
-    mc.postToChat("Площадка готова!")
+with Minecraft.create("localhost", 4711) as mc:
+    mc.setBlocks(0, 79, 0, 10, 79, 10, block.STONE_BRICKS)
+    for step in range(10):
+        mc.setBlock(step, 80 + step, 5, block.GOLD_BLOCK)
+    mc.postToChat("Your staircase to the sky is ready!")
 ```
 
-Адрес и координаты замените своими. Для LAN укажите серверный IP в
-`listenAddress` конфига плагина; по умолчанию он слушает `127.0.0.1:4711`.
-В примере выбран порт 4712, чтобы отделить Minebridge от RaspberryJuice;
-он должен совпадать в конфиге и Python. Токен для учебного запуска не требуется,
-основной Overworld выбирается автоматически независимо от имени папки.
+Coordinates are absolute. This builds a platform and a staircase in the primary Overworld; choose a clear area before running it.
 
-По умолчанию `writeMode="buffered"`: установка блоков и чат отправляются без
-ожидания каждого ответа. `flush`, чтение и методы с результатом дожидаются
-предыдущих записей; `close` и обычный выход Python тоже ждут их.
-Ожидание каждой записи включается через `writeMode="sync"`.
-`logging=True` в `create` включает серверный журнал действий этого соединения.
-Для SELF задайте текущий онлайн-ник: `Minecraft.create(ip, port, player="CurrentNick")`.
-Для явного выбора по нику используйте `selector.playerByName("YourNick")`;
-регистр ника важен. Примеры выдачи и эффектов — в [дополнении API](docs/releases/0.3.1.ru.md).
+## What can you make?
+
+| Work with | What you can do |
+|---|---|
+| **Blocks** | Build and read regions, use modern block states, load chunks automatically |
+| **Players** | Find online players, select groups, teleport, change game mode, health and food |
+| **Items & effects** | Give rewards, apply effects, use typed catalogs with IDE completion |
+| **Entities** | Spawn mobs, items, projectiles and lightning with type-specific parameters |
+| **Inventories** | Read and replace exact slots in player inventories and chests |
+| **Events** | Handle chat, block breaks, attacks, damage, projectiles, lava and player lifecycle events |
+| **Worlds** | Change time, weather and game rules |
+
+Familiar with `mcpi`? Keep `Minecraft.create(ip, port)`, `setBlock`, `setBlocks`, supported numeric block IDs and `block.COBBLESTONE`. Change your imports to `minebridge`. See the [migration notes](docs/MIGRATING_FROM_MCPI.md) for the differences.
+
+## Get running
+
+You need **Python 3.11+** and **Paper 26.2 with Java 25**. The tested server build is **26.2 build 133**; other Minecraft versions are not currently supported. Minebridge is an early release: APIs may evolve before 1.0.
+
+**1. Install the plugin.** Download [minebridge-paper-0.3.1.jar](https://github.com/ilyak163rus/minebridge/releases/download/v0.3.1/minebridge-paper-0.3.1.jar), put it in your stopped server's `plugins/` folder and start the server. The default listener is `127.0.0.1:4711`; no token or world name is needed for this local setup.
+
+**2. Install the Python library.** Run this in your Python environment:
+
+```shell
+python -m pip install "https://github.com/ilyak163rus/minebridge/releases/download/v0.3.1/minebridge-0.3.1-py3-none-any.whl"
+```
+
+**3. Run the example above.** Join the same server in Minecraft to see your build. The `with` block waits for pending writes before closing the connection.
+
+Python running on another computer? Follow the [LAN setup](docs/en/GETTING_STARTED.md#connecting-from-another-computer). Already using RaspberryJuice? Assign Minebridge a separate TCP port, such as `4712`, in both its config and your Python code.
+
+The Python package has **no runtime dependencies**. Install the Python library and plugin from the same release. Downloads are hosted on GitHub Releases; the package is not yet published to PyPI.
+
+## Turn chat into a game
+
+Players type `!reward` to receive emeralds. Type `!stop` to finish the script.
 
 ```python
 from minebridge import Minecraft, events, items
 from minebridge.models import ChatEvent
 
-with Minecraft.create("192.168.0.200", 4712) as mc:
+with Minecraft.create("localhost", 4711) as mc:
     def on_chat(event: ChatEvent) -> None:
         if event.message == "!reward":
-            mc.inventories.ofPlayer(event.player).setItem(0, items.EMERALD, 3)
+            result = mc.players.giveItem(event.player, items.EMERALD, 3)
+            print(result)  # Includes any items that did not fit.
         elif event.message == "!stop":
             mc.events.stop()
 
@@ -81,26 +87,20 @@ with Minecraft.create("192.168.0.200", 4712) as mc:
         subscription.unsubscribe()
 ```
 
-`!reward` заменяет слот 0 автора сообщения тремя изумрудами. Обработчики
-выполняются в потоке `events.run`; команды внутри них разрешены. Python
-наблюдает серверные события и не отменяет их синхронно. Переполнение очереди
-и потеря RAM-истории сообщаются отдельными исключениями.
+Handlers run in the thread that calls `events.run()`. You can call Minecraft methods inside them. Event callbacks observe server events; they do not cancel them.
 
-Каталоги содержат 1196 блоков, 1537 предметов, 40 эффектов и 158 типов сущностей.
-Константы и параметры типизированы для VS Code/Pylance. Числовой API блоков
-покрывает 361 проверенную пару ID/data для 110 ID; современное чтение возвращает
-BlockSpec. Полная совместимость mcpi не заявляется. Scoreboard, title/actionbar,
-GUI и запись произвольных компонентов предметов остаются будущими функциями.
+## Explore
 
-Документы разработки:
+- [Getting started](docs/en/GETTING_STARTED.md) — installation, multiplayer setup and troubleshooting.
+- [API reference](docs/API.md) — methods, selectors, inventories and events in one place.
+- [Recipes](docs/en/RECIPES.md) and [runnable examples](examples/README.md) — build on working code.
+- [Документация на русском](docs/README.md#русский) — установка и подробные справочники.
+- [Changelog](CHANGELOG.md) — [Report a bug or suggest a feature](https://github.com/ilyak163rus/minebridge/issues/new/choose) — [Contribute](CONTRIBUTING.md).
 
-- [План 0.3](docs/IMPLEMENTATION_PLAN_V0_3.ru.md), [контракт](docs/contracts/V0_3_CONTRACT.ru.md), [события](docs/EVENTS_V0_3.ru.md).
-- [Архитектура](ARCHITECTURE.ru.md), [команды разработки](docs/DEVELOPMENT.ru.md).
-- [Интеграционный стенд](integration/README.md), [среда](docs/ENVIRONMENT_LOCK.ru.md).
-- Отчёты 0.3: [I01](docs/reports/V0_3_I01.ru.md), [I02](docs/reports/V0_3_I02.ru.md), [I03](docs/reports/V0_3_I03.ru.md), [I04](docs/reports/V0_3_I04.ru.md), [I05](docs/reports/V0_3_I05.ru.md).
-- История: [0.2.1](docs/reports/V0_2_1.ru.md), [план 0.2](docs/IMPLEMENTATION_PLAN_V0_2.ru.md), [контракт 0.2](docs/contracts/V0_2_CONTRACT.ru.md), [план T01–T10](docs/IMPLEMENTATION_PLAN.ru.md).
+Found Minebridge useful? A star helps other Python and Minecraft learners find it. Sharing something you built helps even more.
 
-Артефакты прежних версий сохраняются локально для воспроизводимости. `dist/`
-и интеграционные журналы исключены из Git; бинарные файлы прикладываются к Release.
-Лицензия проекта — [MIT](LICENSE), [компоненты третьих сторон](THIRD_PARTY_NOTICES.md).
-Порядок сборки и участия в разработке — в [CONTRIBUTING](CONTRIBUTING.md).
+## License
+
+[MIT](LICENSE). See [third-party notices](THIRD_PARTY_NOTICES.md) for bundled components.
+
+Minebridge is an independent project, not an official Minecraft product. It is not approved by or associated with Mojang or Microsoft.

@@ -1,7 +1,4 @@
-"""Пример Minebridge 0.2. Укажите адрес, порт и координаты своей площадки.
-
-Нужен Paper с плагином Minebridge; имя/IP, порт и позиции измените для своего стенда.
-"""
+"""Place blocks using constants or a supported numeric ID."""
 
 from minebridge.minecraft import Minecraft
 from minebridge import block

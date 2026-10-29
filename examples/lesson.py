@@ -1,4 +1,4 @@
-"""A combined 0.3 lesson. Choose a free area around the connected player."""
+"""A complete interactive lesson. Choose a clear area near the online player."""
 
 import argparse
 import math
@@ -11,7 +11,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("player", help="Current online Minecraft player name")
     parser.add_argument("--host", default="127.0.0.1")
-    parser.add_argument("--port", type=int, default=4712)
+    parser.add_argument("--port", type=int, default=4711)
     args = parser.parse_args()
 
     with Minecraft.create(args.host, args.port, player=args.player) as mc:

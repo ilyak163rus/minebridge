@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Installation and troubleshooting
+    url: https://github.com/ilyak163rus/minebridge/blob/main/docs/en/GETTING_STARTED.md
+    about: Check setup instructions and common connection problems.

@@ -1,7 +1,4 @@
-"""Общий пример Minebridge 0.2: нужна свободная площадка в основном Overworld.
-
-python examples/v02_lesson.py CurrentNick --host 192.168.0.200 --port 4711
-"""
+"""Build near an online player and try rewards, effects and entities."""
 
 import argparse
 import math
@@ -11,7 +8,7 @@ from minebridge.models import ItemStack
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Небольшое занятие с Minebridge 0.2")
+    parser = argparse.ArgumentParser(description="A short Minebridge building lesson")
     parser.add_argument("player", help="Текущий ник онлайн-игрока в основном Overworld")
     parser.add_argument("--host", default="localhost")
     parser.add_argument("--port", type=int, default=4711)

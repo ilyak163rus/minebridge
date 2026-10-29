@@ -1,11 +1,11 @@
-"""I04 source example: exact replacement, public player slots and a chest."""
+"""Read and replace exact inventory and chest slots."""
 
 from minebridge import Minecraft, block, items, selector, slots
 from minebridge.models import ItemStack
 
 
 def main() -> None:
-    with Minecraft.create("192.168.0.200", 4712, player="CurrentNick") as mc:
+    with Minecraft.create("localhost", 4711, player="CurrentNick") as mc:
         mc.setBlock(10, 80, 10, block.CHEST)
         chest = mc.inventories.ofBlock(10, 80, 10)
         print(chest.size, chest.layout)

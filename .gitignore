@@ -1,6 +1,7 @@
 .venv*/
 .tools/
 .work/
+.internal/
 __pycache__/
 *.py[cod]
 *.egg-info/

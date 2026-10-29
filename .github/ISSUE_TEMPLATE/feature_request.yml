@@ -1,0 +1,20 @@
+name: Feature request
+description: Suggest something you would like to build with Minebridge.
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: use_case
+    attributes:
+      label: What are you trying to build?
+      description: Explain the task and what the current API is missing.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed API or behavior
+      description: A short Python example helps describe the idea.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Workarounds or alternatives
