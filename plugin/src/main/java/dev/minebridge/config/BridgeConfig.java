@@ -5,8 +5,9 @@ import java.util.Map;
 import java.util.Set;
 
 /** Validated settings shared by plugin lifecycle and transport. */
-public record BridgeConfig(String listenAddress, int port, String defaultWorld, String token) {
-    private static final Set<String> KEYS = Set.of("listenAddress", "port", "defaultWorld", "token");
+public record BridgeConfig(String listenAddress, int port, boolean authEnabled, String token) {
+    // defaultWorld is accepted only so existing installations can upgrade unchanged.
+    private static final Set<String> KEYS = Set.of("listenAddress", "port", "authEnabled", "token", "defaultWorld");
 
     public BridgeConfig {
         requireText(listenAddress, "listenAddress");
@@ -20,8 +21,8 @@ public record BridgeConfig(String listenAddress, int port, String defaultWorld, 
         if (port < 1 || port > 65535) {
             throw new IllegalArgumentException("port must be an integer between 1 and 65535");
         }
-        requireText(defaultWorld, "defaultWorld");
-        requireText(token, "token");
+        if (token == null) throw new IllegalArgumentException("token must be a string");
+        if (authEnabled) requireText(token, "token when authEnabled is true");
     }
 
     /** Read raw YAML values without coercing strings, booleans or floating-point numbers. */
@@ -31,18 +32,24 @@ public record BridgeConfig(String listenAddress, int port, String defaultWorld, 
         }
         if (!KEYS.containsAll(values.keySet())) {
             throw new IllegalArgumentException(
-                "config.yml contains an unknown setting; expected listenAddress, port, defaultWorld and token"
+                "config.yml contains an unknown setting; expected listenAddress, port, authEnabled and token"
             );
         }
         Object rawPort = values.get("port");
         if (!(rawPort instanceof Integer port)) {
             throw new IllegalArgumentException("port must be an integer between 1 and 65535");
         }
+        Object rawAuth = values.getOrDefault("authEnabled", null);
+        if (values.containsKey("authEnabled") && !(rawAuth instanceof Boolean)) {
+            throw new IllegalArgumentException("authEnabled must be a boolean");
+        }
+        Object rawToken = values.containsKey("token") ? values.get("token") : "";
+        if (!(rawToken instanceof String token)) throw new IllegalArgumentException("token must be a string");
         return new BridgeConfig(
             readText(values, "listenAddress"),
             port,
-            readText(values, "defaultWorld"),
-            readText(values, "token")
+            Boolean.TRUE.equals(rawAuth),
+            token
         );
     }
 
@@ -65,6 +72,6 @@ public record BridgeConfig(String listenAddress, int port, String defaultWorld, 
     @Override
     public String toString() {
         return "BridgeConfig[listenAddress=" + listenAddress + ", port=" + port
-            + ", defaultWorld=" + defaultWorld + ", token=<redacted>]";
+            + ", authEnabled=" + authEnabled + ", token=<redacted>]";
     }
 }

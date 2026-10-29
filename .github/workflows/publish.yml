@@ -1,0 +1,105 @@
+name: Publish Python package manually
+
+"on":
+  workflow_dispatch:
+    inputs:
+      index:
+        description: Package index
+        required: true
+        default: TestPyPI
+        type: choice
+        options:
+          - TestPyPI
+          - PyPI
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-${{ inputs.index }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Validate tag, build and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: "3.14"
+      - name: Require a matching release tag
+        shell: python
+        run: |
+          import os
+          from pathlib import Path
+          import re
+          import tomllib
+
+          root = Path(os.environ["GITHUB_WORKSPACE"])
+          project = tomllib.loads((root / "python/pyproject.toml").read_text(encoding="utf-8"))["project"]
+          version = project["version"]
+          if os.environ["GITHUB_REF_TYPE"] != "tag" or os.environ["GITHUB_REF_NAME"] != "v" + version:
+              raise SystemExit("Run this workflow against the release tag v" + version)
+          runtime = (root / "python/src/minebridge/__init__.py").read_text(encoding="utf-8")
+          plugin = (root / "plugin/build.gradle.kts").read_text(encoding="utf-8")
+          if re.search(r'^__version__ = "' + re.escape(version) + r'"$', runtime, re.M) is None:
+              raise SystemExit("Python runtime version does not match pyproject.toml")
+          if re.search(r'^version = "' + re.escape(version) + r'"$', plugin, re.M) is None:
+              raise SystemExit("Plugin version does not match the Python package")
+          print("Release tag and package versions match:", version)
+      - name: Install build tools
+        run: python -m pip install --upgrade build twine
+      - name: Build wheel and sdist
+        run: python -m build --outdir package-dist python
+      - name: Check package metadata
+        run: python -m twine check --strict package-dist/*
+      - name: Install and test the release wheel
+        shell: python
+        run: |
+          import os
+          from pathlib import Path
+          import subprocess
+          import sys
+          import tempfile
+
+          root = Path(os.environ["GITHUB_WORKSPACE"])
+          wheel, = (root / "package-dist").glob("*.whl")
+          subprocess.run([sys.executable, "-m", "pip", "install", "--no-deps", "--force-reinstall", str(wheel)], check=True)
+          with tempfile.TemporaryDirectory() as work:
+              subprocess.run([sys.executable, "-I", "-c",
+                  "from pathlib import Path; import minebridge; "
+                  "assert 'site-packages' in Path(minebridge.__file__).parts; "
+                  "print(minebridge.__version__, minebridge.__file__)"], cwd=work, check=True)
+              subprocess.run([sys.executable, "-I", "-m", "unittest", "discover",
+                              "-s", str(root / "python/tests"), "-q"], cwd=work, check=True)
+      - name: Save checked distributions
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: checked-python-distributions
+          path: package-dist/*
+          if-no-files-found: error
+
+  publish:
+    name: Publish to ${{ inputs.index }}
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: ${{ inputs.index == 'PyPI' && 'pypi' || 'testpypi' }}
+      url: ${{ inputs.index == 'PyPI' && 'https://pypi.org/p/minebridge' || 'https://test.pypi.org/p/minebridge' }}
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: checked-python-distributions
+          path: package-dist/
+      - name: Publish using Trusted Publishing
+        uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # release/v1
+        with:
+          packages-dir: package-dist/
+          repository-url: ${{ inputs.index == 'PyPI' && 'https://upload.pypi.org/legacy/' || 'https://test.pypi.org/legacy/' }}

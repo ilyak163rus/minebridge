@@ -6,6 +6,7 @@ import dev.minebridge.execution.ExecutionLimits;
 import dev.minebridge.execution.OperationTrace;
 import dev.minebridge.session.Session;
 import dev.minebridge.session.SessionManager;
+import dev.minebridge.session.SessionActivityLog;
 import dev.minebridge.session.WorldContext;
 import dev.minebridge.transport.TransportLimits;
 import org.junit.jupiter.api.Test;
@@ -27,32 +28,96 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RequestRouterTest {
     private static final String TOKEN = "EXAMPLE-NOT-A-SECRET";
-    private static final WorldContext LESSON = new WorldContext("lesson", UUID.randomUUID(), -12, 512);
-    private static final WorldContext OTHER = new WorldContext("other", UUID.randomUUID(), 0, 256);
+    private static final WorldContext LESSON = new WorldContext("lesson", "minecraft:overworld", UUID.randomUUID(), -12, 512);
+    private static final WorldContext OTHER = new WorldContext("other", "minecraft:the_nether", UUID.randomUUID(), 0, 256);
+
+    @Test void activityLoggingIsPerSessionOptInAndRecordsActualCompletionsAndErrorsWithoutToken() {
+        Harness h = new Harness();
+        Session enabled = session(), quiet = ready(h);
+        Map<String, Object> params = helloParams(TOKEN, null, "2", "0", "absolute");
+        params.put("logging", true);
+        h.router.route(enabled, request(1, "system.hello", params));
+        response(enabled, 1, "system.hello");
+        h.router.route(enabled, blockRequest(2, "lesson", "minecraft:cobblestone"));
+        response(enabled, 2, "blocks.set");
+        h.router.route(quiet, blockRequest(2, "lesson", "minecraft:stone"));
+        response(quiet, 2, "blocks.set");
+        h.router.route(enabled, request(3, "blocks.set", Map.of()));
+        assertError(enabled, 3, "INVALID_PARAMS", false);
+        List<String> lines = new ArrayList<>();
+        h.activity.drain(lines::add);
+        assertTrue(lines.stream().anyMatch(line -> line.contains("method=system.hello") && line.contains("logging=true")));
+        assertTrue(lines.stream().anyMatch(line -> line.contains("method=blocks.set") && line.contains("phase=completed")
+                && line.contains("applied=true") && line.contains("position=[0,80,0]")));
+        assertTrue(lines.stream().anyMatch(line -> line.contains("phase=error") && line.contains("INVALID_PARAMS")));
+        assertTrue(lines.stream().noneMatch(line -> line.contains(quiet.id().toString()) || line.contains(TOKEN)));
+        assertEquals(2, h.backend.worlds.get("lesson").setterCalls);
+        h.router.close();
+    }
 
     @Test void validHelloPublishesImmutableActualWorldMetadataAndReadyState() {
         Harness h = new Harness();
         Session session = session();
-        h.router.route(session, hello(1, TOKEN, null, "1", "0", "absolute"));
+        h.router.route(session, hello(1, TOKEN, null, "2", "0", "absolute"));
         assertTrue(session.isReady());
         assertSame(LESSON, h.sessions.context(session).orElseThrow());
         Response response = response(session, 1, "system.hello");
         assertNull(response.error());
         assertEquals(session.id().toString(), response.result().get("sessionId"));
-        assertEquals("0.1.0-dev", response.result().get("pluginVersion"));
+        assertEquals("0.2.0-dev1", response.result().get("pluginVersion"));
         assertEquals("26.2", response.result().get("serverVersion"));
         Map<?, ?> world = (Map<?, ?>) response.result().get("world");
         assertEquals("lesson", world.get("name"));
+        assertEquals("minecraft:overworld", world.get("key"));
+        assertEquals(List.of("blocks.set", "blocks.get", "blocks.setRegion", "blocks.getRegion", "writes.buffered", "session.logging"), response.result().get("capabilities"));
+        assertEquals("load-generate", response.result().get("chunkPolicy"));
         assertEquals(LESSON.uuid().toString(), world.get("uuid"));
         assertEquals("-12", ((JsonNumber) world.get("minY")).text());
         assertEquals("512", ((JsonNumber) world.get("maxYExclusive")).text());
         assertEquals(1, h.sessions.readyCount());
     }
 
+    @Test void authenticationDisabledAcceptsNullAndIgnoredOldToken() {
+        for (String token : new String[] {null, "", "unrelated-token"}) {
+            SessionManager sessions = new SessionManager(8);
+            AtomicInteger lookups = new AtomicInteger();
+            RequestRouter router = new RequestRouter(new BridgeConfig("127.0.0.1", 4711, false, TOKEN),
+                    sessions, selector -> {
+                        assertEquals("minecraft:overworld", selector);
+                        lookups.incrementAndGet();
+                        return LESSON;
+                    }, "0.2.0-dev1", "26.2", TransportLimits.defaults(), ExecutionLimits.defaults(),
+                    new BlockService(new TestBackend(), () -> {}), OperationTrace.disabled());
+            Session session = session();
+            router.route(session, hello(1, token, null, "2", "0", "absolute"));
+            assertNotNull(response(session, 1, "system.hello").result());
+            assertTrue(session.isReady());
+            assertEquals(1, lookups.get());
+        }
+    }
+
+    @Test void explicitAuthenticationRejectsAbsentCredentialWithoutWorldLookup() {
+        Harness h = new Harness();
+        Session session = session();
+        h.router.route(session, hello(1, null, null, "2", "0", "absolute"));
+        assertError(session, 1, "AUTH_FAILED", true);
+        assertEquals(0, h.lookups.get());
+    }
+
+    @Test void explicitLoadedWorldKeySelectsItsActualNameAndIndependentUuid() {
+        Harness h = new Harness();
+        Session session = session();
+        h.router.route(session, hello(1, TOKEN, "minecraft:the_nether", "2", "0", "absolute"));
+        Map<?, ?> world = (Map<?, ?>) response(session, 1, "system.hello").result().get("world");
+        assertEquals("other", world.get("name"));
+        assertEquals("minecraft:the_nether", world.get("key"));
+        assertSame(OTHER, h.sessions.context(session).orElseThrow());
+    }
+
     @Test void twoConnectionsMayUseSameTokenAndSameRequestIdWithIndependentContexts() {
         Harness h = new Harness();
         Session a = session(), b = session();
-        Request request = hello(1, TOKEN, null, "1", "0", "absolute");
+        Request request = hello(1, TOKEN, null, "2", "0", "absolute");
         h.router.route(a, request);
         h.router.route(b, request);
         Response ar = response(a, 1, "system.hello"), br = response(b, 1, "system.hello");
@@ -67,7 +132,7 @@ class RequestRouterTest {
     @Test void separateConfigurationSelectsItsOwnDefaultWorld() {
         Harness h = new Harness("other", TOKEN, TransportLimits.defaults(), ExecutionLimits.defaults());
         Session session = session();
-        h.router.route(session, hello(1, TOKEN, null, "1", "0", "absolute"));
+        h.router.route(session, hello(1, TOKEN, null, "2", "0", "absolute"));
         response(session, 1, "system.hello");
         assertSame(OTHER, h.sessions.context(session).orElseThrow());
     }
@@ -75,7 +140,7 @@ class RequestRouterTest {
     @Test void explicitConfiguredWorldIsAccepted() {
         Harness h = new Harness();
         Session session = session();
-        h.router.route(session, hello(1, TOKEN, "lesson", "1", "0", "absolute"));
+        h.router.route(session, hello(1, TOKEN, "lesson", "2", "0", "absolute"));
         assertNotNull(response(session, 1, "system.hello").result());
         assertTrue(session.isReady());
     }
@@ -84,7 +149,7 @@ class RequestRouterTest {
         for (String token : new String[] { "", " ", "wrong", TOKEN + " " }) {
             Harness h = new Harness();
             Session session = session();
-            h.router.route(session, hello(1, token, null, "1", "0", "absolute"));
+            h.router.route(session, hello(1, token, null, "2", "0", "absolute"));
             assertError(session, 1, "AUTH_FAILED", true);
             assertEquals(0, h.lookups.get());
             assertEquals(0, h.sessions.readyCount());
@@ -94,16 +159,16 @@ class RequestRouterTest {
     @Test void tokenComparisonPreservesConfiguredOuterSpacesExactly() {
         Harness h = new Harness("lesson", " " + TOKEN + " ", TransportLimits.defaults(), ExecutionLimits.defaults());
         Session rejected = session(), accepted = session();
-        h.router.route(rejected, hello(1, TOKEN, null, "1", "0", "absolute"));
+        h.router.route(rejected, hello(1, TOKEN, null, "2", "0", "absolute"));
         assertError(rejected, 1, "AUTH_FAILED", true);
-        h.router.route(accepted, hello(1, " " + TOKEN + " ", null, "1", "0", "absolute"));
+        h.router.route(accepted, hello(1, " " + TOKEN + " ", null, "2", "0", "absolute"));
         assertNotNull(response(accepted, 1, "system.hello").result());
     }
 
     @Test void missingTokenIsInvalidParamsAndClosesHello() {
         Harness h = new Harness();
         Session session = session();
-        Map<String, Object> params = helloParams(TOKEN, null, "1", "0", "absolute");
+        Map<String, Object> params = helloParams(TOKEN, null, "2", "0", "absolute");
         params.remove("token");
         h.router.route(session, request(1, "system.hello", params));
         assertError(session, 1, "INVALID_PARAMS", true);
@@ -119,7 +184,7 @@ class RequestRouterTest {
     }
 
     @Test void unsupportedMajorIncludingUnboundedIntegerRejectsWithoutOverflow() {
-        for (String major : new String[] { "0", "-0", "2", "9".repeat(20_000) }) {
+        for (String major : new String[] { "0", "-0", "1", "3", "9".repeat(20_000) }) {
             Harness h = new Harness();
             Session session = session();
             h.router.route(session, hello(1, TOKEN, null, major, "0", "absolute"));
@@ -132,7 +197,7 @@ class RequestRouterTest {
         for (String minor : new String[] { "-0", "0", "1", "9".repeat(20_000) }) {
             Harness h = new Harness();
             Session session = session();
-            h.router.route(session, hello(1, TOKEN, null, "1", minor, "absolute"));
+            h.router.route(session, hello(1, TOKEN, null, "2", minor, "absolute"));
             Map<?, ?> protocol = (Map<?, ?>) response(session, 1, "system.hello").result().get("protocol");
             assertEquals("0", ((JsonNumber) protocol.get("minor")).text());
             assertTrue(session.isReady());
@@ -151,25 +216,26 @@ class RequestRouterTest {
     @Test void unsupportedCoordinatesCloseHelloWithoutWorldLookup() {
         Harness h = new Harness();
         Session session = session();
-        h.router.route(session, hello(1, TOKEN, null, "1", "0", "player"));
+        h.router.route(session, hello(1, TOKEN, null, "2", "0", "player"));
         assertError(session, 1, "UNSUPPORTED_FEATURE", true);
         assertEquals(0, h.lookups.get());
     }
 
-    @Test void nonexistentWorldIsDistinguishedFromExistingForbiddenWorld() {
+    @Test void explicitLoadedWorldIsAcceptedWhileMissingWorldIsRejected() {
         Harness h = new Harness();
-        Session missing = session(), forbidden = session();
-        h.router.route(missing, hello(1, TOKEN, "missing", "1", "0", "absolute"));
+        Session missing = session(), other = session();
+        h.router.route(missing, hello(1, TOKEN, "missing", "2", "0", "absolute"));
         assertError(missing, 1, "WORLD_NOT_FOUND", true);
-        h.router.route(forbidden, hello(1, TOKEN, "other", "1", "0", "absolute"));
-        assertError(forbidden, 1, "PERMISSION_DENIED", true);
-        assertEquals(0, h.sessions.readyCount());
+        h.router.route(other, hello(1, TOKEN, "other", "2", "0", "absolute"));
+        assertNotNull(response(other, 1, "system.hello").result());
+        assertSame(OTHER, h.sessions.context(other).orElseThrow());
+        assertEquals(1, h.sessions.readyCount());
     }
 
     @Test void disappearingConfiguredWorldNeverFallsBackToFirstLoadedWorld() {
         Harness h = new Harness("missing", TOKEN, TransportLimits.defaults(), ExecutionLimits.defaults());
         Session session = session();
-        h.router.route(session, hello(1, TOKEN, null, "1", "0", "absolute"));
+        h.router.route(session, hello(1, TOKEN, null, "2", "0", "absolute"));
         assertError(session, 1, "WORLD_NOT_FOUND", true);
     }
 
@@ -229,10 +295,10 @@ class RequestRouterTest {
         TestWorld world = h.backend.worlds.get("lesson");
         world.loaded = false;
         h.router.route(session, blockRequest(2, "lesson", "minecraft:stone"));
-        assertError(session, 2, "CHUNK_NOT_LOADED", false);
+        assertError(session, 2, "CHUNK_LOAD_FAILED", false);
         List<OperationTrace.Event> failures = h.events();
         assertEquals(List.of(OperationTrace.Phase.ERROR), failures.stream().map(OperationTrace.Event::phase).toList());
-        assertEquals("CHUNK_NOT_LOADED", failures.getFirst().errorCode());
+        assertEquals("CHUNK_LOAD_FAILED", failures.getFirst().errorCode());
         assertEquals("not-applied", failures.getFirst().outcome());
         assertEquals(0, world.setterCalls);
         world.loaded = true;
@@ -264,10 +330,10 @@ class RequestRouterTest {
         assertError(session, 2, "INVALID_PARAMS", false);
         h.router.route(session, request(3, "blocks.set", Map.of("world", "lesson", "position", List.of(0, 80, 0),
                 "block", Map.of("key", "minecraft:stone", "states", Map.of("axis", "x")))));
-        assertError(session, 3, "UNSUPPORTED_FEATURE", false);
+        assertError(session, 3, "INVALID_BLOCK", false);
         assertEquals(0, h.backend.worlds.get("lesson").setterCalls);
         List<OperationTrace.Event> failures = h.events();
-        assertEquals(List.of("INVALID_PARAMS", "UNSUPPORTED_FEATURE"),
+        assertEquals(List.of("INVALID_PARAMS", "INVALID_BLOCK"),
                 failures.stream().map(OperationTrace.Event::errorCode).toList());
         assertTrue(failures.stream().allMatch(event -> event.phase() == OperationTrace.Phase.ERROR));
     }
@@ -336,7 +402,7 @@ class RequestRouterTest {
     @Test void fullOutputAfterApplicationDoesNotTraceAnAckOrPromiseRollback() {
         Harness h = new Harness();
         Session session = new Session(8, 1, () -> {});
-        h.router.route(session, hello(1, TOKEN, null, "1", "0", "absolute"));
+        h.router.route(session, hello(1, TOKEN, null, "2", "0", "absolute"));
         response(session, 1, "system.hello");
         assertTrue(session.sendFrame(JsonRpcCodec.errorFrame(99L, "LIMIT_EXCEEDED", "not-applied")));
         h.router.route(session, blockRequest(2, "lesson", "minecraft:stone"));
@@ -376,7 +442,7 @@ class RequestRouterTest {
     @Test void notificationNeverExecutesOrReplies() {
         Harness h = new Harness();
         Session session = session();
-        h.router.route(session, new Request(null, "system.hello", helloParams(TOKEN, null, "1", "0", "absolute")));
+        h.router.route(session, new Request(null, "system.hello", helloParams(TOKEN, null, "2", "0", "absolute")));
         assertFalse(session.isOpen());
         assertNull(session.reactorOutputHead());
         assertEquals(0, h.lookups.get());
@@ -386,7 +452,7 @@ class RequestRouterTest {
         Harness h = new Harness();
         Session session = session();
         session.close();
-        h.router.route(session, hello(1, TOKEN, null, "1", "0", "absolute"));
+        h.router.route(session, hello(1, TOKEN, null, "2", "0", "absolute"));
         assertNull(session.reactorOutputHead());
         assertEquals(0, h.lookups.get());
     }
@@ -395,7 +461,7 @@ class RequestRouterTest {
         SessionManager manager = new SessionManager(8);
         RequestRouter router = router(manager, name -> { throw new IllegalStateException(TOKEN); });
         Session session = session();
-        router.route(session, hello(1, TOKEN, null, "1", "0", "absolute"));
+        router.route(session, hello(1, TOKEN, null, "2", "0", "absolute"));
         ByteBuffer head = session.reactorOutputHead().duplicate();
         byte[] raw = new byte[head.remaining()];
         head.get(raw);
@@ -409,7 +475,7 @@ class RequestRouterTest {
         Session session = session();
         SessionManager manager = new SessionManager(8);
         RequestRouter router = router(manager, name -> { session.close(); return LESSON; });
-        router.route(session, hello(1, TOKEN, null, "1", "0", "absolute"));
+        router.route(session, hello(1, TOKEN, null, "2", "0", "absolute"));
         assertFalse(session.isReady());
         assertEquals(0, manager.readyCount());
         assertNull(session.reactorOutputHead());
@@ -420,7 +486,7 @@ class RequestRouterTest {
         Session session = new Session(8, 8, () -> { }, 100, Duration.ofNanos(10), now::get);
         SessionManager manager = new SessionManager(8);
         RequestRouter router = router(manager, name -> { now.set(110); return LESSON; });
-        router.route(session, hello(1, TOKEN, null, "1", "0", "absolute"));
+        router.route(session, hello(1, TOKEN, null, "2", "0", "absolute"));
         assertFalse(session.isReady());
         assertFalse(session.isOpen());
         assertNull(session.reactorOutputHead());
@@ -431,7 +497,7 @@ class RequestRouterTest {
         Harness h = new Harness();
         Session session = new Session(8, 1, () -> { });
         session.sendFrame(JsonRpcCodec.errorFrame(7L, "LIMIT_EXCEEDED", "not-applied"));
-        h.router.route(session, hello(1, TOKEN, null, "1", "0", "absolute"));
+        h.router.route(session, hello(1, TOKEN, null, "2", "0", "absolute"));
         assertFalse(session.isReady());
         assertFalse(session.isOpen());
         assertNull(session.reactorOutputHead());
@@ -444,7 +510,7 @@ class RequestRouterTest {
         ExecutionLimits execution = new ExecutionLimits(7, 2, 1_500_000);
         Harness h = new Harness("lesson", TOKEN, transport, execution);
         Session session = session();
-        h.router.route(session, hello(1, TOKEN, null, "1", "0", "absolute"));
+        h.router.route(session, hello(1, TOKEN, null, "2", "0", "absolute"));
         Map<?, ?> limits = (Map<?, ?>) response(session, 1, "system.hello").result().get("limits");
         for (Map.Entry<String, String> expected : Map.of("maxSessions", "3", "maxQueuedRequests", "5",
                 "maxOutputFrames", "6", "maxOperationsPerTick", "7", "maxOperationsPerSessionPerTick", "2",
@@ -455,14 +521,14 @@ class RequestRouterTest {
     }
 
     private static RequestRouter router(SessionManager manager, RequestRouter.WorldLookup worlds) {
-        return new RequestRouter(new BridgeConfig("127.0.0.1", 4711, "lesson", TOKEN), manager, worlds,
-                "0.1.0-dev", "26.2", TransportLimits.defaults(), ExecutionLimits.defaults(),
+        return new RequestRouter(new BridgeConfig("127.0.0.1", 4711, true, TOKEN), manager, worlds,
+                "0.2.0-dev1", "26.2", TransportLimits.defaults(), ExecutionLimits.defaults(),
                 new BlockService(new TestBackend(), () -> {}), OperationTrace.disabled());
     }
 
     private static Session ready(Harness h) {
         Session session = session();
-        h.router.route(session, hello(1, TOKEN, null, "1", "0", "absolute"));
+        h.router.route(session, hello(1, TOKEN, null, "2", "0", "absolute"));
         response(session, 1, "system.hello");
         assertTrue(session.isReady());
         return session;
@@ -516,16 +582,17 @@ class RequestRouterTest {
         final AtomicInteger lookups = new AtomicInteger();
         final TestBackend backend = new TestBackend();
         final OperationTrace trace = new OperationTrace(true, () -> true);
+        final SessionActivityLog activity = new SessionActivityLog();
         final RequestRouter router;
 
         Harness() { this("lesson", TOKEN, TransportLimits.defaults(), ExecutionLimits.defaults()); }
 
         Harness(String defaultWorld, String token, TransportLimits transport, ExecutionLimits execution) {
             sessions = new SessionManager(transport.maxSessions());
-            router = new RequestRouter(new BridgeConfig("127.0.0.1", 4711, defaultWorld, token), sessions,
-                    name -> { lookups.incrementAndGet(); return Map.of("lesson", LESSON, "other", OTHER).get(name); },
-                    "0.1.0-dev", "26.2", transport, execution,
-                    new BlockService(backend, () -> {}), trace);
+            router = new RequestRouter(new BridgeConfig("127.0.0.1", 4711, true, token), sessions,
+                    name -> { lookups.incrementAndGet(); return Map.of("lesson", LESSON, "other", OTHER, "minecraft:the_nether", OTHER).get("minecraft:overworld".equals(name) ? defaultWorld : name); },
+                    "0.2.0-dev1", "26.2", transport, execution,
+                    new BlockService(backend, () -> {}), trace, null, null, activity);
         }
 
         List<OperationTrace.Event> events() {

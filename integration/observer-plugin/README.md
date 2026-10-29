@@ -53,6 +53,10 @@ snapshot is read and every response is published on the Paper main thread.
 | Action and arguments | Result |
 |---|---|
 | `worlds` | `worlds`: entries with `name`, `uuid`, `minY`, `maxYExclusive` |
+| `gameProtocol` | Packet ID maps from the pinned server's login/configuration/game protocol templates; test-only reflection |
+| `players` | Independent online-player UUIDs, runtime IDs and full locations |
+| `playerPlace <name> <worldUUID> <x> <y> <z>` | Place a real connected game client at a stable creative, gravity-free fixture position |
+| `entityFixture <worldUUID> <x> <y> <z>` | Spawn one gravity-free armor stand and return its actual UUID/runtime ID |
 | `setup <worldUUID> <x,y,z>...` | `originals`, post-preparation `snapshots`, and `chunks` |
 | `seed <worldUUID> <x> <y> <z> <key>` | Prepare one owned position as AIR, STONE or COBBLESTONE and return an actual snapshot |
 | `read <worldUUID> <x> <y> <z>` | One block snapshot; never loads an absent chunk |
@@ -79,6 +83,19 @@ It saves cloned original `BlockData` before clearing positions to AIR without
 physics. `originals` records the data before clearing; `snapshots` records the
 independent Paper read after clearing. Positions owned by another case are
 rejected. Distinct cases may share a chunk with reference-counted tickets.
+
+I03 adds two real loopback game connections through the standard-library
+`integration/tests/game_client.py` fixture. It handles login/configuration,
+compression, keepalive, chunk-batch and teleport acknowledgements. Packet IDs
+come from `gameProtocol`, rather than another Minecraft version's mappings.
+Chat evidence is received clientbound packet bytes; online-player snapshots
+and runtime IDs come independently from Paper. These clients have no GUI,
+rendering or movement simulation and use disposable offline-mode test names.
+`playerPlace` and `entityFixture` prepare this fresh disposable world only;
+they are not production methods and are not restored by block-case cleanup.
+Reflection is confined to the test observer; the production plugin continues
+to use public Paper APIs.
+
 The `seed` fixture action accepts only `minecraft:air`, `minecraft:stone`, and
 `minecraft:cobblestone` at a position already owned by this case. It uses Paper
 directly without physics and preserves the original data for cleanup. The

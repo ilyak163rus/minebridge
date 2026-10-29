@@ -104,9 +104,9 @@ class JsonRpcCodecTest {
     }
 
     @Test void helloMetadataWhitespaceMatchesPythonStripIncludingNbspAndNel() {
-        String hello = "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":1,\"minor\":0},"
+        String hello = "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocol\":{\"major\":2,\"minor\":0},"
                 + "\"sessionId\":\"31cadb96-7a40-4f45-a068-213352f6cb26\",\"pluginVersion\":\"VERSION\","
-                + "\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\","
+                + "\"serverVersion\":\"26.2\",\"world\":{\"name\":\"world\",\"key\":\"minecraft:overworld\",\"uuid\":\"a1905647-deee-4732-a516-4bc34a1ed1d9\","
                 + "\"minY\":-64,\"maxYExclusive\":320},\"coordinates\":\"absolute\",\"chunkPolicy\":\"loaded-only\","
                 + "\"applyPhysics\":true,\"capabilities\":[\"blocks.set\"],\"limits\":{\"maxFrameBytes\":65536,\"maxJsonDepth\":16,"
                 + "\"maxSessions\":8,\"maxQueuedRequests\":8,\"maxOutputFrames\":8,\"handshakeTimeoutSeconds\":5,"

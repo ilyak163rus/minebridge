@@ -15,7 +15,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 
 class OperationTraceTest {
-    private static final WorldContext WORLD = new WorldContext("lesson", UUID.randomUUID(), -64, 320);
+    private static final WorldContext WORLD = new WorldContext("lesson", "minecraft:overworld", UUID.randomUUID(), -64, 320);
 
     @Test void retainedHistorySurvivesLoggerDrainAndReportsEvictionAndSequenceBounds() {
         OperationTrace trace = new OperationTrace(true, 2, () -> true);

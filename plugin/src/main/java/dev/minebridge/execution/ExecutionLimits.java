@@ -11,6 +11,6 @@ public record ExecutionLimits(int maxOperationsPerTick, int maxOperationsPerSess
     }
 
     public static ExecutionLimits defaults() {
-        return new ExecutionLimits(32, 4, 2_000_000L);
+        return new ExecutionLimits(512, 128, 2_000_000L);
     }
 }

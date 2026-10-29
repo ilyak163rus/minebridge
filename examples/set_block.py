@@ -1,4 +1,4 @@
-"""Пример T07. Задайте MINEBRIDGE_TOKEN и координаты загруженного чанка.
+"""Пример Minebridge 0.2. Укажите адрес, порт и координаты своей площадки.
 
 Нужен Paper с плагином Minebridge; имя/IP, порт и позиции измените для своего стенда.
 """
@@ -12,6 +12,7 @@ def main() -> None:
     try:
         mc.setBlock(0, 80, 0, 4)
         mc.blocks.setBlock(1, 80, 0, block.COBBLESTONE)
+        mc.flush()
     finally:
         mc.close()
 

@@ -1,12 +1,34 @@
 """Проверки координат, не зависящие от версии или высоты мира сервера."""
 
 import math
+from dataclasses import dataclass
 from typing import Final
 
-__all__ = ["normalize_coordinate", "normalize_position"]
+__all__ = ["Location", "normalize_coordinate", "normalize_position", "normalize_real_coordinate"]
 
 _INT32_MIN: Final = -(2**31)
 _INT32_MAX: Final = 2**31 - 1
+
+
+def normalize_real_coordinate(value: int | float) -> float:
+    """Validate an entity coordinate without rounding it to a block."""
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise TypeError("Coordinate must be int or float; bool is not supported")
+    if not _INT32_MIN <= value <= _INT32_MAX or not math.isfinite(value):
+        raise ValueError("Coordinate must be finite and within int32 bounds")
+    return float(value)
+
+
+@dataclass(frozen=True, slots=True)
+class Location:
+    """Absolute entity coordinates in a named world, including orientation."""
+
+    world: str
+    x: float
+    y: float
+    z: float
+    yaw: float | None = None
+    pitch: float | None = None
 
 
 def normalize_coordinate(value: int | float) -> int:

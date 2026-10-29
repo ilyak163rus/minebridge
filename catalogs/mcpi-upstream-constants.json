@@ -1,0 +1,549 @@
+{
+  "formatVersion": 1,
+  "source": {
+    "url": "https://raw.githubusercontent.com/zhuowei/RaspberryJuice/b3d89df64bc4cd6a5fdfad131d053830653f16d5/src/main/resources/mcpi/api/python/modded/mcpi/block.py",
+    "commit": "b3d89df64bc4cd6a5fdfad131d053830653f16d5",
+    "sha256": "b5564634e038cb2abe3f42241651350251f89962f4f4c5a5a6716ffe11d93fda",
+    "checkedOn": "2026-10-22"
+  },
+  "constants": [
+    {
+      "name": "AIR",
+      "id": 0,
+      "data": 0
+    },
+    {
+      "name": "STONE",
+      "id": 1,
+      "data": 0
+    },
+    {
+      "name": "GRASS",
+      "id": 2,
+      "data": 0
+    },
+    {
+      "name": "DIRT",
+      "id": 3,
+      "data": 0
+    },
+    {
+      "name": "COBBLESTONE",
+      "id": 4,
+      "data": 0
+    },
+    {
+      "name": "WOOD_PLANKS",
+      "id": 5,
+      "data": 0
+    },
+    {
+      "name": "SAPLING",
+      "id": 6,
+      "data": 0
+    },
+    {
+      "name": "BEDROCK",
+      "id": 7,
+      "data": 0
+    },
+    {
+      "name": "WATER_FLOWING",
+      "id": 8,
+      "data": 0
+    },
+    {
+      "name": "WATER",
+      "alias": "WATER_FLOWING"
+    },
+    {
+      "name": "WATER_STATIONARY",
+      "id": 9,
+      "data": 0
+    },
+    {
+      "name": "LAVA_FLOWING",
+      "id": 10,
+      "data": 0
+    },
+    {
+      "name": "LAVA",
+      "alias": "LAVA_FLOWING"
+    },
+    {
+      "name": "LAVA_STATIONARY",
+      "id": 11,
+      "data": 0
+    },
+    {
+      "name": "SAND",
+      "id": 12,
+      "data": 0
+    },
+    {
+      "name": "GRAVEL",
+      "id": 13,
+      "data": 0
+    },
+    {
+      "name": "GOLD_ORE",
+      "id": 14,
+      "data": 0
+    },
+    {
+      "name": "IRON_ORE",
+      "id": 15,
+      "data": 0
+    },
+    {
+      "name": "COAL_ORE",
+      "id": 16,
+      "data": 0
+    },
+    {
+      "name": "WOOD",
+      "id": 17,
+      "data": 0
+    },
+    {
+      "name": "LEAVES",
+      "id": 18,
+      "data": 0
+    },
+    {
+      "name": "GLASS",
+      "id": 20,
+      "data": 0
+    },
+    {
+      "name": "LAPIS_LAZULI_ORE",
+      "id": 21,
+      "data": 0
+    },
+    {
+      "name": "LAPIS_LAZULI_BLOCK",
+      "id": 22,
+      "data": 0
+    },
+    {
+      "name": "SANDSTONE",
+      "id": 24,
+      "data": 0
+    },
+    {
+      "name": "BED",
+      "id": 26,
+      "data": 0
+    },
+    {
+      "name": "RAIL_POWERED",
+      "id": 27,
+      "data": 0
+    },
+    {
+      "name": "RAIL_DETECTOR",
+      "id": 28,
+      "data": 0
+    },
+    {
+      "name": "COBWEB",
+      "id": 30,
+      "data": 0
+    },
+    {
+      "name": "GRASS_TALL",
+      "id": 31,
+      "data": 0
+    },
+    {
+      "name": "DEAD_BUSH",
+      "id": 32,
+      "data": 0
+    },
+    {
+      "name": "WOOL",
+      "id": 35,
+      "data": 0
+    },
+    {
+      "name": "FLOWER_YELLOW",
+      "id": 37,
+      "data": 0
+    },
+    {
+      "name": "FLOWER_CYAN",
+      "id": 38,
+      "data": 0
+    },
+    {
+      "name": "MUSHROOM_BROWN",
+      "id": 39,
+      "data": 0
+    },
+    {
+      "name": "MUSHROOM_RED",
+      "id": 40,
+      "data": 0
+    },
+    {
+      "name": "GOLD_BLOCK",
+      "id": 41,
+      "data": 0
+    },
+    {
+      "name": "IRON_BLOCK",
+      "id": 42,
+      "data": 0
+    },
+    {
+      "name": "STONE_SLAB_DOUBLE",
+      "id": 43,
+      "data": 0
+    },
+    {
+      "name": "STONE_SLAB",
+      "id": 44,
+      "data": 0
+    },
+    {
+      "name": "BRICK_BLOCK",
+      "id": 45,
+      "data": 0
+    },
+    {
+      "name": "TNT",
+      "id": 46,
+      "data": 0
+    },
+    {
+      "name": "BOOKSHELF",
+      "id": 47,
+      "data": 0
+    },
+    {
+      "name": "MOSS_STONE",
+      "id": 48,
+      "data": 0
+    },
+    {
+      "name": "OBSIDIAN",
+      "id": 49,
+      "data": 0
+    },
+    {
+      "name": "TORCH",
+      "id": 50,
+      "data": 0
+    },
+    {
+      "name": "FIRE",
+      "id": 51,
+      "data": 0
+    },
+    {
+      "name": "STAIRS_WOOD",
+      "id": 53,
+      "data": 0
+    },
+    {
+      "name": "CHEST",
+      "id": 54,
+      "data": 0
+    },
+    {
+      "name": "DIAMOND_ORE",
+      "id": 56,
+      "data": 0
+    },
+    {
+      "name": "DIAMOND_BLOCK",
+      "id": 57,
+      "data": 0
+    },
+    {
+      "name": "CRAFTING_TABLE",
+      "id": 58,
+      "data": 0
+    },
+    {
+      "name": "FARMLAND",
+      "id": 60,
+      "data": 0
+    },
+    {
+      "name": "FURNACE_INACTIVE",
+      "id": 61,
+      "data": 0
+    },
+    {
+      "name": "FURNACE_ACTIVE",
+      "id": 62,
+      "data": 0
+    },
+    {
+      "name": "SIGN_STANDING",
+      "id": 63,
+      "data": 0
+    },
+    {
+      "name": "DOOR_WOOD",
+      "id": 64,
+      "data": 0
+    },
+    {
+      "name": "LADDER",
+      "id": 65,
+      "data": 0
+    },
+    {
+      "name": "RAIL",
+      "id": 66,
+      "data": 0
+    },
+    {
+      "name": "STAIRS_COBBLESTONE",
+      "id": 67,
+      "data": 0
+    },
+    {
+      "name": "SIGN_WALL",
+      "id": 68,
+      "data": 0
+    },
+    {
+      "name": "DOOR_IRON",
+      "id": 71,
+      "data": 0
+    },
+    {
+      "name": "REDSTONE_ORE",
+      "id": 73,
+      "data": 0
+    },
+    {
+      "name": "TORCH_REDSTONE",
+      "id": 76,
+      "data": 0
+    },
+    {
+      "name": "SNOW",
+      "id": 78,
+      "data": 0
+    },
+    {
+      "name": "ICE",
+      "id": 79,
+      "data": 0
+    },
+    {
+      "name": "SNOW_BLOCK",
+      "id": 80,
+      "data": 0
+    },
+    {
+      "name": "CACTUS",
+      "id": 81,
+      "data": 0
+    },
+    {
+      "name": "CLAY",
+      "id": 82,
+      "data": 0
+    },
+    {
+      "name": "SUGAR_CANE",
+      "id": 83,
+      "data": 0
+    },
+    {
+      "name": "FENCE",
+      "id": 85,
+      "data": 0
+    },
+    {
+      "name": "PUMPKIN",
+      "id": 86,
+      "data": 0
+    },
+    {
+      "name": "NETHERRACK",
+      "id": 87,
+      "data": 0
+    },
+    {
+      "name": "SOUL_SAND",
+      "id": 88,
+      "data": 0
+    },
+    {
+      "name": "GLOWSTONE_BLOCK",
+      "id": 89,
+      "data": 0
+    },
+    {
+      "name": "LIT_PUMPKIN",
+      "id": 91,
+      "data": 0
+    },
+    {
+      "name": "STAINED_GLASS",
+      "id": 95,
+      "data": 0
+    },
+    {
+      "name": "BEDROCK_INVISIBLE",
+      "id": 95,
+      "data": 0
+    },
+    {
+      "name": "TRAPDOOR",
+      "id": 96,
+      "data": 0
+    },
+    {
+      "name": "STONE_BRICK",
+      "id": 98,
+      "data": 0
+    },
+    {
+      "name": "GLASS_PANE",
+      "id": 102,
+      "data": 0
+    },
+    {
+      "name": "MELON",
+      "id": 103,
+      "data": 0
+    },
+    {
+      "name": "FENCE_GATE",
+      "id": 107,
+      "data": 0
+    },
+    {
+      "name": "STAIRS_BRICK",
+      "id": 108,
+      "data": 0
+    },
+    {
+      "name": "STAIRS_STONE_BRICK",
+      "id": 109,
+      "data": 0
+    },
+    {
+      "name": "MYCELIUM",
+      "id": 110,
+      "data": 0
+    },
+    {
+      "name": "NETHER_BRICK",
+      "id": 112,
+      "data": 0
+    },
+    {
+      "name": "FENCE_NETHER_BRICK",
+      "id": 113,
+      "data": 0
+    },
+    {
+      "name": "STAIRS_NETHER_BRICK",
+      "id": 114,
+      "data": 0
+    },
+    {
+      "name": "END_STONE",
+      "id": 121,
+      "data": 0
+    },
+    {
+      "name": "WOODEN_SLAB",
+      "id": 126,
+      "data": 0
+    },
+    {
+      "name": "STAIRS_SANDSTONE",
+      "id": 128,
+      "data": 0
+    },
+    {
+      "name": "EMERALD_ORE",
+      "id": 129,
+      "data": 0
+    },
+    {
+      "name": "RAIL_ACTIVATOR",
+      "id": 157,
+      "data": 0
+    },
+    {
+      "name": "LEAVES2",
+      "id": 161,
+      "data": 0
+    },
+    {
+      "name": "TRAPDOOR_IRON",
+      "id": 167,
+      "data": 0
+    },
+    {
+      "name": "FENCE_SPRUCE",
+      "id": 188,
+      "data": 0
+    },
+    {
+      "name": "FENCE_BIRCH",
+      "id": 189,
+      "data": 0
+    },
+    {
+      "name": "FENCE_JUNGLE",
+      "id": 190,
+      "data": 0
+    },
+    {
+      "name": "FENCE_DARK_OAK",
+      "id": 191,
+      "data": 0
+    },
+    {
+      "name": "FENCE_ACACIA",
+      "id": 192,
+      "data": 0
+    },
+    {
+      "name": "DOOR_SPRUCE",
+      "id": 193,
+      "data": 0
+    },
+    {
+      "name": "DOOR_BIRCH",
+      "id": 194,
+      "data": 0
+    },
+    {
+      "name": "DOOR_JUNGLE",
+      "id": 195,
+      "data": 0
+    },
+    {
+      "name": "DOOR_ACACIA",
+      "id": 196,
+      "data": 0
+    },
+    {
+      "name": "DOOR_DARK_OAK",
+      "id": 197,
+      "data": 0
+    },
+    {
+      "name": "GLOWING_OBSIDIAN",
+      "id": 246,
+      "data": 0
+    },
+    {
+      "name": "NETHER_REACTOR_CORE",
+      "id": 247,
+      "data": 0
+    }
+  ]
+}

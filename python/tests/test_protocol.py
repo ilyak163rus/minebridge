@@ -26,9 +26,9 @@ from minebridge._protocol import (
 )
 
 
-CORPUS_PATH = Path(__file__).resolve().parents[2] / "protocol/v1/fixtures/corpus.json"
+CORPUS_PATH = Path(__file__).resolve().parents[2] / "protocol/v2/fixtures/corpus.json"
 HELLO_PARAMS = {
-    "protocol": {"major": 1, "minor": 0},
+    "protocol": {"major": 2, "minor": 0},
     "token": "EXAMPLE-NOT-A-SECRET",
     "world": None,
     "coordinates": "absolute",
@@ -68,6 +68,8 @@ def run_fixture(case: dict):
     if mode in ("hello-response", "blocks-response"):
         method = "system.hello" if mode == "hello-response" else "blocks.set"
         return decode_response(payload, expected_id=case["expectedId"], method=method)
+    if mode == "method-response":
+        return decode_response(payload, expected_id=case["expectedId"], method=case["method"])
     if mode == "stream":
         decoder = FrameDecoder()
         frames = []
@@ -350,6 +352,12 @@ class ProtocolErrorMappingTests(unittest.TestCase):
         self.assertIs(type(exception), errors.MinecraftError)
         self.assertEqual(exception.code, "FUTURE_ERROR")
         self.assertEqual(exception.outcome, "unknown")
+
+    def test_chunk_error_has_useful_fixed_message_without_peer_text(self) -> None:
+        error = RpcError(JsonNumber("-32023"), "sensitive peer text", "CHUNK_NOT_LOADED", "not-applied")
+        exception = server_error_exception(error)
+        self.assertIn("chunk is not loaded", str(exception))
+        self.assertNotIn("sensitive peer text", str(exception))
 
     def test_protocol_version_exception_is_a_protocol_error(self) -> None:
         self.assertTrue(issubclass(errors.ProtocolVersionError, errors.ProtocolError))

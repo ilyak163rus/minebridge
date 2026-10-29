@@ -3,4 +3,5 @@ version: '${version}'
 main: dev.minebridge.BridgePlugin
 api-version: '26.2'
 load: POSTWORLD
-description: 'Python bridge for Paper: bounded TCP transport, handshake pending.'
+description: 'Typed Python API for blocks, players, events, inventories and world settings on Paper.'
+website: 'https://github.com/ilyak163rus/minebridge'

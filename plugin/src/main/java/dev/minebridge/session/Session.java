@@ -7,6 +7,7 @@ import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.util.ArrayDeque;
 import java.util.Objects;
+import java.util.Map;
 import java.util.UUID;
 import java.util.function.LongSupplier;
 
@@ -34,11 +35,20 @@ public final class Session implements AutoCloseable {
     private final RequestObserver requestObserver;
     private final ArrayDeque<Request> requests = new ArrayDeque<>();
     private final ArrayDeque<ByteBuffer> output = new ArrayDeque<>();
+    private static final int MAX_LIVE_EVENTS = 512;
+    private static final int MAX_EVENT_CONTROLS = 32;
+    private record EventFrame(UUID subscriptionId, ByteBuffer bytes) {}
+    private record Overflow(String source, long lostCount) {}
+    private final ArrayDeque<EventFrame> eventOutput = new ArrayDeque<>();
+    private final java.util.LinkedHashMap<UUID, Overflow> eventOverflows = new java.util.LinkedHashMap<>();
+    // A selected frame stays pinned even when higher-priority output arrives mid-write.
+    private ByteBuffer writingHead;
     private boolean closed;
     private boolean flushThenClose;
     private boolean ready;
     private Long activeOperation;
     private WorldContext worldContext;
+    private SessionActivityLog activityLog;
     private boolean testWriterPaused;
     private int requestHighWater;
     private int outputHighWater;
@@ -92,6 +102,7 @@ public final class Session implements AutoCloseable {
 
     public synchronized int queuedRequests() { return requests.size(); }
     public synchronized int outputFrames() { return output.size(); }
+    public synchronized int eventOutputFrames() { return eventOutput.size(); }
     public synchronized WorldContext worldContext() { return worldContext; }
     public synchronized Diagnostics diagnostics() {
         return new Diagnostics(testWriterPaused, requests.size(), output.size(), requestHighWater,
@@ -120,6 +131,44 @@ public final class Session implements AutoCloseable {
                 || requests.stream().anyMatch(request -> request.id() != null && request.id() == requestId);
     }
 
+    public synchronized boolean hasActiveOperation() { return activeOperation != null; }
+    public synchronized Long activeRequestId() { return activeOperation; }
+
+    public synchronized void enableActivityLog(SessionActivityLog log) { activityLog = Objects.requireNonNull(log); }
+    public void logEvent(UUID subscriptionId, String phase, long sequence) {
+        SessionActivityLog log;
+        synchronized (this) { log = activityLog; }
+        if (log != null) try { log.event(this, subscriptionId, phase, sequence); } catch (RuntimeException ignored) { }
+    }
+    public void logRequest(Request request) {
+        SessionActivityLog log;
+        synchronized (this) { log = activityLog; }
+        if (log != null) try { log.received(this, request); } catch (RuntimeException ignored) { }
+    }
+    public void logResult(Request request, Map<String, Object> result, boolean ackQueued) {
+        SessionActivityLog log;
+        synchronized (this) { log = activityLog; }
+        if (log != null) try { log.completed(this, request, result, ackQueued); } catch (RuntimeException ignored) { }
+    }
+    public boolean sendResult(Request request, Map<String, Object> result) {
+        return sendResult(request, result, () -> {});
+    }
+    public boolean sendResult(Request request, Map<String, Object> result, Runnable onPublished) {
+        byte[] frame = JsonRpcCodec.encodeFrame(Map.of("jsonrpc", "2.0", "id", request.id(), "result", result));
+        boolean queued = sendFrame(frame, onPublished);
+        logResult(request, result, queued);
+        return queued;
+    }
+    public void sendError(Request request, String code, String outcome) {
+        sendError(request, code, outcome, Map.of());
+    }
+    public void sendError(Request request, String code, String outcome, Map<String, Object> details) {
+        sendFrame(JsonRpcCodec.errorFrame(request.id(), code, outcome, details));
+        SessionActivityLog log;
+        synchronized (this) { log = activityLog; }
+        if (log != null) try { log.failed(this, request, code, outcome); } catch (RuntimeException ignored) { }
+    }
+
     /** Copies a single encoded LF frame. Overflow closes the connection without blocking. */
     public boolean sendFrame(byte[] frame) {
         return sendFrame(frame, () -> { });
@@ -146,6 +195,42 @@ public final class Session implements AutoCloseable {
         return accepted;
     }
 
+    /** Live output has its own bound; overflowing it never consumes RPC capacity. */
+    public boolean offerEvent(byte[] frame, UUID subscriptionId) {
+        validateFrame(frame);
+        Objects.requireNonNull(subscriptionId);
+        synchronized (this) {
+            if (!isReady() || eventOutput.size() >= MAX_LIVE_EVENTS) return false;
+            eventOutput.addLast(new EventFrame(subscriptionId, ByteBuffer.wrap(frame.clone())));
+        }
+        wakeup.run();
+        return true;
+    }
+
+    /** One coalesced control per active subscription, independent of the full live queue. */
+    public void offerEventOverflow(UUID subscriptionId, String source, long lostCount) {
+        Objects.requireNonNull(subscriptionId);
+        if (!("server".equals(source) || "capture".equals(source)) || lostCount < 0)
+            throw new IllegalArgumentException("Invalid event overflow");
+        synchronized (this) {
+            if (!isReady()) return;
+            Overflow old = eventOverflows.get(subscriptionId);
+            if (old == null && eventOverflows.size() >= MAX_EVENT_CONTROLS)
+                throw new IllegalStateException("Too many event controls");
+            long count = old == null ? lostCount : Math.min(JsonRpcCodec.MAX_REQUEST_ID,
+                    old.lostCount() + Math.min(lostCount, JsonRpcCodec.MAX_REQUEST_ID));
+            eventOverflows.put(subscriptionId, new Overflow(source, count));
+        }
+        wakeup.run();
+    }
+
+    /** Unsubscribe fence: an already selected frame finishes; no later frame survives the ACK. */
+    public synchronized void purgeEvents(UUID subscriptionId) {
+        eventOutput.removeIf(frame -> frame.subscriptionId().equals(subscriptionId)
+                && frame.bytes() != writingHead);
+        eventOverflows.remove(subscriptionId);
+    }
+
     /** Linearization point for close vs a setter attempt; no game operation runs under this lock. */
     public synchronized boolean tryBeginOperation(long requestId) {
         if (closed || flushThenClose || !ready || activeOperation != null) return false;
@@ -168,6 +253,8 @@ public final class Session implements AutoCloseable {
             if (closed) return;
             flushThenClose = true;
             cancelRequests();
+            eventOutput.removeIf(frame -> frame.bytes() != writingHead);
+            eventOverflows.clear();
         }
         wakeup.run();
     }
@@ -222,10 +309,37 @@ public final class Session implements AutoCloseable {
         return true;
     }
 
-    public synchronized ByteBuffer reactorOutputHead() { return output.peekFirst(); }
+    public synchronized ByteBuffer reactorOutputHead() {
+        if (writingHead != null) return writingHead;
+        if (!output.isEmpty()) writingHead = output.peekFirst();
+        else if (!eventOverflows.isEmpty()) {
+            // At most 32 entries; even an overflow control always fits a protocol frame.
+            var first = eventOverflows.entrySet().iterator().next();
+            String source = first.getValue().source();
+            var ids = new java.util.ArrayList<String>();
+            long lost = 0;
+            var iterator = eventOverflows.entrySet().iterator();
+            while (iterator.hasNext()) {
+                var entry = iterator.next();
+                if (!entry.getValue().source().equals(source)) continue;
+                ids.add(entry.getKey().toString());
+                lost = Math.min(JsonRpcCodec.MAX_REQUEST_ID, lost + entry.getValue().lostCount());
+                iterator.remove();
+            }
+            writingHead = ByteBuffer.wrap(JsonRpcCodec.encodeFrame(Map.of("jsonrpc", "2.0",
+                    "method", "events.overflow", "params", Map.of("subscriptionIds", ids,
+                    "source", source, "lostCount", lost))));
+        } else if (!eventOutput.isEmpty()) {
+            EventFrame frame = eventOutput.peekFirst();
+            writingHead = frame.bytes();
+        }
+        return writingHead;
+    }
 
     public synchronized void reactorRemoveOutputHead(ByteBuffer head) {
         if (output.peekFirst() == head) output.removeFirst();
+        if (!eventOutput.isEmpty() && eventOutput.peekFirst().bytes() == head) eventOutput.removeFirst();
+        if (writingHead == head) writingHead = null;
     }
 
     public synchronized boolean reactorCloseImmediately() { return closed; }
@@ -234,10 +348,14 @@ public final class Session implements AutoCloseable {
     public synchronized void reactorClosed() { closeQueues(); }
 
     private void closeQueues() {
+        if (!closed && activityLog != null) try { activityLog.disconnected(this); } catch (RuntimeException ignored) { }
         closed = true;
         ready = false;
         cancelRequests();
         output.clear();
+        eventOutput.clear();
+        eventOverflows.clear();
+        writingHead = null;
     }
 
     private void cancelRequests() {

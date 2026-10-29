@@ -45,6 +45,7 @@ class ClientTests(unittest.TestCase):
     def connect(self, server, **options):
         options.setdefault("token", EXAMPLE_TOKEN)
         options.setdefault("timeout", 1.0)
+        options.setdefault("writeMode", "sync")
         client = Minecraft.create("127.0.0.1", server.port, **options)
         self.addCleanup(client.close)
         return client
@@ -62,7 +63,7 @@ class ClientTests(unittest.TestCase):
             finally:
                 completed.set()
 
-        thread = threading.Thread(target=run, name="t07-facade-call")
+        thread = threading.Thread(target=run, name="facade-call")
         thread.start()
         return thread, completed, values, failures
 
@@ -95,7 +96,7 @@ class ClientTests(unittest.TestCase):
             self.assertIsInstance(values[0], Minecraft)
             self.assertEqual(requests, [{
                 "jsonrpc": "2.0", "id": 1, "method": "system.hello",
-                "params": {"protocol": {"major": 1, "minor": 0},
+                "params": {"protocol": {"major": 2, "minor": 0},
                            "token": EXAMPLE_TOKEN, "world": None,
                            "coordinates": "absolute"},
             }])
@@ -134,7 +135,7 @@ class ClientTests(unittest.TestCase):
             client.close()
 
     def test_both_entry_points_wait_for_ack_and_return_none(self):
-        # The transport remains synchronous through both public entry points.
+        # Explicit sync mode retains completion semantics at both entry points.
         for use_namespace in (False, True):
             with self.subTest(namespace=use_namespace):
                 received, release = threading.Event(), threading.Event()
@@ -165,6 +166,134 @@ class ClientTests(unittest.TestCase):
                     self.assertEqual(values, [None])
                     client.close()
 
+    def test_default_two_argument_create_sends_multiple_writes_before_first_ack(self):
+        received, release = threading.Event(), threading.Event()
+        requests = []
+
+        def handle(connection, stopping):
+            hello = read_request(connection)
+            requests.append(hello)
+            send_hello(connection, hello)
+            for _ in range(2):
+                requests.append(read_request(connection))
+            received.set()
+            if not release.wait(2):
+                raise AssertionError("Test did not release buffered ACKs")
+            for request in requests[1:]:
+                connection.sendall(result(request["id"]))
+            self.assertIsNone(read_request(connection))
+
+        with mock.patch.dict("os.environ", {}, clear=True), peer(handle) as server:
+            client = Minecraft.create("127.0.0.1", server.port)
+            self.addCleanup(client.close)
+            try:
+                self.assertIsNone(client.setBlock(0, 80, 0, 4))
+                self.assertIsNone(client.blocks.setBlock(1, 80, 0, block.COBBLESTONE))
+                self.assertTrue(received.wait(1), "Writes waited for individual ACKs")
+                self.assertIsNone(requests[0]["params"]["token"])
+                thread, completed, values, failures = self.start_call(client.flush)
+                try:
+                    self.assertFalse(completed.wait(0.05), "flush returned before ACKs")
+                finally:
+                    release.set()
+                    thread.join(2)
+                self.assertFalse(thread.is_alive())
+                self.assertEqual(failures, [])
+                self.assertEqual(values, [None])
+                self.assertEqual([request["id"] for request in requests], [1, 2, 3])
+            finally:
+                release.set()
+                client.close()
+
+    def test_buffered_flush_reports_typed_errors_and_all_failures_through_barrier(self):
+        release = threading.Event()
+
+        def handle(connection, stopping):
+            send_hello(connection, read_request(connection))
+            requests = [read_request(connection) for _ in range(3)]
+            if not release.wait(2):
+                raise AssertionError("Test did not release buffered failures")
+            connection.sendall(result(requests[0]["id"]))
+            for request, numeric, code in (
+                (requests[1], -32023, "CHUNK_NOT_LOADED"),
+                (requests[2], -32024, "INVALID_BLOCK"),
+            ):
+                connection.sendall(encode_frame({
+                    "jsonrpc": "2.0", "id": request["id"],
+                    "error": {"code": numeric, "message": EXAMPLE_TOKEN,
+                              "data": {"code": code, "outcome": "not-applied"}},
+                }))
+            # Once the flush has reported the failures, the next write works.
+            request = read_request(connection)
+            self.assertEqual(request["id"], 5)
+            connection.sendall(result(request["id"]))
+            self.assertIsNone(read_request(connection))
+
+        with peer(handle) as server:
+            client = self.connect(server, writeMode="buffered")
+            try:
+                for x in range(3):
+                    client.setBlock(x, 80, 0, 4)
+                thread, completed, values, failures = self.start_call(client.flush)
+                try:
+                    self.assertFalse(completed.wait(0.05))
+                finally:
+                    release.set()
+                    thread.join(2)
+                self.assertFalse(thread.is_alive())
+                self.assertEqual(values, [])
+                self.assertEqual(len(failures), 1)
+                first = failures[0]
+                self.assertIsInstance(first, errors.ChunkNotLoadedError)
+                self.assertEqual((first.request_id, first.method, first.outcome),
+                                 (3, "blocks.set", "not-applied"))
+                self.assertEqual([error.code for error in first.failures],
+                                 ["CHUNK_NOT_LOADED", "INVALID_BLOCK"])
+                self.assertEqual([error.request_id for error in first.failures], [3, 4])
+                self.assertNotIn(EXAMPLE_TOKEN, str(first))
+                self.assertIsNone(client.setBlock(4, 80, 0, 4))
+                self.assertIsNone(client.flush())
+            finally:
+                release.set()
+                client.close()
+
+    def test_close_drains_buffered_writes_and_releases_socket_after_domain_error(self):
+        received, release, closed = threading.Event(), threading.Event(), threading.Event()
+
+        def handle(connection, stopping):
+            send_hello(connection, read_request(connection))
+            request = read_request(connection)
+            received.set()
+            if not release.wait(2):
+                raise AssertionError("Test did not release close error")
+            connection.sendall(encode_frame({
+                "jsonrpc": "2.0", "id": request["id"],
+                "error": {"code": -32023, "message": EXAMPLE_TOKEN,
+                          "data": {"code": "CHUNK_NOT_LOADED", "outcome": "not-applied"}},
+            }))
+            if read_request(connection) is None:
+                closed.set()
+
+        with peer(handle) as server:
+            client = self.connect(server, writeMode="buffered")
+            self.assertIsNone(client.setBlock(0, 80, 0, 4))
+            self.assertTrue(received.wait(1))
+            thread, completed, values, failures = self.start_call(client.close)
+            try:
+                self.assertFalse(completed.wait(0.05), "close abandoned pending write")
+            finally:
+                release.set()
+                thread.join(2)
+            self.assertFalse(thread.is_alive())
+            self.assertEqual(values, [])
+            self.assertEqual(len(failures), 1)
+            self.assertIsInstance(failures[0], errors.ChunkNotLoadedError)
+            self.assertEqual(failures[0].request_id, 2)
+            self.assertTrue(closed.wait(1))
+            self.assertIsNone(client.close())
+            with self.assertRaises(errors.ConnectionError):
+                client.setBlock(1, 80, 0, 4)
+
     def test_local_invalid_arguments_do_not_send_or_consume_request_ids(self):
         requests = []
         invalid = (
@@ -179,7 +308,7 @@ class ClientTests(unittest.TestCase):
             ((0, 80, 0, block.COBBLESTONE), {"data": 1}, ValueError),
             ((0, 80, 0, "minecraft:stone"), {"data": 1}, ValueError),
             ((0, 80, 0, "stone"), {}, errors.InvalidBlockError),
-            ((0, 80, 0, "minecraft:stone[axis=y]"), {}, errors.UnsupportedFeatureError),
+            ((0, 80, 0, "minecraft:stone[axis]"), {}, errors.InvalidBlockError),
             ((0, 80, 0, 4), {"player": "nobody"}, TypeError),
         )
         with peer(acknowledge_operations(requests)) as server:
@@ -196,23 +325,51 @@ class ClientTests(unittest.TestCase):
     def test_signature_rejects_unknown_create_kwargs_before_connection(self):
         parameters = inspect.signature(Minecraft.create).parameters
         self.assertEqual(tuple(parameters),
-                         ("ip", "port", "token", "world", "timeout", "coordinates"))
-        for name in ("token", "world", "timeout", "coordinates"):
+                         ("ip", "port", "writeMode", "token", "world", "timeout", "coordinates", "player", "logging"))
+        self.assertEqual(parameters["writeMode"].default, "buffered")
+        self.assertIs(parameters["logging"].default, False)
+        for name in ("writeMode", "token", "world", "timeout", "coordinates", "player", "logging"):
             self.assertEqual(parameters[name].kind, inspect.Parameter.KEYWORD_ONLY)
         with mock.patch("socket.getaddrinfo") as resolve:
-            for option in ("player", "pairingCode", "project", "withContext"):
+            for option in ("pairingCode", "project", "withContext"):
                 with self.subTest(option=option), self.assertRaises(TypeError):
                     Minecraft.create(**{option: "unsupported"})
             with self.assertRaises(TypeError):
                 Minecraft.create("127.0.0.1", 4711, EXAMPLE_TOKEN)
             resolve.assert_not_called()
 
-    def test_create_missing_credentials_and_unsupported_profile_fail_before_dns(self):
+    def test_logging_requires_bool_before_dns(self):
+        with mock.patch("socket.getaddrinfo") as resolve:
+            for value in (None, 0, 1, "true"):
+                with self.subTest(value=value), self.assertRaises(TypeError):
+                    Minecraft.create(logging=value)
+            resolve.assert_not_called()
+
+    def test_logging_true_is_negotiated_and_unsupported_server_is_explicit(self):
+        requests = []
+
+        def handle(connection, stopping):
+            request = read_request(connection)
+            requests.append(request)
+            metadata = hello_result()
+            metadata["capabilities"].append("session.logging")
+            connection.sendall(encode_frame({"jsonrpc": "2.0", "id": request["id"], "result": metadata}))
+            self.assertIsNone(read_request(connection))
+
+        with peer(handle) as server:
+            self.connect(server, logging=True).close()
+        self.assertIs(requests[0]["params"]["logging"], True)
+
+        with peer(acknowledge_operations([])) as server:
+            with self.assertRaises(errors.UnsupportedFeatureError):
+                self.connect(server, logging=True)
+
+    def test_create_invalid_write_mode_and_unsupported_profile_fail_before_dns(self):
         with mock.patch.dict("os.environ", {}, clear=True), \
                 mock.patch("socket.getaddrinfo") as resolve:
-            with self.assertRaises(errors.AuthenticationError) as missing:
-                Minecraft.create()
-            self.assertEqual(missing.exception.outcome, "not-applied")
+            for value in (None, "SYNC", "fire-and-forget", 123):
+                with self.subTest(writeMode=value), self.assertRaises((ValueError, TypeError)):
+                    Minecraft.create(writeMode=value)
             with self.assertRaises(errors.UnsupportedFeatureError):
                 Minecraft.create(token=EXAMPLE_TOKEN, coordinates="relative")
             resolve.assert_not_called()
@@ -331,7 +488,7 @@ class ClientTests(unittest.TestCase):
             self.assertTrue(closed.wait(1))
             self.assertEqual(len(requests), 1)
 
-    def test_close_interrupts_pending_operation_without_waiting_for_rpc_lock(self):
+    def test_close_waits_for_buffered_operation_and_timeout_still_closes_socket(self):
         received, closed = threading.Event(), threading.Event()
 
         def handle(connection, stopping):
@@ -342,25 +499,16 @@ class ClientTests(unittest.TestCase):
                 closed.set()
 
         with peer(handle) as server:
-            client = self.connect(server, timeout=5)
-            thread, completed, values, failures = self.start_call(
-                lambda: client.setBlock(0, 80, 0, 4),
-            )
-            try:
-                self.assertTrue(received.wait(1))
-                before = time.monotonic()
-                self.assertIsNone(client.close())
-                self.assertLess(time.monotonic() - before, 0.5)
-                self.assertTrue(completed.wait(1))
-            finally:
+            client = self.connect(server, timeout=0.15, writeMode="buffered")
+            self.assertIsNone(client.setBlock(0, 80, 0, 4))
+            self.assertTrue(received.wait(1))
+            before = time.monotonic()
+            with self.assertRaises(errors.OperationTimeoutError) as caught:
                 client.close()
-                thread.join(2)
-            self.assertFalse(thread.is_alive())
-            self.assertEqual(values, [])
-            self.assertEqual(len(failures), 1)
-            self.assertIsInstance(failures[0], errors.ConnectionError)
-            self.assertEqual(failures[0].outcome, "unknown")
+            self.assertLess(time.monotonic() - before, 1)
+            self.assertEqual(caught.exception.outcome, "unknown")
             self.assertTrue(closed.wait(1))
+            self.assertIsNone(client.close())
 
     def test_close_is_idempotent_and_sends_no_close_rpc(self):
         requests, closed = [], threading.Event()

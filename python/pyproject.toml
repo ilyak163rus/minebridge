@@ -4,18 +4,32 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "minebridge"
-version = "0.1.0.dev0"
-description = "Typed Python client for authenticated block operations on Minecraft Paper"
+version = "0.3.1"
+description = "Typed Python API for Minecraft Paper: blocks, players, events, world settings and inventory slots"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = []
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "Minebridge contributors"}]
+keywords = ["minecraft", "paper", "education", "mcpi", "raspberryjuice"]
 classifiers = [
-  "Development Status :: 2 - Pre-Alpha",
+  "Development Status :: 3 - Alpha",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.14",
   "Typing :: Typed",
+  "Intended Audience :: Education",
+  "Topic :: Games/Entertainment",
+  "Operating System :: OS Independent",
 ]
+
+[project.urls]
+Homepage = "https://github.com/ilyak163rus/minebridge"
+Documentation = "https://github.com/ilyak163rus/minebridge/tree/main/docs"
+Repository = "https://github.com/ilyak163rus/minebridge"
+Issues = "https://github.com/ilyak163rus/minebridge/issues"
+Changelog = "https://github.com/ilyak163rus/minebridge/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
 where = ["src"]

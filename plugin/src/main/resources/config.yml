@@ -1,11 +1,10 @@
-# T04 starts bounded TCP transport; handshake and game operations follow later.
-# For a LAN listener, the operator must explicitly change listenAddress.
+# For a LAN listener, change listenAddress to the server's numeric LAN address.
 # Numeric IPv4/IPv6 only: binding never waits for DNS resolution.
 listenAddress: '127.0.0.1'
 port: 4711
-# Must already be loaded when the plugin is enabled; no fallback or creation.
-defaultWorld: 'world'
-# Set a nonblank lesson token locally before enabling the plugin.
-# Keep quotes, including for tokens that look like YAML numbers or booleans.
-# This value is preserved exactly: surrounding spaces are not removed.
+# The primary Overworld is selected automatically, regardless of its folder name.
+# Classroom default: clients connect with Minecraft.create(ip, port).
+authEnabled: false
+# Optional authentication. Set authEnabled: true and a nonblank token to require it.
+# The string is preserved exactly, including surrounding spaces.
 token: ''

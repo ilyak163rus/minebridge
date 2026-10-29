@@ -194,6 +194,9 @@ class TransportTests(unittest.TestCase):
             requests.append(request)
             both_connected.wait(2)
             connection.sendall(result(request["id"]))
+            # Keep B genuinely live while the test closes A. The receiver now
+            # detects an idle peer's EOF proactively instead of on the next RPC.
+            self.assertIsNone(read_request(connection))
 
         with peer(handler) as server:
             first, second = self.connect(server), self.connect(server)
@@ -493,7 +496,9 @@ class TransportTests(unittest.TestCase):
                 self.exchange(transport)
             duration = time.monotonic() - start
             self.assertEqual(caught.exception.code, "TIMEOUT")
-            self.assertEqual(caught.exception.outcome, "unknown")
+            # The prefilled socket never became writable: no byte of this RPC
+            # was attempted, so its world mutation is known not to be applied.
+            self.assertEqual(caught.exception.outcome, "not-applied")
             self.assertTrue(transport.closed)
             self.assertGreaterEqual(duration, 0.13)
             self.assertLess(duration, 1)
@@ -622,6 +627,9 @@ class TransportTests(unittest.TestCase):
                 self.closed = False
 
             def setblocking(self, blocking):
+                pass
+
+            def setsockopt(self, level, option, value):
                 pass
 
             def connect_ex(self, address):

@@ -1,0 +1,7438 @@
+{
+  "formatVersion": 1,
+  "minecraftVersion": "26.2",
+  "paperBuild": 133,
+  "sourceSha256": "c02641bc5967fdd28c627809765083e55f46323d3cd49ac58b3681711933c5a5",
+  "items": [
+    {
+      "key": "minecraft:acacia_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:acacia_button",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:acacia_chest_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:acacia_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:acacia_fence",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:acacia_fence_gate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:acacia_hanging_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:acacia_leaves",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:acacia_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:acacia_planks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:acacia_pressure_plate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:acacia_sapling",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:acacia_shelf",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:acacia_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:acacia_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:acacia_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:acacia_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:acacia_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:activator_rail",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:air",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:allay_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:allium",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:amethyst_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:amethyst_cluster",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:amethyst_shard",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:ancient_debris",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:andesite",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:andesite_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:andesite_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:andesite_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:angler_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:anvil",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:apple",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:archer_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:armadillo_scute",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:armadillo_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:armor_stand",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:arms_up_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:arrow",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:axolotl_bucket",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:axolotl_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:azalea",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:azalea_leaves",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:azure_bluet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:baked_potato",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bamboo",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bamboo_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bamboo_button",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bamboo_chest_raft",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:bamboo_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bamboo_fence",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bamboo_fence_gate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bamboo_hanging_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:bamboo_mosaic",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bamboo_mosaic_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bamboo_mosaic_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bamboo_planks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bamboo_pressure_plate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bamboo_raft",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:bamboo_shelf",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bamboo_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:bamboo_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bamboo_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bamboo_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:barrel",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:barrier",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:basalt",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bat_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:beacon",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bedrock",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bee_nest",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bee_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:beef",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:beehive",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:beetroot",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:beetroot_seeds",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:beetroot_soup",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:bell",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:big_dripleaf",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:birch_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:birch_button",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:birch_chest_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:birch_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:birch_fence",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:birch_fence_gate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:birch_hanging_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:birch_leaves",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:birch_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:birch_planks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:birch_pressure_plate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:birch_sapling",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:birch_shelf",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:birch_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:birch_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:birch_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:birch_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:birch_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:black_banner",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:black_bed",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:black_bundle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:black_candle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:black_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:black_concrete",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:black_concrete_powder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:black_dye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:black_glazed_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:black_harness",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:black_shulker_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:black_stained_glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:black_stained_glass_pane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:black_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:black_wool",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blackstone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blackstone_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blackstone_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blackstone_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blade_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blast_furnace",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blaze_powder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blaze_rod",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blaze_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blue_banner",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:blue_bed",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:blue_bundle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:blue_candle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blue_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blue_concrete",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blue_concrete_powder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blue_dye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blue_egg",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:blue_glazed_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blue_harness",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:blue_ice",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blue_orchid",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blue_shulker_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:blue_stained_glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blue_stained_glass_pane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blue_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:blue_wool",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bogged_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bolt_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bone_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bone_meal",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:book",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bookshelf",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bordure_indented_banner_pattern",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:bow",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:bowl",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brain_coral",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brain_coral_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brain_coral_fan",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bread",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:breeze_rod",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:breeze_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brewer_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brewing_stand",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brick",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brick_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brick_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brick_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brown_banner",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:brown_bed",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:brown_bundle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:brown_candle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brown_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brown_concrete",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brown_concrete_powder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brown_dye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brown_egg",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:brown_glazed_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brown_harness",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:brown_mushroom",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brown_mushroom_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brown_shulker_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:brown_stained_glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brown_stained_glass_pane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brown_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brown_wool",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:brush",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:bubble_coral",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bubble_coral_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bubble_coral_fan",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bucket",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:budding_amethyst",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bundle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:burn_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:bush",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cactus",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cactus_flower",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cake",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:calcite",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:calibrated_sculk_sensor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:camel_husk_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:camel_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:campfire",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:candle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:carrot",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:carrot_on_a_stick",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:cartography_table",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:carved_pumpkin",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cat_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cauldron",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cave_spider_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chain_command_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chainmail_boots",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:chainmail_chestplate",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:chainmail_helmet",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:chainmail_leggings",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:charcoal",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cherry_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:cherry_button",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cherry_chest_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:cherry_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cherry_fence",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cherry_fence_gate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cherry_hanging_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:cherry_leaves",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cherry_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cherry_planks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cherry_pressure_plate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cherry_sapling",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cherry_shelf",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cherry_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:cherry_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cherry_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cherry_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cherry_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chest",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chest_minecart",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:chicken",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chicken_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chipped_anvil",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chiseled_bookshelf",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chiseled_cinnabar",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chiseled_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chiseled_deepslate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chiseled_nether_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chiseled_polished_blackstone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chiseled_quartz_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chiseled_red_sandstone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chiseled_resin_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chiseled_sandstone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chiseled_stone_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chiseled_sulfur",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chiseled_tuff",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chiseled_tuff_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chorus_flower",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chorus_fruit",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:chorus_plant",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cinnabar",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cinnabar_brick_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cinnabar_brick_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cinnabar_brick_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cinnabar_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cinnabar_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cinnabar_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cinnabar_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:clay",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:clay_ball",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:clock",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:closed_eyeblossom",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:coal",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:coal_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:coal_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:coarse_dirt",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:coast_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cobbled_deepslate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cobbled_deepslate_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cobbled_deepslate_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cobbled_deepslate_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cobblestone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cobblestone_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cobblestone_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cobblestone_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cobweb",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cocoa_beans",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cod",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cod_bucket",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:cod_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:command_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:command_block_minecart",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:comparator",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:compass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:composter",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:conduit",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cooked_beef",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cooked_chicken",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cooked_cod",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cooked_mutton",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cooked_porkchop",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cooked_rabbit",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cooked_salmon",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cookie",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:copper_axe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:copper_bars",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:copper_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:copper_boots",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:copper_bulb",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:copper_chain",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:copper_chest",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:copper_chestplate",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:copper_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:copper_golem_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:copper_golem_statue",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:copper_grate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:copper_helmet",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:copper_hoe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:copper_horse_armor",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:copper_ingot",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:copper_lantern",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:copper_leggings",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:copper_nautilus_armor",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:copper_nugget",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:copper_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:copper_pickaxe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:copper_shovel",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:copper_spear",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:copper_sword",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:copper_torch",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:copper_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cornflower",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cow_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cracked_deepslate_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cracked_deepslate_tiles",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cracked_nether_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cracked_polished_blackstone_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cracked_stone_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crafter",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crafting_table",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:creaking_heart",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:creaking_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:creeper_banner_pattern",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:creeper_head",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:creeper_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crimson_button",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crimson_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crimson_fence",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crimson_fence_gate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crimson_fungus",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crimson_hanging_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:crimson_hyphae",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crimson_nylium",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crimson_planks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crimson_pressure_plate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crimson_roots",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crimson_shelf",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crimson_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:crimson_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crimson_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crimson_stem",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crimson_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:crossbow",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:crying_obsidian",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cut_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cut_copper_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cut_copper_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cut_red_sandstone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cut_red_sandstone_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cut_sandstone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cut_sandstone_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cyan_banner",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:cyan_bed",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:cyan_bundle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:cyan_candle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cyan_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cyan_concrete",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cyan_concrete_powder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cyan_dye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cyan_glazed_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cyan_harness",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:cyan_shulker_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:cyan_stained_glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cyan_stained_glass_pane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cyan_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:cyan_wool",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:damaged_anvil",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dandelion",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:danger_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dark_oak_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:dark_oak_button",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dark_oak_chest_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:dark_oak_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dark_oak_fence",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dark_oak_fence_gate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dark_oak_hanging_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:dark_oak_leaves",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dark_oak_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dark_oak_planks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dark_oak_pressure_plate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dark_oak_sapling",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dark_oak_shelf",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dark_oak_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:dark_oak_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dark_oak_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dark_oak_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dark_oak_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dark_prismarine",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dark_prismarine_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dark_prismarine_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:daylight_detector",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dead_brain_coral",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dead_brain_coral_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dead_brain_coral_fan",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dead_bubble_coral",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dead_bubble_coral_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dead_bubble_coral_fan",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dead_bush",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dead_fire_coral",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dead_fire_coral_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dead_fire_coral_fan",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dead_horn_coral",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dead_horn_coral_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dead_horn_coral_fan",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dead_tube_coral",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dead_tube_coral_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dead_tube_coral_fan",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:debug_stick",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:decorated_pot",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:deepslate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:deepslate_brick_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:deepslate_brick_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:deepslate_brick_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:deepslate_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:deepslate_coal_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:deepslate_copper_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:deepslate_diamond_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:deepslate_emerald_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:deepslate_gold_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:deepslate_iron_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:deepslate_lapis_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:deepslate_redstone_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:deepslate_tile_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:deepslate_tile_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:deepslate_tile_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:deepslate_tiles",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:detector_rail",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:diamond",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:diamond_axe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:diamond_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:diamond_boots",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:diamond_chestplate",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:diamond_helmet",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:diamond_hoe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:diamond_horse_armor",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:diamond_leggings",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:diamond_nautilus_armor",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:diamond_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:diamond_pickaxe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:diamond_shovel",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:diamond_spear",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:diamond_sword",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:diorite",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:diorite_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:diorite_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:diorite_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dirt",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dirt_path",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:disc_fragment_5",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dispenser",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dolphin_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:donkey_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dragon_breath",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dragon_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dragon_head",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dried_ghast",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dried_kelp",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dried_kelp_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dripstone_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dropper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:drowned_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:dune_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:echo_shard",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:egg",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:elder_guardian_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:elytra",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:emerald",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:emerald_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:emerald_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:enchanted_book",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:enchanted_golden_apple",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:enchanting_table",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:end_crystal",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:end_portal_frame",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:end_rod",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:end_stone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:end_stone_brick_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:end_stone_brick_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:end_stone_brick_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:end_stone_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:ender_chest",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:ender_dragon_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:ender_eye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:ender_pearl",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:enderman_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:endermite_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:evoker_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:experience_bottle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:explorer_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:exposed_chiseled_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:exposed_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:exposed_copper_bars",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:exposed_copper_bulb",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:exposed_copper_chain",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:exposed_copper_chest",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:exposed_copper_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:exposed_copper_golem_statue",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:exposed_copper_grate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:exposed_copper_lantern",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:exposed_copper_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:exposed_cut_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:exposed_cut_copper_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:exposed_cut_copper_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:exposed_lightning_rod",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:eye_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:farmland",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:feather",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:fermented_spider_eye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:fern",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:field_masoned_banner_pattern",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:filled_map",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:fire_charge",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:fire_coral",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:fire_coral_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:fire_coral_fan",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:firefly_bush",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:firework_rocket",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:firework_star",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:fishing_rod",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:fletching_table",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:flint",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:flint_and_steel",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:flow_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:flow_banner_pattern",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:flow_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:flower_banner_pattern",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:flower_pot",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:flowering_azalea",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:flowering_azalea_leaves",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:fox_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:friend_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:frog_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:frogspawn",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:furnace",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:furnace_minecart",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:ghast_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:ghast_tear",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:gilded_blackstone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:glass_bottle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:glass_pane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:glistering_melon_slice",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:globe_banner_pattern",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:glow_berries",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:glow_ink_sac",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:glow_item_frame",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:glow_lichen",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:glow_squid_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:glowstone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:glowstone_dust",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:goat_horn",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:goat_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:gold_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:gold_ingot",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:gold_nugget",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:gold_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:golden_apple",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:golden_axe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:golden_boots",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:golden_carrot",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:golden_chestplate",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:golden_dandelion",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:golden_helmet",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:golden_hoe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:golden_horse_armor",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:golden_leggings",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:golden_nautilus_armor",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:golden_pickaxe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:golden_shovel",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:golden_spear",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:golden_sword",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:granite",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:granite_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:granite_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:granite_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:grass_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:gravel",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:gray_banner",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:gray_bed",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:gray_bundle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:gray_candle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:gray_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:gray_concrete",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:gray_concrete_powder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:gray_dye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:gray_glazed_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:gray_harness",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:gray_shulker_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:gray_stained_glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:gray_stained_glass_pane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:gray_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:gray_wool",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:green_banner",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:green_bed",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:green_bundle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:green_candle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:green_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:green_concrete",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:green_concrete_powder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:green_dye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:green_glazed_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:green_harness",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:green_shulker_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:green_stained_glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:green_stained_glass_pane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:green_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:green_wool",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:grindstone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:guardian_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:gunpowder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:guster_banner_pattern",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:guster_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:hanging_roots",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:happy_ghast_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:hay_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:heart_of_the_sea",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:heart_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:heartbreak_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:heavy_core",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:heavy_weighted_pressure_plate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:hoglin_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:honey_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:honey_bottle",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:honeycomb",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:honeycomb_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:hopper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:hopper_minecart",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:horn_coral",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:horn_coral_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:horn_coral_fan",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:horse_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:host_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:howl_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:husk_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:ice",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:infested_chiseled_stone_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:infested_cobblestone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:infested_cracked_stone_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:infested_deepslate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:infested_mossy_stone_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:infested_stone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:infested_stone_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:ink_sac",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:iron_axe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:iron_bars",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:iron_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:iron_boots",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:iron_chain",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:iron_chestplate",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:iron_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:iron_golem_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:iron_helmet",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:iron_hoe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:iron_horse_armor",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:iron_ingot",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:iron_leggings",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:iron_nautilus_armor",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:iron_nugget",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:iron_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:iron_pickaxe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:iron_shovel",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:iron_spear",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:iron_sword",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:iron_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:item_frame",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:jack_o_lantern",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:jigsaw",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:jukebox",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:jungle_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:jungle_button",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:jungle_chest_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:jungle_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:jungle_fence",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:jungle_fence_gate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:jungle_hanging_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:jungle_leaves",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:jungle_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:jungle_planks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:jungle_pressure_plate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:jungle_sapling",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:jungle_shelf",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:jungle_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:jungle_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:jungle_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:jungle_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:jungle_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:kelp",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:knowledge_book",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:ladder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lantern",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lapis_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lapis_lazuli",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lapis_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:large_amethyst_bud",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:large_fern",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lava_bucket",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:lead",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:leaf_litter",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:leather",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:leather_boots",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:leather_chestplate",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:leather_helmet",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:leather_horse_armor",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:leather_leggings",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:lectern",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lever",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_blue_banner",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:light_blue_bed",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:light_blue_bundle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:light_blue_candle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_blue_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_blue_concrete",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_blue_concrete_powder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_blue_dye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_blue_glazed_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_blue_harness",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:light_blue_shulker_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:light_blue_stained_glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_blue_stained_glass_pane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_blue_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_blue_wool",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_gray_banner",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:light_gray_bed",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:light_gray_bundle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:light_gray_candle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_gray_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_gray_concrete",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_gray_concrete_powder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_gray_dye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_gray_glazed_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_gray_harness",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:light_gray_shulker_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:light_gray_stained_glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_gray_stained_glass_pane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_gray_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_gray_wool",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:light_weighted_pressure_plate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lightning_rod",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lilac",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lily_of_the_valley",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lily_pad",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lime_banner",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:lime_bed",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:lime_bundle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:lime_candle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lime_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lime_concrete",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lime_concrete_powder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lime_dye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lime_glazed_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lime_harness",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:lime_shulker_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:lime_stained_glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lime_stained_glass_pane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lime_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lime_wool",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lingering_potion",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:llama_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:lodestone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:loom",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mace",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:magenta_banner",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:magenta_bed",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:magenta_bundle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:magenta_candle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:magenta_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:magenta_concrete",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:magenta_concrete_powder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:magenta_dye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:magenta_glazed_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:magenta_harness",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:magenta_shulker_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:magenta_stained_glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:magenta_stained_glass_pane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:magenta_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:magenta_wool",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:magma_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:magma_cream",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:magma_cube_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mangrove_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:mangrove_button",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mangrove_chest_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:mangrove_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mangrove_fence",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mangrove_fence_gate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mangrove_hanging_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:mangrove_leaves",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mangrove_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mangrove_planks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mangrove_pressure_plate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mangrove_propagule",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mangrove_roots",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mangrove_shelf",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mangrove_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:mangrove_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mangrove_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mangrove_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mangrove_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:map",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:medium_amethyst_bud",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:melon",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:melon_seeds",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:melon_slice",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:milk_bucket",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:minecart",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:miner_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mojang_banner_pattern",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:mooshroom_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:moss_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:moss_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mossy_cobblestone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mossy_cobblestone_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mossy_cobblestone_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mossy_cobblestone_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mossy_stone_brick_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mossy_stone_brick_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mossy_stone_brick_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mossy_stone_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mourner_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mud",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mud_brick_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mud_brick_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mud_brick_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mud_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:muddy_mangrove_roots",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mule_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mushroom_stem",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mushroom_stew",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_11",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_13",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_5",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_blocks",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_bounce",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_cat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_chirp",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_creator",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_creator_music_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_far",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_lava_chicken",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_mall",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_mellohi",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_otherside",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_pigstep",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_precipice",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_relic",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_stal",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_strad",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_tears",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_wait",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:music_disc_ward",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:mutton",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:mycelium",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:name_tag",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:nautilus_shell",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:nautilus_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:nether_brick",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:nether_brick_fence",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:nether_brick_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:nether_brick_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:nether_brick_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:nether_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:nether_gold_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:nether_quartz_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:nether_sprouts",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:nether_star",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:nether_wart",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:nether_wart_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:netherite_axe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:netherite_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:netherite_boots",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:netherite_chestplate",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:netherite_helmet",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:netherite_hoe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:netherite_horse_armor",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:netherite_ingot",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:netherite_leggings",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:netherite_nautilus_armor",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:netherite_pickaxe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:netherite_scrap",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:netherite_shovel",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:netherite_spear",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:netherite_sword",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:netherite_upgrade_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:netherrack",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:note_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oak_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:oak_button",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oak_chest_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:oak_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oak_fence",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oak_fence_gate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oak_hanging_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:oak_leaves",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oak_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oak_planks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oak_pressure_plate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oak_sapling",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oak_shelf",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oak_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:oak_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oak_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oak_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oak_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:observer",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:obsidian",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:ocelot_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:ochre_froglight",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:ominous_bottle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:ominous_trial_key",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:open_eyeblossom",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:orange_banner",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:orange_bed",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:orange_bundle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:orange_candle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:orange_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:orange_concrete",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:orange_concrete_powder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:orange_dye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:orange_glazed_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:orange_harness",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:orange_shulker_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:orange_stained_glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:orange_stained_glass_pane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:orange_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:orange_tulip",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:orange_wool",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oxeye_daisy",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oxidized_chiseled_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oxidized_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oxidized_copper_bars",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oxidized_copper_bulb",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oxidized_copper_chain",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oxidized_copper_chest",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oxidized_copper_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oxidized_copper_golem_statue",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oxidized_copper_grate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oxidized_copper_lantern",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oxidized_copper_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oxidized_cut_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oxidized_cut_copper_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oxidized_cut_copper_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:oxidized_lightning_rod",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:packed_ice",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:packed_mud",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:painting",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pale_hanging_moss",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pale_moss_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pale_moss_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pale_oak_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:pale_oak_button",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pale_oak_chest_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:pale_oak_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pale_oak_fence",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pale_oak_fence_gate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pale_oak_hanging_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:pale_oak_leaves",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pale_oak_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pale_oak_planks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pale_oak_pressure_plate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pale_oak_sapling",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pale_oak_shelf",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pale_oak_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:pale_oak_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pale_oak_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pale_oak_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pale_oak_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:panda_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:paper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:parched_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:parrot_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pearlescent_froglight",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:peony",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:petrified_oak_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:phantom_membrane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:phantom_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pig_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:piglin_banner_pattern",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:piglin_brute_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:piglin_head",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:piglin_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pillager_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pink_banner",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:pink_bed",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:pink_bundle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:pink_candle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pink_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pink_concrete",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pink_concrete_powder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pink_dye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pink_glazed_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pink_harness",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:pink_petals",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pink_shulker_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:pink_stained_glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pink_stained_glass_pane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pink_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pink_tulip",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pink_wool",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:piston",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pitcher_plant",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pitcher_pod",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:player_head",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:plenty_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:podzol",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pointed_dripstone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:poisonous_potato",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polar_bear_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_andesite",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_andesite_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_andesite_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_basalt",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_blackstone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_blackstone_brick_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_blackstone_brick_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_blackstone_brick_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_blackstone_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_blackstone_button",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_blackstone_pressure_plate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_blackstone_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_blackstone_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_blackstone_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_cinnabar",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_cinnabar_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_cinnabar_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_cinnabar_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_deepslate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_deepslate_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_deepslate_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_deepslate_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_diorite",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_diorite_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_diorite_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_granite",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_granite_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_granite_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_sulfur",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_sulfur_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_sulfur_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_sulfur_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_tuff",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_tuff_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_tuff_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:polished_tuff_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:popped_chorus_fruit",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:poppy",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:porkchop",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:potato",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:potent_sulfur",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:potion",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:powder_snow_bucket",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:powered_rail",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:prismarine",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:prismarine_brick_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:prismarine_brick_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:prismarine_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:prismarine_crystals",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:prismarine_shard",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:prismarine_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:prismarine_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:prismarine_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:prize_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pufferfish",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pufferfish_bucket",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:pufferfish_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pumpkin",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pumpkin_pie",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:pumpkin_seeds",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:purple_banner",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:purple_bed",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:purple_bundle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:purple_candle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:purple_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:purple_concrete",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:purple_concrete_powder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:purple_dye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:purple_glazed_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:purple_harness",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:purple_shulker_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:purple_stained_glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:purple_stained_glass_pane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:purple_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:purple_wool",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:purpur_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:purpur_pillar",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:purpur_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:purpur_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:quartz",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:quartz_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:quartz_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:quartz_pillar",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:quartz_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:quartz_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:rabbit",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:rabbit_foot",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:rabbit_hide",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:rabbit_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:rabbit_stew",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:rail",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:raiser_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:ravager_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:raw_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:raw_copper_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:raw_gold",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:raw_gold_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:raw_iron",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:raw_iron_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:recovery_compass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_banner",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:red_bed",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:red_bundle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:red_candle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_concrete",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_concrete_powder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_dye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_glazed_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_harness",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:red_mushroom",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_mushroom_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_nether_brick_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_nether_brick_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_nether_brick_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_nether_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_sand",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_sandstone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_sandstone_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_sandstone_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_sandstone_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_shulker_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:red_stained_glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_stained_glass_pane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_tulip",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:red_wool",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:redstone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:redstone_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:redstone_lamp",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:redstone_ore",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:redstone_torch",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:reinforced_deepslate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:repeater",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:repeating_command_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:resin_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:resin_brick",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:resin_brick_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:resin_brick_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:resin_brick_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:resin_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:resin_clump",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:respawn_anchor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:rib_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:rooted_dirt",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:rose_bush",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:rotten_flesh",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:saddle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:salmon",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:salmon_bucket",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:salmon_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sand",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sandstone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sandstone_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sandstone_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sandstone_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:scaffolding",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:scrape_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sculk",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sculk_catalyst",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sculk_sensor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sculk_shrieker",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sculk_vein",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sea_lantern",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sea_pickle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:seagrass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sentry_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:shaper_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sheaf_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:shears",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:sheep_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:shelter_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:shield",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:short_dry_grass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:short_grass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:shroomlight",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:shulker_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:shulker_shell",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:shulker_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:silence_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:silverfish_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:skeleton_horse_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:skeleton_skull",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:skeleton_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:skull_banner_pattern",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:skull_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:slime_ball",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:slime_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:slime_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:small_amethyst_bud",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:small_dripleaf",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:smithing_table",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:smoker",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:smooth_basalt",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:smooth_quartz",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:smooth_quartz_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:smooth_quartz_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:smooth_red_sandstone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:smooth_red_sandstone_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:smooth_red_sandstone_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:smooth_sandstone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:smooth_sandstone_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:smooth_sandstone_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:smooth_stone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:smooth_stone_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sniffer_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sniffer_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:snort_pottery_sherd",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:snout_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:snow",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:snow_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:snow_golem_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:snowball",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:soul_campfire",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:soul_lantern",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:soul_sand",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:soul_soil",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:soul_torch",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spawner",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spectral_arrow",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spider_eye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spider_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spire_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:splash_potion",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:sponge",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spore_blossom",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spruce_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:spruce_button",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spruce_chest_boat",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:spruce_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spruce_fence",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spruce_fence_gate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spruce_hanging_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:spruce_leaves",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spruce_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spruce_planks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spruce_pressure_plate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spruce_sapling",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spruce_shelf",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spruce_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:spruce_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spruce_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spruce_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spruce_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:spyglass",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:squid_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stick",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sticky_piston",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stone",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stone_axe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:stone_brick_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stone_brick_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stone_brick_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stone_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stone_button",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stone_hoe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:stone_pickaxe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:stone_pressure_plate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stone_shovel",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:stone_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stone_spear",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:stone_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stone_sword",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:stonecutter",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stray_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:strider_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:string",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_acacia_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_acacia_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_bamboo_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_birch_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_birch_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_cherry_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_cherry_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_crimson_hyphae",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_crimson_stem",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_dark_oak_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_dark_oak_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_jungle_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_jungle_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_mangrove_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_mangrove_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_oak_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_oak_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_pale_oak_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_pale_oak_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_spruce_log",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_spruce_wood",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_warped_hyphae",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:stripped_warped_stem",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:structure_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:structure_void",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sugar",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sugar_cane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sulfur",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sulfur_brick_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sulfur_brick_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sulfur_brick_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sulfur_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sulfur_cube_bucket",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:sulfur_cube_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sulfur_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sulfur_spike",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sulfur_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sulfur_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:sunflower",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:suspicious_gravel",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:suspicious_sand",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:suspicious_stew",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:sweet_berries",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tadpole_bucket",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:tadpole_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tall_dry_grass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tall_grass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:target",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:test_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:test_instance_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tide_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tinted_glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tipped_arrow",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tnt",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tnt_minecart",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:torch",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:torchflower",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:torchflower_seeds",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:totem_of_undying",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:trader_llama_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:trapped_chest",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:trial_key",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:trial_spawner",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:trident",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:tripwire_hook",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tropical_fish",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tropical_fish_bucket",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:tropical_fish_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tube_coral",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tube_coral_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tube_coral_fan",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tuff",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tuff_brick_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tuff_brick_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tuff_brick_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tuff_bricks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tuff_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tuff_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:tuff_wall",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:turtle_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:turtle_helmet",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:turtle_scute",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:turtle_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:twisting_vines",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:vault",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:verdant_froglight",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:vex_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:vex_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:villager_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:vindicator_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:vine",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:wandering_trader_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:ward_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:warden_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:warped_button",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:warped_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:warped_fence",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:warped_fence_gate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:warped_fungus",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:warped_fungus_on_a_stick",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:warped_hanging_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:warped_hyphae",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:warped_nylium",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:warped_planks",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:warped_pressure_plate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:warped_roots",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:warped_shelf",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:warped_sign",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:warped_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:warped_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:warped_stem",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:warped_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:warped_wart_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:water_bucket",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:waxed_chiseled_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_copper_bars",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_copper_block",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_copper_bulb",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_copper_chain",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_copper_chest",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_copper_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_copper_golem_statue",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_copper_grate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_copper_lantern",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_copper_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_cut_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_cut_copper_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_cut_copper_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_exposed_chiseled_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_exposed_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_exposed_copper_bars",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_exposed_copper_bulb",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_exposed_copper_chain",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_exposed_copper_chest",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_exposed_copper_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_exposed_copper_golem_statue",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_exposed_copper_grate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_exposed_copper_lantern",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_exposed_copper_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_exposed_cut_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_exposed_cut_copper_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_exposed_cut_copper_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_exposed_lightning_rod",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_lightning_rod",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_oxidized_chiseled_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_oxidized_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_oxidized_copper_bars",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_oxidized_copper_bulb",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_oxidized_copper_chain",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_oxidized_copper_chest",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_oxidized_copper_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_oxidized_copper_golem_statue",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_oxidized_copper_grate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_oxidized_copper_lantern",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_oxidized_copper_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_oxidized_cut_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_oxidized_cut_copper_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_oxidized_cut_copper_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_oxidized_lightning_rod",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_weathered_chiseled_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_weathered_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_weathered_copper_bars",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_weathered_copper_bulb",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_weathered_copper_chain",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_weathered_copper_chest",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_weathered_copper_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_weathered_copper_golem_statue",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_weathered_copper_grate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_weathered_copper_lantern",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_weathered_copper_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_weathered_cut_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_weathered_cut_copper_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_weathered_cut_copper_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:waxed_weathered_lightning_rod",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:wayfinder_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:weathered_chiseled_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:weathered_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:weathered_copper_bars",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:weathered_copper_bulb",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:weathered_copper_chain",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:weathered_copper_chest",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:weathered_copper_door",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:weathered_copper_golem_statue",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:weathered_copper_grate",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:weathered_copper_lantern",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:weathered_copper_trapdoor",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:weathered_cut_copper",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:weathered_cut_copper_slab",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:weathered_cut_copper_stairs",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:weathered_lightning_rod",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:weeping_vines",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:wet_sponge",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:wheat",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:wheat_seeds",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:white_banner",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:white_bed",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:white_bundle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:white_candle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:white_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:white_concrete",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:white_concrete_powder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:white_dye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:white_glazed_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:white_harness",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:white_shulker_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:white_stained_glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:white_stained_glass_pane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:white_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:white_tulip",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:white_wool",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:wild_armor_trim_smithing_template",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:wildflowers",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:wind_charge",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:witch_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:wither_rose",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:wither_skeleton_skull",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:wither_skeleton_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:wither_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:wolf_armor",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:wolf_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:wooden_axe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:wooden_hoe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:wooden_pickaxe",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:wooden_shovel",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:wooden_spear",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:wooden_sword",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:writable_book",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:written_book",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:yellow_banner",
+      "maxStackSize": 16
+    },
+    {
+      "key": "minecraft:yellow_bed",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:yellow_bundle",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:yellow_candle",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:yellow_carpet",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:yellow_concrete",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:yellow_concrete_powder",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:yellow_dye",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:yellow_glazed_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:yellow_harness",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:yellow_shulker_box",
+      "maxStackSize": 1
+    },
+    {
+      "key": "minecraft:yellow_stained_glass",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:yellow_stained_glass_pane",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:yellow_terracotta",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:yellow_wool",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:zoglin_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:zombie_head",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:zombie_horse_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:zombie_nautilus_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:zombie_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:zombie_villager_spawn_egg",
+      "maxStackSize": 64
+    },
+    {
+      "key": "minecraft:zombified_piglin_spawn_egg",
+      "maxStackSize": 64
+    }
+  ],
+  "effects": [
+    {
+      "key": "minecraft:absorption",
+      "instant": false
+    },
+    {
+      "key": "minecraft:bad_omen",
+      "instant": false
+    },
+    {
+      "key": "minecraft:blindness",
+      "instant": false
+    },
+    {
+      "key": "minecraft:breath_of_the_nautilus",
+      "instant": false
+    },
+    {
+      "key": "minecraft:conduit_power",
+      "instant": false
+    },
+    {
+      "key": "minecraft:darkness",
+      "instant": false
+    },
+    {
+      "key": "minecraft:dolphins_grace",
+      "instant": false
+    },
+    {
+      "key": "minecraft:fire_resistance",
+      "instant": false
+    },
+    {
+      "key": "minecraft:glowing",
+      "instant": false
+    },
+    {
+      "key": "minecraft:haste",
+      "instant": false
+    },
+    {
+      "key": "minecraft:health_boost",
+      "instant": false
+    },
+    {
+      "key": "minecraft:hero_of_the_village",
+      "instant": false
+    },
+    {
+      "key": "minecraft:hunger",
+      "instant": false
+    },
+    {
+      "key": "minecraft:infested",
+      "instant": false
+    },
+    {
+      "key": "minecraft:instant_damage",
+      "instant": true
+    },
+    {
+      "key": "minecraft:instant_health",
+      "instant": true
+    },
+    {
+      "key": "minecraft:invisibility",
+      "instant": false
+    },
+    {
+      "key": "minecraft:jump_boost",
+      "instant": false
+    },
+    {
+      "key": "minecraft:levitation",
+      "instant": false
+    },
+    {
+      "key": "minecraft:luck",
+      "instant": false
+    },
+    {
+      "key": "minecraft:mining_fatigue",
+      "instant": false
+    },
+    {
+      "key": "minecraft:nausea",
+      "instant": false
+    },
+    {
+      "key": "minecraft:night_vision",
+      "instant": false
+    },
+    {
+      "key": "minecraft:oozing",
+      "instant": false
+    },
+    {
+      "key": "minecraft:poison",
+      "instant": false
+    },
+    {
+      "key": "minecraft:raid_omen",
+      "instant": false
+    },
+    {
+      "key": "minecraft:regeneration",
+      "instant": false
+    },
+    {
+      "key": "minecraft:resistance",
+      "instant": false
+    },
+    {
+      "key": "minecraft:saturation",
+      "instant": true
+    },
+    {
+      "key": "minecraft:slow_falling",
+      "instant": false
+    },
+    {
+      "key": "minecraft:slowness",
+      "instant": false
+    },
+    {
+      "key": "minecraft:speed",
+      "instant": false
+    },
+    {
+      "key": "minecraft:strength",
+      "instant": false
+    },
+    {
+      "key": "minecraft:trial_omen",
+      "instant": false
+    },
+    {
+      "key": "minecraft:unluck",
+      "instant": false
+    },
+    {
+      "key": "minecraft:water_breathing",
+      "instant": false
+    },
+    {
+      "key": "minecraft:weakness",
+      "instant": false
+    },
+    {
+      "key": "minecraft:weaving",
+      "instant": false
+    },
+    {
+      "key": "minecraft:wind_charged",
+      "instant": false
+    },
+    {
+      "key": "minecraft:wither",
+      "instant": false
+    }
+  ],
+  "entities": [
+    {
+      "key": "minecraft:acacia_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:acacia_chest_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:allay",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:area_effect_cloud",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:armadillo",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:armor_stand",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:arrow",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:axolotl",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:bamboo_chest_raft",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:bamboo_raft",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:bat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:bee",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:birch_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:birch_chest_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:blaze",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:block_display",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:bogged",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:breeze",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:breeze_wind_charge",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:camel",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:camel_husk",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:cat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:cave_spider",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:cherry_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:cherry_chest_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:chest_minecart",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:chicken",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:cod",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:command_block_minecart",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:copper_golem",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:cow",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:creaking",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:creeper",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:dark_oak_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:dark_oak_chest_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:dolphin",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:donkey",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:dragon_fireball",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:drowned",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:egg",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:elder_guardian",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:end_crystal",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:ender_dragon",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:ender_pearl",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:enderman",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:endermite",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:evoker",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:evoker_fangs",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:experience_bottle",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:experience_orb",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:eye_of_ender",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:falling_block",
+      "spawnCategory": "special",
+      "requiredParameters": [
+        "block"
+      ],
+      "adapter": "World.spawnFallingBlock(Location, BlockData)",
+      "reason": "The falling block's block data is explicit instead of reading a block at the spawn coordinates."
+    },
+    {
+      "key": "minecraft:fireball",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:firework_rocket",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:fishing_bobber",
+      "spawnCategory": "special",
+      "requiredParameters": [
+        "owner"
+      ],
+      "adapter": "Player.launchProjectile(FishHook.class, Vector, Consumer) then same-world teleport",
+      "reason": "Public projectile launch API requires an online player owner. The owner must remain online and hold a fishing rod for persistence."
+    },
+    {
+      "key": "minecraft:fox",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:frog",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:furnace_minecart",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:ghast",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:giant",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:glow_item_frame",
+      "spawnCategory": "special",
+      "requiredParameters": [
+        "face"
+      ],
+      "adapter": "World.spawn(Location, type.getEntityClass(), Consumer<Hanging>)",
+      "reason": "A cardinal facing direction is explicit. Minecraft can later remove the entity if support is unsuitable."
+    },
+    {
+      "key": "minecraft:glow_squid",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:goat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:guardian",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:happy_ghast",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:hoglin",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:hopper_minecart",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:horse",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:husk",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:illusioner",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:interaction",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:iron_golem",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:item",
+      "spawnCategory": "special",
+      "requiredParameters": [
+        "item"
+      ],
+      "adapter": "World.dropItem(Location, ItemStack)",
+      "reason": "The item payload is explicit instead of the generic API's default stone stack."
+    },
+    {
+      "key": "minecraft:item_display",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:item_frame",
+      "spawnCategory": "special",
+      "requiredParameters": [
+        "face"
+      ],
+      "adapter": "World.spawn(Location, type.getEntityClass(), Consumer<Hanging>)",
+      "reason": "A cardinal facing direction is explicit. Minecraft can later remove the entity if support is unsuitable."
+    },
+    {
+      "key": "minecraft:jungle_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:jungle_chest_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:leash_knot",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:lightning_bolt",
+      "spawnCategory": "special",
+      "requiredParameters": [],
+      "adapter": "World.strikeLightning(Location)",
+      "reason": "Real lightning strike, not visual-only lightning effect."
+    },
+    {
+      "key": "minecraft:lingering_potion",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:llama",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:llama_spit",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:magma_cube",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:mangrove_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:mangrove_chest_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:mannequin",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:marker",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:minecart",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:mooshroom",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:mule",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:nautilus",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:oak_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:oak_chest_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:ocelot",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:ominous_item_spawner",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:painting",
+      "spawnCategory": "special",
+      "requiredParameters": [
+        "face"
+      ],
+      "adapter": "World.spawn(Location, type.getEntityClass(), Consumer<Hanging>)",
+      "reason": "A cardinal facing direction is explicit. Minecraft can later remove the entity if support is unsuitable."
+    },
+    {
+      "key": "minecraft:pale_oak_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:pale_oak_chest_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:panda",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:parched",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:parrot",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:phantom",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:pig",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:piglin",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:piglin_brute",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:pillager",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:player",
+      "spawnCategory": "unsupported",
+      "requiredParameters": [],
+      "adapter": null,
+      "reason": "Player entities are created by Minecraft login; the public Paper entity spawn API has no player spawn function."
+    },
+    {
+      "key": "minecraft:polar_bear",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:pufferfish",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:rabbit",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:ravager",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:salmon",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:sheep",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:shulker",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:shulker_bullet",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:silverfish",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:skeleton",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:skeleton_horse",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:slime",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:small_fireball",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:sniffer",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:snow_golem",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:snowball",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:spawner_minecart",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:spectral_arrow",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:spider",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:splash_potion",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:spruce_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:spruce_chest_boat",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:squid",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:stray",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:strider",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:sulfur_cube",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:tadpole",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:text_display",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:tnt",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:tnt_minecart",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:trader_llama",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:trident",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:tropical_fish",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:turtle",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:vex",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:villager",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:vindicator",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:wandering_trader",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:warden",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:wind_charge",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:witch",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:wither",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:wither_skeleton",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:wither_skull",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:wolf",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:zoglin",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:zombie",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:zombie_horse",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:zombie_nautilus",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:zombie_villager",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    },
+    {
+      "key": "minecraft:zombified_piglin",
+      "spawnCategory": "generic",
+      "requiredParameters": [],
+      "adapter": "World.spawnEntity(Location, EntityType)",
+      "reason": "Generic creation was tested in a loaded Overworld chunk; persistence and gameplay depend on the entity."
+    }
+  ]
+}

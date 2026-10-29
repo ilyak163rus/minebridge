@@ -20,11 +20,11 @@ EXAMPLE_TOKEN = "EXAMPLE-NOT-A-SECRET"
 
 def hello_result(*, world="world", session_id=None):
     return {
-        "protocol": {"major": 1, "minor": 0},
+        "protocol": {"major": 2, "minor": 0},
         "sessionId": session_id or str(uuid.uuid4()),
-        "pluginVersion": "0.1.0-dev", "serverVersion": "26.2",
+        "pluginVersion": "0.2.0-dev", "serverVersion": "26.2",
         "world": {
-            "name": world, "uuid": str(uuid.uuid4()),
+            "name": world, "key": "minecraft:overworld", "uuid": str(uuid.uuid4()),
             "minY": -64, "maxYExclusive": 320,
         },
         "coordinates": "absolute", "chunkPolicy": "loaded-only",
@@ -72,19 +72,20 @@ class HandshakeTests(unittest.TestCase):
             self.assertFalse(transport.closed)
             self.assertEqual(requests, [{
                 "jsonrpc": "2.0", "id": 1, "method": "system.hello",
-                "params": {"protocol": {"major": 1, "minor": 0},
+                "params": {"protocol": {"major": 2, "minor": 0},
                            "token": EXAMPLE_TOKEN, "world": None,
                            "coordinates": "absolute"},
             }])
-            self.assertEqual((context.protocol.major, context.protocol.minor), (1, 0))
+            self.assertEqual((context.protocol.major, context.protocol.minor), (2, 0))
             self.assertEqual(context.session_id, result["sessionId"])
             self.assertEqual(context.world.name, "world")
+            self.assertEqual(context.world.key, "minecraft:overworld")
             self.assertEqual((context.world.min_y, context.world.max_y_exclusive), (-64, 320))
             self.assertEqual(context.capabilities, ("blocks.set",))
             self.assertEqual(context.limits.max_sessions, JsonNumber("8"))
             for obj, name, value in (
                 (context, "session_id", "changed"),
-                (context.protocol, "major", 2),
+                (context.protocol, "major", 3),
                 (context.world, "name", "changed"),
                 (context.limits, "max_sessions", JsonNumber("9")),
                 (context.limits.max_sessions, "text", "9"),
@@ -117,20 +118,18 @@ class HandshakeTests(unittest.TestCase):
             self.connect(server, token="  " + EXAMPLE_TOKEN + " \t")
             self.assertEqual(requests[0]["params"]["token"], "  " + EXAMPLE_TOKEN + " \t")
 
-    def test_missing_or_blank_token_fails_before_dns_without_environment_fallback(self):
-        with mock.patch.dict("os.environ", {}, clear=True), \
-                mock.patch("socket.getaddrinfo") as resolve:
+    def test_missing_or_blank_token_is_sent_for_server_auth_policy(self):
+        with mock.patch.dict("os.environ", {}, clear=True):
             for value in (None, "", " ", "\t\n", "\u2003"):
-                with self.subTest(value=value), self.assertRaises(errors.AuthenticationError) as caught:
-                    TcpTransport.connect_and_handshake(token=value)
-                self.assertEqual(caught.exception.code, "AUTH_FAILED")
-                self.assertEqual(caught.exception.outcome, "not-applied")
-            resolve.assert_not_called()
+                requests = []
+                with self.subTest(value=value), peer(successful_peer(requests)) as server:
+                    self.connect(server, token=value)
+                    self.assertEqual(requests[0]["params"]["token"], value)
+        requests = []
         with mock.patch.dict("os.environ", {"MINEBRIDGE_TOKEN": EXAMPLE_TOKEN}), \
-                mock.patch("socket.getaddrinfo") as resolve:
-            with self.assertRaises(errors.AuthenticationError):
-                TcpTransport.connect_and_handshake(token="")
-            resolve.assert_not_called()
+                peer(successful_peer(requests)) as server:
+            self.connect(server, token="")
+            self.assertEqual(requests[0]["params"]["token"], "")
 
     def test_invalid_options_fail_before_dns_and_do_not_echo_values(self):
         invalid = (
@@ -199,11 +198,18 @@ class HandshakeTests(unittest.TestCase):
             value = deepcopy(complete)
             del value[key]
             invalid.append(value)
-        for key, value in (("sessionId", "bad"), ("protocol", {"major": 2, "minor": 0}),
+        for key, value in (("sessionId", "bad"), ("protocol", {"major": 1, "minor": 0}),
                            ("coordinates", "relative"), ("capabilities", [])):
             value_result = deepcopy(complete)
             value_result[key] = value
             invalid.append(value_result)
+        for key, value in (("key", None), ("key", "invalid key")):
+            value_result = deepcopy(complete)
+            value_result["world"][key] = value
+            invalid.append(value_result)
+        missing_key = deepcopy(complete)
+        del missing_key["world"]["key"]
+        invalid.append(missing_key)
         for result in invalid:
             with self.subTest(fields=tuple(result)):
                 error = self.assert_rejected(encode_frame({
@@ -251,7 +257,8 @@ class HandshakeTests(unittest.TestCase):
         with peer(handle) as server:
             with self.assertRaises(errors.OperationTimeoutError) as caught:
                 self.connect(server, timeout=0.15)
-            self.assertEqual(caught.exception.outcome, "unknown")
+            # Hello cannot mutate the Minecraft world, even if its reply is lost.
+            self.assertEqual(caught.exception.outcome, "not-applied")
             self.assertTrue(closed.wait(1))
             self.assertEqual(len(requests), 1)
 

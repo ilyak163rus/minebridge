@@ -8,7 +8,6 @@ from minebridge import block
 from minebridge.errors import (
     InvalidBlockError,
     MinecraftError,
-    UnsupportedFeatureError,
     UnsupportedLegacyBlockError,
 )
 from minebridge.models.blocks import BlockSpec, LegacyBlock, normalize_block
@@ -54,8 +53,8 @@ class BlockNormalizationTests(unittest.TestCase):
                 self.assertEqual(constant.data, 0)
 
     def test_unknown_pairs_are_rejected_instead_of_replaced_with_air(self) -> None:
-        for legacy_id, data in ((2, 0), (999, 0), (-1, 0), (0, 1),
-                                (1, 1), (4, 1), (4, -1), (4, 256)):
+        for legacy_id, data in ((999, 0), (-1, 0), (0, 1),
+                                (4, 1), (4, -1), (4, 256)):
             for value, separate_data in ((legacy_id, data),
                                          (LegacyBlock(legacy_id, data), 0)):
                 with self.subTest(value=value, data=separate_data):
@@ -115,15 +114,15 @@ class BlockNormalizationTests(unittest.TestCase):
             with self.subTest(key=key):
                 self.assertEqual(normalize_block(key), BlockSpec(key))
 
-    def test_inline_block_properties_are_explicitly_unsupported(self) -> None:
+    def test_inline_block_properties_are_normalized(self) -> None:
         for key in ("minecraft:oak_log[axis=x]",
                     "minecraft:oak_stairs[facing=east,half=bottom]"):
             for operation in (BlockSpec, normalize_block):
                 with self.subTest(key=key, operation=operation.__name__):
-                    with self.assertRaises(UnsupportedFeatureError) as caught:
-                        operation(key)
-                    self.assertEqual(caught.exception.code, "UNSUPPORTED_FEATURE")
-                    self.assertEqual(caught.exception.outcome, "not-applied")
+                    value = operation(key)
+                    self.assertNotIn("[", value.key)
+                    self.assertTrue(value.states)
+                    self.assertEqual(value, BlockSpec(value.key, dict(value.states)))
 
 
 class BlockValueTests(unittest.TestCase):
@@ -164,12 +163,24 @@ class BlockValueTests(unittest.TestCase):
                 with self.assertRaises(TypeError):
                     BlockSpec("minecraft:stone", invalid)  # type: ignore[arg-type]
 
-    def test_nonempty_states_are_rejected_without_silently_discarding_them(self) -> None:
-        with self.assertRaises(UnsupportedFeatureError) as caught:
-            BlockSpec("minecraft:oak_log", {"axis": "x"})
-        self.assertIsInstance(caught.exception, MinecraftError)
-        self.assertEqual(caught.exception.code, "UNSUPPORTED_FEATURE")
-        self.assertEqual(caught.exception.outcome, "not-applied")
+    def test_states_are_preserved_and_can_be_derived_without_mutation(self) -> None:
+        original = BlockSpec("minecraft:oak_log", {"axis": "y"})
+        derived = original.withStates(axis="x")
+        self.assertEqual(original.states["axis"], "y")
+        self.assertEqual(derived.states["axis"], "x")
+        self.assertEqual(derived, BlockSpec("minecraft:oak_log[axis=x]"))
+        self.assertEqual(hash(derived), hash(BlockSpec("minecraft:oak_log", {"axis": "x"})))
+
+    def test_bad_or_conflicting_states_are_not_silently_discarded(self) -> None:
+        for text in ("minecraft:oak_log[axis]", "minecraft:oak_log[axis=x,axis=y]",
+                     "minecraft:oak_log[axis=x", "minecraft:oak_log[axis=x]]",
+                     "minecraft:oak_log[Axis=x]", "minecraft:oak_log[axis=x y]"):
+            with self.subTest(text=text), self.assertRaises(InvalidBlockError):
+                normalize_block(text)
+        with self.assertRaises(InvalidBlockError):
+            BlockSpec("minecraft:oak_log[axis=x]", {"axis": "z"})
+        with self.assertRaises(TypeError):
+            BlockSpec("minecraft:oak_log", {"axis": True})
 
     def test_blockspec_fields_and_states_are_immutable(self) -> None:
         original_states: dict[str, str] = {}

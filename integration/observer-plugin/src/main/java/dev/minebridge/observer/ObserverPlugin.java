@@ -36,12 +36,29 @@ public final class ObserverPlugin extends JavaPlugin {
     private final Set<String> requestIds = new HashSet<>();
     private Path results;
     private long sequence;
+    private InteractionObserver interactions;
+    private ControlObserver controls;
+    private ChatObserver chats;
+    private GameEventsObserver gameEvents;
+    private InventoryObserver inventories;
+    private ReleaseObserver release;
 
     @Override public void onEnable() {
         requireGameThread();
         try {
             results = getDataFolder().toPath().resolve("results");
             Files.createDirectories(results);
+            interactions = new InteractionObserver(this);
+            getServer().getPluginManager().registerEvents(interactions, this);
+            controls = new ControlObserver(this);
+            getServer().getPluginManager().registerEvents(controls, this);
+            chats = new ChatObserver(this);
+            getServer().getPluginManager().registerEvents(chats, this);
+            gameEvents = new GameEventsObserver(this);
+            getServer().getPluginManager().registerEvents(gameEvents, this);
+            inventories = new InventoryObserver(this);
+            release = new ReleaseObserver(this);
+            getServer().getPluginManager().registerEvents(release, this);
             getLogger().info("Console integration observer ready; no network listener.");
         } catch (IOException failure) {
             getLogger().severe("Cannot initialize local integration observer.");
@@ -60,6 +77,21 @@ public final class ObserverPlugin extends JavaPlugin {
         try {
             Map<String, Object> result = switch (request.action()) {
                 case "worlds" -> worlds(args);
+                case "serverStats" -> serverStats(args);
+                case "gameProtocol" -> gameProtocol(args);
+                case "players" -> players(args);
+                case "playerPlace" -> playerPlace(args);
+                case "entityFixture" -> entityFixture(args);
+                case "inventoryFixture", "inventory", "entityState", "entityHold", "livingFixture",
+                        "hangingFixture", "nearbyDrops", "lightningEvents", "farSpawnEvents" -> interactions.execute(args);
+                case "controlPlayer", "controlWorld", "controlRule", "controlHealthFixture", "controlCancel", "controlState" -> controls.execute(args);
+                case "chatState", "chatClear", "chatCancel" -> chats.execute(args);
+                case "i03State", "i03Clear", "i03Cancel", "i03Player", "i03PlayerState", "i03Item", "i03Block", "i03Wall",
+                        "i03Target", "i03Damage", "i03Death", "i03RespawnAt", "i03Resistance", "i03Remove", "i03SourceShot" -> gameEvents.execute(args);
+                case "i04Chest", "i04ReadChest", "i04Split", "i04Merge", "i04Player", "i04EmptyPlayer", "i04Hidden",
+                        "i04Fixture", "i04FillLong", "i04Chunk", "i04Unload" -> inventories.execute(args);
+                case "releaseBurst", "releaseBurstStatus", "releaseBurstCancel", "releaseDifficulty",
+                        "releaseEntities", "releaseRegion", "releaseFill" -> release.execute(args);
                 case "setup" -> setup(request, args);
                 case "seed" -> seed(request, args);
                 case "read" -> read(args);
@@ -93,6 +125,89 @@ public final class ObserverPlugin extends JavaPlugin {
                 "uuid", world.getUID().toString(), "minY", world.getMinHeight(),
                 "maxYExclusive", world.getMaxHeight()));
         return map("worlds", worlds);
+    }
+
+    private Map<String, Object> serverStats(String[] args) {
+        length(args, 3);
+        List<Object> tps = new ArrayList<>();
+        for (double value : getServer().getTPS()) tps.add(value);
+        return map("tps", tps, "averageTickMillis", getServer().getAverageTickTime(),
+                "players", getServer().getOnlinePlayers().size(),
+                "tick", getServer().getCurrentTick());
+    }
+
+    /** Test clients need only framing and a few acknowledgements. Export the
+     * pinned server's own packet IDs rather than trusting another MC version.
+     * Reflection is deliberately confined to this disposable console observer. */
+    private Map<String, Object> gameProtocol(String[] args) {
+        length(args, 3);
+        try {
+            Class<?> provider = Class.forName("net.minecraft.network.ProtocolInfo$DetailsProvider");
+            Class<?> detailsType = Class.forName("net.minecraft.network.ProtocolInfo$Details");
+            Class<?> visitor = Class.forName("net.minecraft.network.ProtocolInfo$Details$PacketVisitor");
+            Class<?> packetType = Class.forName("net.minecraft.network.protocol.PacketType");
+            Map<String, Object> result = new LinkedHashMap<>();
+            for (String state : List.of("login", "configuration", "game")) {
+                String owner = "net.minecraft.network.protocol." + state + "."
+                        + Character.toUpperCase(state.charAt(0)) + state.substring(1) + "Protocols";
+                for (String direction : List.of("CLIENTBOUND", "SERVERBOUND")) {
+                    Map<String, Object> packets = new LinkedHashMap<>();
+                    Object template = Class.forName(owner).getField(direction + "_TEMPLATE").get(null);
+                    Object details = provider.getMethod("details").invoke(template);
+                    Object sink = java.lang.reflect.Proxy.newProxyInstance(visitor.getClassLoader(),
+                            new Class<?>[]{visitor}, (proxy, method, values) -> {
+                                if (method.getName().equals("accept")) {
+                                    String id = packetType.getMethod("id").invoke(values[0]).toString();
+                                    packets.put(id, values[1]);
+                                }
+                                return null;
+                            });
+                    detailsType.getMethod("listPackets", visitor).invoke(details, sink);
+                    result.put(state + "." + direction.toLowerCase(java.util.Locale.ROOT), packets);
+                }
+            }
+            return result;
+        } catch (ReflectiveOperationException failure) {
+            throw new ObserverFailure("PROTOCOL_EXPORT_FAILED");
+        }
+    }
+
+    private Map<String, Object> players(String[] args) {
+        length(args, 3);
+        List<Object> values = new ArrayList<>();
+        for (org.bukkit.entity.Player player : getServer().getOnlinePlayers()) {
+            Location at = player.getLocation();
+            values.add(map("uuid", player.getUniqueId().toString(), "name", player.getName(),
+                    "entityId", player.getEntityId(), "world", at.getWorld().getName(),
+                    "x", at.getX(), "y", at.getY(), "z", at.getZ(),
+                    "yaw", (double) at.getYaw(), "pitch", (double) at.getPitch()));
+        }
+        return map("players", values);
+    }
+
+    private Map<String, Object> playerPlace(String[] args) {
+        length(args, 8);
+        org.bukkit.entity.Player player = getServer().getPlayerExact(args[3]);
+        if (player == null) throw new ObserverFailure("PLAYER_NOT_FOUND");
+        World destination = world(args[4]);
+        Location at = new Location(destination, finite(args[5]), finite(args[6]), finite(args[7]));
+        // Stable fixture positions: these network clients intentionally have no
+        // simulation/physics loop and must not fall while another RPC runs.
+        player.setGameMode(org.bukkit.GameMode.CREATIVE);
+        player.setGravity(false);
+        player.setInvulnerable(true);
+        if (!player.teleport(at)) throw new ObserverFailure("TELEPORT_FAILED");
+        return map("placed", true);
+    }
+
+    private Map<String, Object> entityFixture(String[] args) {
+        length(args, 7);
+        World world = world(args[3]);
+        var entity = world.spawnEntity(new Location(world, finite(args[4]), finite(args[5]), finite(args[6])),
+                org.bukkit.entity.EntityType.ARMOR_STAND);
+        entity.setGravity(false);
+        entity.setInvulnerable(true);
+        return map("uuid", entity.getUniqueId().toString(), "entityId", entity.getEntityId());
     }
 
     private Map<String, Object> setup(Request request, String[] args) {
@@ -411,6 +526,7 @@ public final class ObserverPlugin extends JavaPlugin {
 
     @Override public void onDisable() {
         requireGameThread();
+        if (controls != null) { controls.close(); controls = null; }
         TestControl control = control(false);
         for (var entry : new ArrayList<>(cases.entrySet())) {
             try {

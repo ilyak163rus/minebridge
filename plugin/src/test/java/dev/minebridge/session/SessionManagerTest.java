@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SessionManagerTest {
-    private static final WorldContext WORLD = new WorldContext("lesson", UUID.randomUUID(), -64, 320);
+    private static final WorldContext WORLD = new WorldContext("lesson", "minecraft:overworld", UUID.randomUUID(), -64, 320);
 
     @Test void successfulHandshakeQueuesOnceAndPinsWorldPerConnection() {
         SessionManager manager = new SessionManager(2);
@@ -87,8 +87,8 @@ class SessionManagerTest {
     @Test void metadataAndCapacityRejectInvalidConfiguration() {
         assertThrows(IllegalArgumentException.class, () -> new SessionManager(0));
         assertThrows(IllegalArgumentException.class, () -> new SessionManager(1025));
-        assertThrows(IllegalArgumentException.class, () -> new WorldContext("", UUID.randomUUID(), 0, 1));
-        assertThrows(IllegalArgumentException.class, () -> new WorldContext("lesson", UUID.randomUUID(), 1, 1));
+        assertThrows(IllegalArgumentException.class, () -> new WorldContext("", "minecraft:overworld", UUID.randomUUID(), 0, 1));
+        assertThrows(IllegalArgumentException.class, () -> new WorldContext("lesson", "minecraft:overworld", UUID.randomUUID(), 1, 1));
         assertThrows(IllegalArgumentException.class, () -> new Session(1, 1, () -> { }, 0,
                 Duration.ZERO, System::nanoTime));
     }

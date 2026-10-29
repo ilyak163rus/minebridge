@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "dev.minebridge"
-version = "0.1.0-dev"
+version = "0.3.1"
 val pluginVersion = version.toString()
 
 repositories {
@@ -42,7 +42,7 @@ tasks.withType<AbstractArchiveTask>().configureEach {
 
 tasks.test {
     useJUnitPlatform()
-    val corpus = rootProject.file("../protocol/v1/fixtures/corpus.json")
+    val corpus = rootProject.file("../protocol/v2/fixtures/corpus.json")
     inputs.file(corpus).withPropertyName("protocolCorpus").withPathSensitivity(PathSensitivity.RELATIVE)
     systemProperty("minebridge.fixtures", corpus.absolutePath)
 }
@@ -56,6 +56,13 @@ tasks.shadowJar {
     relocate("com.fasterxml.jackson.core", "dev.minebridge.internal.jackson.core")
     // JPMS descriptors are not used by Paper's plugin classloader.
     exclude("module-info.class", "META-INF/versions/**/module-info.class")
+    from(rootProject.file("../LICENSE")) {
+        into("META-INF")
+        rename { "LICENSE-minebridge.txt" }
+    }
+    from(rootProject.file("../THIRD_PARTY_NOTICES.md")) {
+        into("META-INF")
+    }
 }
 
 tasks.assemble {

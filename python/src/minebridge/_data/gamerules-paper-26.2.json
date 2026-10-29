@@ -1,0 +1,499 @@
+{
+  "formatVersion": 1,
+  "minecraftVersion": "26.2",
+  "paperBuild": 133,
+  "sourceSha256": "84daf9b4dafa7a9e8092fcfe27ffb26a2ed45fbb63b63a7a85f4b39e73e0c476",
+  "rules": [
+    {
+      "constant": "ADVANCE_TIME",
+      "key": "minecraft:advance_time",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": [
+        "DO_DAYLIGHT_CYCLE"
+      ]
+    },
+    {
+      "constant": "ADVANCE_WEATHER",
+      "key": "minecraft:advance_weather",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": [
+        "DO_WEATHER_CYCLE"
+      ]
+    },
+    {
+      "constant": "ALLOW_ENTERING_NETHER_USING_PORTALS",
+      "key": "minecraft:allow_entering_nether_using_portals",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "BLOCK_DROPS",
+      "key": "minecraft:block_drops",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": [
+        "DO_TILE_DROPS"
+      ]
+    },
+    {
+      "constant": "BLOCK_EXPLOSION_DROP_DECAY",
+      "key": "minecraft:block_explosion_drop_decay",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "COMMAND_BLOCK_OUTPUT",
+      "key": "minecraft:command_block_output",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "COMMAND_BLOCKS_WORK",
+      "key": "minecraft:command_blocks_work",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": [
+        "COMMAND_BLOCKS_ENABLED"
+      ]
+    },
+    {
+      "constant": "DROWNING_DAMAGE",
+      "key": "minecraft:drowning_damage",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "ELYTRA_MOVEMENT_CHECK",
+      "key": "minecraft:elytra_movement_check",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "ENDER_PEARLS_VANISH_ON_DEATH",
+      "key": "minecraft:ender_pearls_vanish_on_death",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "ENTITY_DROPS",
+      "key": "minecraft:entity_drops",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": [
+        "DO_ENTITY_DROPS"
+      ]
+    },
+    {
+      "constant": "FALL_DAMAGE",
+      "key": "minecraft:fall_damage",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "FIRE_DAMAGE",
+      "key": "minecraft:fire_damage",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "FIRE_SPREAD_RADIUS_AROUND_PLAYER",
+      "key": "minecraft:fire_spread_radius_around_player",
+      "valueType": "int",
+      "defaultValue": 128,
+      "aliases": []
+    },
+    {
+      "constant": "FORGIVE_DEAD_PLAYERS",
+      "key": "minecraft:forgive_dead_players",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "FREEZE_DAMAGE",
+      "key": "minecraft:freeze_damage",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "GLOBAL_SOUND_EVENTS",
+      "key": "minecraft:global_sound_events",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "IMMEDIATE_RESPAWN",
+      "key": "minecraft:immediate_respawn",
+      "valueType": "bool",
+      "defaultValue": false,
+      "aliases": [
+        "DO_IMMEDIATE_RESPAWN"
+      ]
+    },
+    {
+      "constant": "KEEP_INVENTORY",
+      "key": "minecraft:keep_inventory",
+      "valueType": "bool",
+      "defaultValue": false,
+      "aliases": []
+    },
+    {
+      "constant": "LAVA_SOURCE_CONVERSION",
+      "key": "minecraft:lava_source_conversion",
+      "valueType": "bool",
+      "defaultValue": false,
+      "aliases": []
+    },
+    {
+      "constant": "LIMITED_CRAFTING",
+      "key": "minecraft:limited_crafting",
+      "valueType": "bool",
+      "defaultValue": false,
+      "aliases": [
+        "DO_LIMITED_CRAFTING"
+      ]
+    },
+    {
+      "constant": "LOCATOR_BAR",
+      "key": "minecraft:locator_bar",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "LOG_ADMIN_COMMANDS",
+      "key": "minecraft:log_admin_commands",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "MAX_BLOCK_MODIFICATIONS",
+      "key": "minecraft:max_block_modifications",
+      "valueType": "int",
+      "defaultValue": 32768,
+      "aliases": [
+        "COMMAND_MODIFICATION_BLOCK_LIMIT"
+      ]
+    },
+    {
+      "constant": "MAX_COMMAND_FORKS",
+      "key": "minecraft:max_command_forks",
+      "valueType": "int",
+      "defaultValue": 65536,
+      "aliases": [
+        "MAX_COMMAND_FORK_COUNT"
+      ]
+    },
+    {
+      "constant": "MAX_COMMAND_SEQUENCE_LENGTH",
+      "key": "minecraft:max_command_sequence_length",
+      "valueType": "int",
+      "defaultValue": 65536,
+      "aliases": [
+        "MAX_COMMAND_CHAIN_LENGTH"
+      ]
+    },
+    {
+      "constant": "MAX_ENTITY_CRAMMING",
+      "key": "minecraft:max_entity_cramming",
+      "valueType": "int",
+      "defaultValue": 24,
+      "aliases": []
+    },
+    {
+      "constant": "MAX_MINECART_SPEED",
+      "key": "minecraft:max_minecart_speed",
+      "valueType": "int",
+      "defaultValue": 8,
+      "aliases": [
+        "MINECART_MAX_SPEED"
+      ]
+    },
+    {
+      "constant": "MAX_SNOW_ACCUMULATION_HEIGHT",
+      "key": "minecraft:max_snow_accumulation_height",
+      "valueType": "int",
+      "defaultValue": 1,
+      "aliases": [
+        "SNOW_ACCUMULATION_HEIGHT"
+      ]
+    },
+    {
+      "constant": "MOB_DROPS",
+      "key": "minecraft:mob_drops",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": [
+        "DO_MOB_LOOT"
+      ]
+    },
+    {
+      "constant": "MOB_EXPLOSION_DROP_DECAY",
+      "key": "minecraft:mob_explosion_drop_decay",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "MOB_GRIEFING",
+      "key": "minecraft:mob_griefing",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "NATURAL_HEALTH_REGENERATION",
+      "key": "minecraft:natural_health_regeneration",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": [
+        "NATURAL_REGENERATION"
+      ]
+    },
+    {
+      "constant": "PLAYER_MOVEMENT_CHECK",
+      "key": "minecraft:player_movement_check",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "PLAYERS_NETHER_PORTAL_CREATIVE_DELAY",
+      "key": "minecraft:players_nether_portal_creative_delay",
+      "valueType": "int",
+      "defaultValue": 0,
+      "aliases": []
+    },
+    {
+      "constant": "PLAYERS_NETHER_PORTAL_DEFAULT_DELAY",
+      "key": "minecraft:players_nether_portal_default_delay",
+      "valueType": "int",
+      "defaultValue": 80,
+      "aliases": []
+    },
+    {
+      "constant": "PLAYERS_SLEEPING_PERCENTAGE",
+      "key": "minecraft:players_sleeping_percentage",
+      "valueType": "int",
+      "defaultValue": 100,
+      "aliases": []
+    },
+    {
+      "constant": "PROJECTILES_CAN_BREAK_BLOCKS",
+      "key": "minecraft:projectiles_can_break_blocks",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "PVP",
+      "key": "minecraft:pvp",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "RAIDS",
+      "key": "minecraft:raids",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "RANDOM_TICK_SPEED",
+      "key": "minecraft:random_tick_speed",
+      "valueType": "int",
+      "defaultValue": 3,
+      "aliases": []
+    },
+    {
+      "constant": "REDUCED_DEBUG_INFO",
+      "key": "minecraft:reduced_debug_info",
+      "valueType": "bool",
+      "defaultValue": false,
+      "aliases": []
+    },
+    {
+      "constant": "RESPAWN_RADIUS",
+      "key": "minecraft:respawn_radius",
+      "valueType": "int",
+      "defaultValue": 10,
+      "aliases": [
+        "SPAWN_RADIUS"
+      ]
+    },
+    {
+      "constant": "SEND_COMMAND_FEEDBACK",
+      "key": "minecraft:send_command_feedback",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "SHOW_ADVANCEMENT_MESSAGES",
+      "key": "minecraft:show_advancement_messages",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": [
+        "ANNOUNCE_ADVANCEMENTS"
+      ]
+    },
+    {
+      "constant": "SHOW_DEATH_MESSAGES",
+      "key": "minecraft:show_death_messages",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "SPAWN_MOBS",
+      "key": "minecraft:spawn_mobs",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": [
+        "DO_MOB_SPAWNING"
+      ]
+    },
+    {
+      "constant": "SPAWN_MONSTERS",
+      "key": "minecraft:spawn_monsters",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "SPAWN_PATROLS",
+      "key": "minecraft:spawn_patrols",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": [
+        "DO_PATROL_SPAWNING"
+      ]
+    },
+    {
+      "constant": "SPAWN_PHANTOMS",
+      "key": "minecraft:spawn_phantoms",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": [
+        "DO_INSOMNIA"
+      ]
+    },
+    {
+      "constant": "SPAWN_WANDERING_TRADERS",
+      "key": "minecraft:spawn_wandering_traders",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": [
+        "DO_TRADER_SPAWNING"
+      ]
+    },
+    {
+      "constant": "SPAWN_WARDENS",
+      "key": "minecraft:spawn_wardens",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": [
+        "DO_WARDEN_SPAWNING"
+      ]
+    },
+    {
+      "constant": "SPAWNER_BLOCKS_WORK",
+      "key": "minecraft:spawner_blocks_work",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": [
+        "SPAWNER_BLOCKS_ENABLED"
+      ]
+    },
+    {
+      "constant": "SPECTATORS_GENERATE_CHUNKS",
+      "key": "minecraft:spectators_generate_chunks",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "SPREAD_VINES",
+      "key": "minecraft:spread_vines",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": [
+        "DO_VINES_SPREAD"
+      ]
+    },
+    {
+      "constant": "TNT_EXPLODES",
+      "key": "minecraft:tnt_explodes",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    },
+    {
+      "constant": "TNT_EXPLOSION_DROP_DECAY",
+      "key": "minecraft:tnt_explosion_drop_decay",
+      "valueType": "bool",
+      "defaultValue": false,
+      "aliases": []
+    },
+    {
+      "constant": "UNIVERSAL_ANGER",
+      "key": "minecraft:universal_anger",
+      "valueType": "bool",
+      "defaultValue": false,
+      "aliases": []
+    },
+    {
+      "constant": "WATER_SOURCE_CONVERSION",
+      "key": "minecraft:water_source_conversion",
+      "valueType": "bool",
+      "defaultValue": true,
+      "aliases": []
+    }
+  ],
+  "unsupportedLegacyAliases": [
+    {
+      "constant": "ALLOW_FIRE_TICKS_AWAY_FROM_PLAYER",
+      "modernKey": "minecraft:fire_spread_radius_around_player",
+      "legacyValueType": "bool",
+      "reason": "Legacy conversion/inversion wrapper is not the canonical registry object; no silent alias."
+    },
+    {
+      "constant": "DISABLE_ELYTRA_MOVEMENT_CHECK",
+      "modernKey": "minecraft:elytra_movement_check",
+      "legacyValueType": "bool",
+      "reason": "Legacy conversion/inversion wrapper is not the canonical registry object; no silent alias."
+    },
+    {
+      "constant": "DISABLE_PLAYER_MOVEMENT_CHECK",
+      "modernKey": "minecraft:player_movement_check",
+      "legacyValueType": "bool",
+      "reason": "Legacy conversion/inversion wrapper is not the canonical registry object; no silent alias."
+    },
+    {
+      "constant": "DISABLE_RAIDS",
+      "modernKey": "minecraft:raids",
+      "legacyValueType": "bool",
+      "reason": "Legacy conversion/inversion wrapper is not the canonical registry object; no silent alias."
+    },
+    {
+      "constant": "DO_FIRE_TICK",
+      "modernKey": "minecraft:fire_spread_radius_around_player",
+      "legacyValueType": "bool",
+      "reason": "Legacy conversion/inversion wrapper is not the canonical registry object; no silent alias."
+    }
+  ]
+}

@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /** The same checked-in byte corpus is executed by Python and Java. */
 class ProtocolCorpusTest {
     @TestFactory Stream<DynamicTest> sharedCorpus() throws IOException {
-        Path path = Path.of(System.getProperty("minebridge.fixtures", "../protocol/v1/fixtures/corpus.json"));
+        Path path = Path.of(System.getProperty("minebridge.fixtures", "../protocol/v2/fixtures/corpus.json"));
         Map<String, Object> corpus;
         try (JsonParser parser = new JsonFactory().createParser(Files.readString(path, StandardCharsets.UTF_8))) {
             corpus = map(read(parser, parser.nextToken()));
@@ -76,6 +76,7 @@ class ProtocolCorpusTest {
             case "request" -> JsonRpcCodec.decodeRequest(payload);
             case "hello-response" -> JsonRpcCodec.decodeResponse(payload, id(fixture.get("expectedId")), "system.hello");
             case "blocks-response" -> JsonRpcCodec.decodeResponse(payload, id(fixture.get("expectedId")), "blocks.set");
+            case "method-response" -> JsonRpcCodec.decodeResponse(payload, id(fixture.get("expectedId")), (String) fixture.get("method"));
             case "stream" -> {
                 FrameDecoder decoder = new FrameDecoder();
                 List<byte[]> frames = new ArrayList<>();

@@ -1,0 +1,11 @@
+{
+  "name": "minebridge-ide-i04-smoke",
+  "displayName": "Minebridge I04 source IDE smoke test",
+  "publisher": "minebridge-tests",
+  "version": "0.0.0",
+  "private": true,
+  "engines": { "vscode": "^1.107.0" },
+  "main": "./extension.js",
+  "activationEvents": ["onStartupFinished"],
+  "extensionDependencies": ["ms-python.python", "ms-python.vscode-pylance"]
+}

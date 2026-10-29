@@ -80,6 +80,7 @@ public final class GameExecutor implements Runnable, AutoCloseable {
                 Session session = active.get(index);
                 lastVisited = session.id();
                 if (used[index] == limits.maxOperationsPerSessionPerTick()) continue;
+                if (session.hasActiveOperation()) continue;
                 Request request = session.peekRequest();
                 if (request == null) continue;
                 if (testControl != null && testControl.hold(session, request)) continue;

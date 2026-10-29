@@ -3,6 +3,10 @@ package dev.minebridge;
 import dev.minebridge.config.BridgeConfig;
 import dev.minebridge.blocks.BlockService;
 import dev.minebridge.blocks.PaperBlockBackend;
+import dev.minebridge.players.PaperPlayerBackend;
+import dev.minebridge.players.PlayerService;
+import dev.minebridge.gameplay.GameplayService;
+import dev.minebridge.gameplay.PaperGameplayBackend;
 import dev.minebridge.execution.ExecutionLimits;
 import dev.minebridge.execution.GameExecutor;
 import dev.minebridge.execution.OperationTrace;
@@ -12,9 +16,18 @@ import dev.minebridge.session.WorldContext;
 import dev.minebridge.transport.TcpServer;
 import dev.minebridge.transport.TransportLimits;
 import dev.minebridge.session.Session;
+import dev.minebridge.session.SessionActivityLog;
 import dev.minebridge.testing.TestControl;
+import dev.minebridge.worlds.WorldsService;
+import dev.minebridge.worlds.PaperWorldsBackend;
+import dev.minebridge.events.EventsService;
+import dev.minebridge.events.PaperChatListener;
+import dev.minebridge.events.PaperGameListener;
+import dev.minebridge.inventories.InventoryService;
+import dev.minebridge.inventories.PaperInventoryBackend;
 import java.io.File;
 import java.io.IOException;
+import net.kyori.adventure.key.Key;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -22,7 +35,7 @@ import org.bukkit.plugin.IllegalPluginAccessException;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.plugin.ServicePriority;
 
-/** Bounded TCP transport and authenticated handshake dispatched on Paper's server thread. */
+/** Bounded TCP transport and optionally authenticated handshake on Paper's server thread. */
 public final class BridgePlugin extends JavaPlugin {
     private BridgeConfig bridgeConfig;
     private volatile TcpServer tcpServer;
@@ -31,6 +44,12 @@ public final class BridgePlugin extends JavaPlugin {
     private BukkitTask dispatchTask;
     private OperationTrace operationTrace;
     private TestControl testControl;
+    private RequestRouter requestRouter;
+    private SessionActivityLog activityLog;
+    private BukkitTask activityLogTask;
+    private EventsService events;
+    private PaperChatListener chatListener;
+    private PaperGameListener gameListener;
 
     @Override
     public void onEnable() {
@@ -61,9 +80,13 @@ public final class BridgePlugin extends JavaPlugin {
             return;
         }
 
-        // POSTWORLD onEnable runs on Paper's server thread. Never choose a fallback world.
-        if (getServer().getWorld(candidate.defaultWorld()) == null) {
-            disableWithMessage("Configured defaultWorld is not loaded; check its name in config.yml.");
+        if (rawConfig.contains("defaultWorld")) {
+            getLogger().info("The deprecated defaultWorld setting is ignored; the primary Overworld is selected automatically.");
+        }
+        // Registry identity survives level-name changes. Never select the first loaded world.
+        org.bukkit.World primaryWorld = getServer().getWorld(Key.key("minecraft:overworld"));
+        if (primaryWorld == null) {
+            disableWithMessage("Primary world minecraft:overworld is not loaded; enable Minebridge after world startup.");
             return;
         }
 
@@ -84,15 +107,48 @@ public final class BridgePlugin extends JavaPlugin {
             getServer().getServicesManager().register(TestControl.class, testControl, this, ServicePriority.Normal);
             getLogger().info("Local integration test control enabled.");
         }
-        BlockService blocks = new BlockService(new PaperBlockBackend(getServer()), this::requireGameThread);
-        RequestRouter router = new RequestRouter(candidate, sessions, name -> {
+        PaperBlockBackend blockBackend = new PaperBlockBackend(getServer(), this);
+        BlockService blocks = new BlockService(blockBackend, this::requireGameThread);
+        PlayerService players = new PlayerService(new PaperPlayerBackend(getServer(), blockBackend), blocks, this::requireGameThread);
+        GameplayService gameplay = new GameplayService(new PaperGameplayBackend(getServer()), this::requireGameThread);
+        activityLog = new SessionActivityLog();
+        RequestRouter.WorldLookup worldLookup = name -> {
             requireGameThread();
             org.bukkit.World world = getServer().getWorld(name);
-            return world == null ? null : new WorldContext(world.getName(), world.getUID(),
+            if (world == null && name.matches("[a-z0-9_.-]+:[a-z0-9_./-]+")) {
+                world = getServer().getWorld(Key.key(name));
+            }
+            return world == null ? null : new WorldContext(world.getName(), world.getKey().toString(), world.getUID(),
                     world.getMinHeight(), world.getMaxHeight());
-        }, getPluginMeta().getVersion(), getServer().getMinecraftVersion(), transportLimits, executionLimits,
-                blocks, trace);
+        };
+        events = new EventsService(worldLookup::find, transport::sessions, name -> {
+            requireGameThread();
+            org.bukkit.entity.Player player = getServer().getPlayerExact(name);
+            return player == null ? null : player.getUniqueId();
+        }, this::requireGameThread);
+        EventsService eventService = events;
+        chatListener = new PaperChatListener(getServer(), eventService);
+        PaperChatListener listener = chatListener;
+        listener.refreshPlayers();
+        getServer().getPluginManager().registerEvents(listener, this);
+        gameListener = new PaperGameListener(getServer(), eventService);
+        PaperGameListener nativeEvents = gameListener;
+        eventService.beforeLavaSubscribe(nativeEvents::sampleLava);
+        getServer().getPluginManager().registerEvents(nativeEvents, this);
+        RequestRouter router = new RequestRouter(candidate, sessions, worldLookup,
+                getPluginMeta().getVersion(), getServer().getMinecraftVersion(), transportLimits, executionLimits,
+                blocks, trace, players, gameplay, activityLog,
+                new WorldsService(new PaperWorldsBackend(getServer()), this::requireGameThread), eventService,
+                new InventoryService(new PaperInventoryBackend(getServer(), blockBackend), blocks, players, this::requireGameThread));
+        requestRouter = router;
+        SessionActivityLog log = activityLog;
+        java.util.logging.Logger logger = getLogger();
+        activityLogTask = getServer().getScheduler().runTaskTimerAsynchronously(this,
+                () -> log.drain(logger::info), 1L, 1L);
         gameExecutor = new GameExecutor(transport::sessions, router::route, () -> {
+            listener.refreshPlayers();
+            eventService.tick();
+            nativeEvents.tick();
             router.pruneClosed();
             trace.drain(event -> getLogger().info(event.logLine()));
         },
@@ -109,7 +165,8 @@ public final class BridgePlugin extends JavaPlugin {
                         disableWithMessage("Cannot start TCP listener; check listenAddress and whether port is already in use.");
                     } else {
                         getLogger().info("TCP listener ready on port " + address.getPort()
-                            + ". Authenticated handshake and blocks.set are available.");
+                            + ". Handshake, blocks, players, selectors, chat, items, effects and entities are available (authentication "
+                            + (candidate.authEnabled() ? "enabled" : "disabled") + ").");
                     }
                 });
             } catch (IllegalPluginAccessException ignored) {
@@ -118,7 +175,7 @@ public final class BridgePlugin extends JavaPlugin {
             }
         });
         transport.start();
-        getLogger().info("Lifecycle initialized for world '" + candidate.defaultWorld()
+        getLogger().info("Lifecycle initialized for world '" + primaryWorld.getName()
             + "'. TCP transport is starting.");
     }
 
@@ -130,15 +187,41 @@ public final class BridgePlugin extends JavaPlugin {
             dispatchTask.cancel();
             dispatchTask = null;
         }
+        if (activityLogTask != null) {
+            activityLogTask.cancel();
+            activityLogTask = null;
+        }
         if (gameExecutor != null) {
             gameExecutor.close();
             gameExecutor = null;
+        }
+        if (requestRouter != null) {
+            requestRouter.close();
+            requestRouter = null;
+        }
+        if (chatListener != null) {
+            org.bukkit.event.HandlerList.unregisterAll(chatListener);
+            chatListener.close();
+            chatListener = null;
+        }
+        if (events != null) {
+            if (gameListener != null) {
+                org.bukkit.event.HandlerList.unregisterAll(gameListener);
+                gameListener.close();
+                gameListener = null;
+            }
+            events.close();
+            events = null;
         }
         // Cancellation is bounded memory work; the reactor still owns all socket IO.
         if (transport != null) transport.sessions().forEach(Session::close);
         if (sessions != null) {
             sessions.close();
             sessions = null;
+        }
+        if (activityLog != null) {
+            activityLog.drain(line -> getLogger().info(line));
+            activityLog = null;
         }
         if (operationTrace != null) {
             operationTrace.drain(event -> getLogger().info(event.logLine()));

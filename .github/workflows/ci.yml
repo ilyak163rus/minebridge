@@ -1,0 +1,110 @@
+name: Build and test
+
+"on":
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    name: Python ${{ matrix.python }} / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.11", "3.14"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: python/pyproject.toml
+      - name: Install build tools
+        run: python -m pip install --upgrade build twine
+      - name: Build and inspect distributions
+        shell: python
+        run: |
+          import os
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          root = Path(os.environ["GITHUB_WORKSPACE"])
+          output = Path(os.environ["RUNNER_TEMP"]) / "python-dist"
+          subprocess.run([sys.executable, "-m", "build", "--outdir", str(output), str(root / "python")], check=True)
+          distributions = sorted(output.glob("*"))
+          assert len(list(output.glob("*.whl"))) == 1
+          assert len(list(output.glob("*.tar.gz"))) == 1
+          subprocess.run([sys.executable, "-m", "twine", "check", "--strict", *map(str, distributions)], check=True)
+      - name: Install the built wheel
+        shell: python
+        run: |
+          import os
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          wheel, = (Path(os.environ["RUNNER_TEMP"]) / "python-dist").glob("*.whl")
+          subprocess.run([sys.executable, "-m", "pip", "install", "--no-deps", "--force-reinstall", str(wheel)], check=True)
+      - name: Test installed package outside the source tree
+        shell: python
+        run: |
+          import os
+          from pathlib import Path
+          import subprocess
+          import sys
+          import tempfile
+
+          root = Path(os.environ["GITHUB_WORKSPACE"])
+          with tempfile.TemporaryDirectory(dir=os.environ["RUNNER_TEMP"]) as work:
+              subprocess.run([sys.executable, "-I", "-c",
+                  "from pathlib import Path; import minebridge; "
+                  "assert 'site-packages' in Path(minebridge.__file__).parts; "
+                  "print(minebridge.__version__, minebridge.__file__)"], cwd=work, check=True)
+              subprocess.run([sys.executable, "-I", "-m", "unittest", "discover",
+                              "-s", str(root / "python/tests"), "-q"], cwd=work, check=True)
+      - name: Save package distributions
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: python-${{ matrix.python }}-${{ matrix.os }}
+          path: ${{ runner.temp }}/python-dist/*
+          if-no-files-found: error
+
+  java:
+    name: Plugin / Java 25
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: gradle
+      - name: Test and build shaded plugin
+        run: bash plugin/gradlew -p plugin test shadowJar --no-daemon --console=plain
+      - name: Save plugin and test reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: plugin-java-25
+          path: |
+            plugin/build/libs/minebridge-paper-*.jar
+            !plugin/build/libs/*-plain.jar
+            plugin/build/reports/tests/test/
+            plugin/build/test-results/test/
+          if-no-files-found: warn

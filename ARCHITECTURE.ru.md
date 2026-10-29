@@ -1,18 +1,56 @@
 Проект библиотеки Python и серверного плагина Minecraft
 ====================================================
 
-Целевая архитектура от 15 октября 2026 года. Состояние на 21 октября:
+Целевая архитектура от 15 октября 2026 года. Актуализация 29 октября:
+установочная пара [0.3.1](docs/releases/0.3.1.ru.md) включает управление игрой,
+мировые настройки, 14 типов событий с обработчиками и независимым чтением
+истории, точные слоты сундуков и игроков. Доступность методов определяют
+[API 0.3](docs/API_V0_3.ru.md), [базовый API 0.2](docs/API_V0_2.ru.md) и
+контракты. Сохраняются buffered по умолчанию, ожидание команд при обычном
+завершении Python, необязательный журнал сессии `create(..., logging=True)`.
+[Итоговая приёмка 0.3](docs/reports/V0_3_I05.ru.md) завершена на Paper build 133.
+В 0.3.1 по запросу пользователя пересмотрена только политика скорости заполнения:
+загруженные области до 32 768 блоков выполняются одним проходом вместо
+обязательных порций по 256 за тик. Сохраняются Paper API, физика, загрузка
+чанков, ограничения объёма и семантика подтверждений. Добавлены явная ошибка
+мирной сложности и helper выбора по нику; [границы](docs/releases/0.3.1.ru.md).
+
+Ниже сохранена история этапов и целевая платформа, включая будущий API.
+Scoreboard, title/actionbar, GUI и произвольные компоненты предметов ещё
+не входят в поставку. Требования и границы 0.3 зафиксированы в
+[плане](docs/IMPLEMENTATION_PLAN_V0_3.ru.md) и [контракте](docs/contracts/V0_3_CONTRACT.ru.md).
+
 [T01](docs/reports/T01.ru.md), [T02](docs/reports/T02.ru.md),
 [T03](docs/reports/T03.ru.md), [T04](docs/reports/T04.ru.md) и
 [T05](docs/reports/T05.ru.md), [T06](docs/reports/T06.ru.md) и
 [T07](docs/reports/T07.ru.md), [T08](docs/reports/T08.ru.md) и
-[T09](docs/reports/T09.ru.md) реализованы и проверены.
-Негативная приёмка технического среза остаётся T10.
+[T09](docs/reports/T09.ru.md) и [T10](docs/reports/T10.ru.md) реализованы и проверены.
+Минимальный технический срез v0.1 принят; будущие области ниже остаются roadmap.
+Требования пользователя от 22 октября к следующему этапу собраны в
+[плане v0.2 на пять итераций](docs/IMPLEMENTATION_PLAN_V0_2.ru.md).
+В нём явно заменены обязательные имя мира/токен, sync по умолчанию и loaded-only;
+это отдельный контракт v0.2, а не изменение уже принятого контракта v0.1.
+I01 реализован: [контракт v0.2/I01](docs/contracts/V0_2_CONTRACT.ru.md),
+[результаты и поставка](docs/reports/I01.ru.md). Подключение без обязательного
+токена/имени мира, buffered по умолчанию, sync и flush доступны; остальные
+возможности последующих этапов добавляются отдельно. I02 также реализован
+в исходниках: [блоки/состояния/чанки и результаты](docs/reports/I02.ru.md).
+По уточнению пользователя промежуточные поставки после I01 не выпускались.
+I03 добавляет игроков, контекст SELF,
+vanilla-селекторы, телепортацию и чат: [отчёт](docs/reports/I03.ru.md),
+[пример](examples/players_and_chat.py). I04 добавляет предметы, эффекты,
+полные каталоги и создание сущностей: [отчёт](docs/reports/I04.ru.md),
+[пример](examples/rewards_effects_entities.py). I05 завершена: итоговые JAR/wheel
+0.2.0 проверены вместе на Paper с двумя отдельными Python-процессами и двумя
+игровыми подключениями, а также с двумя заново созданными основными мирами
+без изменения конфига. [Поставка](dist/v0.2/README.ru.md),
+[отчёт I05](docs/reports/I05.ru.md), [фактический API](docs/API_V0_2.ru.md).
 Разработку определяют [план](docs/IMPLEMENTATION_PLAN.ru.md),
 [зафиксированный контракт v0.1, r1](docs/contracts/V0_1_CONTRACT.ru.md) и
 [план Paper-проверок](docs/PAPER_INTEGRATION_TEST_PLAN.ru.md).
-Ниже описана целевая платформа. Первая версия реализует только явно выделенный
-минимальный срез; будущий API ниже не означает, что он уже доступен в программе.
+Ниже описана целевая платформа, включая будущие области. Доступность методов
+в текущей поставке определяется справочниками API и контрактами v0.2/v0.3;
+будущий API ниже не означает, что он уже доступен в программе.
 `minebridge` ниже — рабочее имя для примеров, а не выбранное имя пакета в PyPI.
 Уточнённая основа: общий сервер Paper, каждый ученик запускает Python у себя.
 Первой целевой версией принимаем Minecraft Java Edition 26.2 и Paper 26.2;
@@ -268,13 +306,13 @@ components=None)` описывает предмет. Обычные параме
 Требование: ученик выбирает известные значения после точки, как в mcpi:
 
 ```python
-from minebridge import block, items, selector, effects, entities, gamemode
+from minebridge import block, items, selector, effects, entity, gamemode
 
 mc.setBlock(0, 64, 0, block.COBBLESTONE)
 mc.players.giveItem(selector.ALL_PLAYERS, items.IRON_SWORD, 1)
 mc.effects.add(selector.SELF, effects.SPEED, duration=30, level=2)
 mc.players.setGameMode(selector.SELF, gamemode.CREATIVE)
-mc.entities.spawn(entities.ZOMBIE, 10, 64, 10)
+mc.entities.spawn(entity.ZOMBIE, 10, 64, 10)
 ```
 
 Последний пример задаёт сигнатуру нового `EntitiesAPI.spawn(type, x, y, z, *,
@@ -291,7 +329,7 @@ world=None) -> EntityRef`. Совместимые методы mcpi, если п
 | `items` | `IRON_SWORD`, `DIAMOND`, `BREAD` | `ItemKey` |
 | `selector` | `ALL_PLAYERS`, `RANDOM_PLAYER`, `NEAREST_PLAYER`, `SELF`, `ALL_ENTITIES` | `Selector` |
 | `effects` | `SPEED`, `JUMP_BOOST`, `NIGHT_VISION` | `EffectKey` |
-| `entities` | `ZOMBIE`, `COW`, `ARMOR_STAND` | `EntityTypeKey` |
+| `entity` | `ZOMBIE`, `COW`, `ARMOR_STAND` | `EntityTypeKey` |
 | `gamemode` | `SURVIVAL`, `CREATIVE`, `ADVENTURE`, `SPECTATOR` | `GameMode` |
 | `weather` | `CLEAR`, `RAIN`, `THUNDER` | `Weather` |
 | `display_slots` | `SIDEBAR`, `BELOW_NAME`, `PLAYER_LIST` | `DisplaySlot` |
@@ -365,7 +403,8 @@ vanilla-строки и отдельный типизированный конс
 - Одних динамических `__getattr__`, `setattr` и `__dir__` недостаточно для
   надёжного статического автодополнения: нужны сгенерированные объявления.
 - Варианты после `items.` и `selector.` доступны без запущенного Minecraft.
-  Проверяем автодополнение, сигнатуры и наведение в VS Code/Pylance и PyCharm.
+  Проверяем автодополнение, сигнатуры и наведение в VS Code/Pylance.
+  Пользователь исключил обязательную проверку PyCharm 22 октября 2026 года.
   Показ списка в пустом аргументе зависит от редактора; основной пользовательский
   путь — ввод имени модуля и точки. Наличие константы не заменяет проверку
   возможностей подключённого сервера.

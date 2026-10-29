@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BlockServiceTest {
     private static final UUID WORLD_ID = UUID.fromString("550e8400-e29b-41d4-a716-446655440000");
-    private static final WorldContext CONTEXT = new WorldContext("lesson", WORLD_ID, -64, 320);
+    private static final WorldContext CONTEXT = new WorldContext("lesson", "minecraft:overworld", WORLD_ID, -64, 320);
     private static final BlockService.BlockMaterial STONE = new BlockService.BlockMaterial() {};
 
     @Test void checksAndSetterAreOrderedWithSuccessTraceAfterActualSetter() throws Exception {

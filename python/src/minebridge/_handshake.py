@@ -24,6 +24,7 @@ class ProtocolVersion:
 @dataclass(frozen=True, slots=True)
 class WorldContext:
     name: str
+    key: str
     uuid: str
     min_y: int
     max_y_exclusive: int
@@ -45,6 +46,18 @@ class ServerLimits:
 
 
 @dataclass(frozen=True, slots=True)
+class EventHistoryContext:
+    epoch: str
+    world: str
+    start_sequence: int
+    max_records: int
+    max_bytes: int
+    max_age_ticks: int
+    max_subscriptions: int
+    max_live_events: int
+
+
+@dataclass(frozen=True, slots=True)
 class SessionContext:
     protocol: ProtocolVersion
     session_id: str
@@ -52,23 +65,22 @@ class SessionContext:
     server_version: str
     world: WorldContext
     coordinates: Literal["absolute"]
-    chunk_policy: Literal["loaded-only"]
+    chunk_policy: Literal["loaded-only", "load-generate"]
     apply_physics: Literal[True]
     capabilities: tuple[str, ...]
     limits: ServerLimits
+    event_history: EventHistoryContext | None = None
 
 
 def prepare_hello(*, token: str | None, world: str | None,
-                  coordinates: str | None) -> dict[str, object]:
+                  coordinates: str | None, logging: bool = False) -> dict[str, object]:
     """Validate local options before DNS/TCP; never include values in errors."""
+    if type(logging) is not bool:
+        raise TypeError("logging must be a bool")
     if token is None:
         token = os.environ.get("MINEBRIDGE_TOKEN")
-    if token is None:
-        raise errors.AuthenticationError("A lesson token is required") from None
-    if not isinstance(token, str):
+    if token is not None and not isinstance(token, str):
         raise TypeError("token must be a string or None")
-    if not token.strip():
-        raise errors.AuthenticationError("A lesson token is required") from None
     if world is not None and not isinstance(world, str):
         raise TypeError("world must be a string or None")
     if coordinates is None:
@@ -80,11 +92,14 @@ def prepare_hello(*, token: str | None, world: str | None,
             "Only absolute coordinates are supported",
         ) from None
     params: dict[str, object] = {
-        "protocol": {"major": 1, "minor": 0},
+        "protocol": {"major": 2, "minor": 0},
         "token": token,
         "world": world,
         "coordinates": coordinates,
     }
+    # Preserve the old hello exactly unless the new feature is requested.
+    if logging:
+        params["logging"] = True
     # Reject unencodable/oversized values before opening a connection. The
     # transport still independently encodes the actual request with its own ID.
     try:
@@ -100,21 +115,34 @@ def context_from_result(result: dict[str, object]) -> SessionContext:
     """Copy a codec-validated hello result without retaining mutable wire data."""
     world = cast(dict[str, object], result["world"])
     limits = cast(dict[str, JsonNumber], result["limits"])
-    # Protocol 1.0 was already checked by decode_response. Only the bounded
+    history = cast(dict[str, object] | None, result.get("eventHistory"))
+    event_history = None
+    if history is not None:
+        retention = cast(dict[str, JsonNumber], history["retention"])
+        event_history = EventHistoryContext(
+            epoch=cast(str, history["epoch"]), world=cast(str, history["world"]),
+            start_sequence=int(cast(JsonNumber, history["startSequence"]).text),
+            max_records=int(retention["maxRecords"].text), max_bytes=int(retention["maxBytes"].text),
+            max_age_ticks=int(retention["maxAgeTicks"].text),
+            max_subscriptions=int(cast(JsonNumber, history["maxSubscriptions"]).text),
+            max_live_events=int(cast(JsonNumber, history["maxLiveEvents"]).text),
+        )
+    # Protocol 2.0 was already checked by decode_response. Only the bounded
     # world heights require conversion to Python integers here.
     return SessionContext(
-        protocol=ProtocolVersion(1, 0),
+        protocol=ProtocolVersion(2, 0),
         session_id=cast(str, result["sessionId"]),
         plugin_version=cast(str, result["pluginVersion"]),
         server_version=cast(str, result["serverVersion"]),
         world=WorldContext(
             name=cast(str, world["name"]),
+            key=cast(str, world["key"]),
             uuid=cast(str, world["uuid"]),
             min_y=int(cast(JsonNumber, world["minY"]).text),
             max_y_exclusive=int(cast(JsonNumber, world["maxYExclusive"]).text),
         ),
         coordinates="absolute",
-        chunk_policy="loaded-only",
+        chunk_policy=cast(Literal["loaded-only", "load-generate"], result["chunkPolicy"]),
         apply_physics=True,
         capabilities=tuple(cast(list[str], result["capabilities"])),
         limits=ServerLimits(
@@ -130,4 +158,5 @@ def context_from_result(result: dict[str, object]) -> SessionContext:
             max_operations_per_session_per_tick=limits["maxOperationsPerSessionPerTick"],
             executor_budget_millis=limits["executorBudgetMillis"],
         ),
+        event_history=event_history,
     )

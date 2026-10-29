@@ -9,4 +9,10 @@ dist/
 .gradle/
 integration/artifacts/
 .vscode/.ropeproject/
+.env
+.env.*
+!.env.example
+.pypirc
+*.log
+.idea/
 

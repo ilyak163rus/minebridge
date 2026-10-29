@@ -14,6 +14,26 @@ import java.util.concurrent.atomic.AtomicLong;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameExecutorTest {
+    @Test void defaultsDrainHundredWritePipelinesInOrderAndShareTickBetweenSessions() {
+        Session a = new Session(512, 512, () -> {}), b = new Session(512, 512, () -> {});
+        for (long id = 1; id <= 100; id++) {
+            assertTrue(a.reactorOfferRequest(new Request(id, "blocks.set", Map.of())));
+            assertTrue(b.reactorOfferRequest(new Request(id, "blocks.set", Map.of())));
+        }
+        List<String> seen = new ArrayList<>();
+        GameExecutor executor = new GameExecutor(() -> List.of(a, b),
+                (session, request) -> seen.add((session == a ? "a" : "b") + request.id()),
+                () -> {}, () -> {}, ExecutionLimits.defaults(), () -> 0);
+        executor.run();
+        assertEquals(200, seen.size());
+        for (int index = 0; index < 100; index++) {
+            assertEquals("a" + (index + 1), seen.get(index * 2));
+            assertEquals("b" + (index + 1), seen.get(index * 2 + 1));
+        }
+        assertEquals(0, a.queuedRequests());
+        assertEquals(0, b.queuedRequests());
+    }
+
     @Test void gateKeepsActualHeadAndFifoWithoutStoppingTicksOrOtherSessions() {
         Session a = new Session(8, 8, () -> {}), b = new Session(8, 8, () -> {});
         a.markReady(); b.markReady();
@@ -66,7 +86,7 @@ class GameExecutorTest {
     }
 
     private static Session queued(int count) {
-        Session session = new Session(8, 8, () -> { });
+        Session session = new Session(512, 512, () -> { });
         for (long id = 1; id <= count; id++) {
             assertTrue(session.reactorOfferRequest(new Request(id, "future", Map.of())));
         }
@@ -111,14 +131,14 @@ class GameExecutorTest {
 
     @Test void eightBusyConnectionsReachGlobalDefaultBudget() {
         List<Session> active = new ArrayList<>();
-        for (int i = 0; i < 8; i++) active.add(queued(8));
+        for (int i = 0; i < 8; i++) active.add(queued(128));
         AtomicInteger dispatched = new AtomicInteger();
         GameExecutor executor = new GameExecutor(() -> active,
                 (session, request) -> dispatched.incrementAndGet(), () -> { }, () -> { },
                 ExecutionLimits.defaults(), () -> 0);
         executor.run();
-        assertEquals(32, dispatched.get());
-        active.forEach(session -> assertEquals(5L, session.pollRequest().id()));
+        assertEquals(512, dispatched.get());
+        active.forEach(session -> assertEquals(65L, session.pollRequest().id()));
     }
 
     @Test void closedConnectionAndIdleConnectionDoNotBlockOtherSession() {

@@ -1,0 +1,11 @@
+{
+  "name": "minebridge-ide-v031-smoke",
+  "displayName": "Minebridge 0.3.1 installed-wheel IDE check",
+  "publisher": "minebridge-tests",
+  "version": "0.0.0",
+  "private": true,
+  "engines": { "vscode": "^1.107.0" },
+  "main": "./extension.js",
+  "activationEvents": ["onStartupFinished"],
+  "extensionDependencies": ["ms-python.python", "ms-python.vscode-pylance"]
+}

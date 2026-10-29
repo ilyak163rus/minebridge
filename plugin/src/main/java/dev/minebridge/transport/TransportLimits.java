@@ -17,7 +17,7 @@ public record TransportLimits(int maxSessions, int maxQueuedRequests, int maxOut
     }
 
     public static TransportLimits defaults() {
-        return new TransportLimits(8, 8, 8, Duration.ofSeconds(5),
+        return new TransportLimits(8, 512, 512, Duration.ofSeconds(5),
                 Duration.ofSeconds(5), Duration.ofSeconds(5));
     }
 
